@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,21 +12,18 @@
 </head>
 <body>
 
-<!-- -------------------------------------------------------------------------------------- -->
-<!--div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-                <div class="card-body"-->
     <img class="wave" src="img/wave.png">
 	<div class="contenedor">
 		<div class="img">
 			<img src="./img/planet-earth.svg">
-			<h1></h1>
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 		</div>
 		<div class="login-content">
-<!-- ------------------------------------------------ -->
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <img src="./img/customer.png" height="200px" width="200px" >
@@ -57,26 +50,8 @@
            		   <div class="div">
            		    	<h5>Contraseña</h5>
                         <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
-
-<!--div class="form-group row">
-    <div class="col-md-6 offset-md-4">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-            <label class="form-check-label" for="remember">
-                {{ __('Recuerdame') }}
-            </label>
-        </div>
-    </div>
-</div-->  
                 @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}">
                         {{ __('Olvidaste tu contraseña?') }}
@@ -91,8 +66,5 @@
 
 <!-- ------------------------------------------------------------------------- -->
    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-	<!--script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script src="{{ asset('js/recuperar.js') }}"></script-->
 </body>
 </html> 
-@endsection
