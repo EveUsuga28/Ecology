@@ -22,6 +22,12 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 		</div>
 		<div class="login-content">
             <form method="POST" action="{{ route('login') }}">
@@ -36,11 +42,6 @@
            		   		<h5>Correo</h5>
                         <input id="email" type="email" class="@error('email') is-invalid @enderror input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
            		<div class="input-div pass">
