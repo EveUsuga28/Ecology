@@ -27,7 +27,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <img src="./img/customer.png" height="200px" width="200px" >
-				<h2 class="title">PENDEJA</h2>
+				<h2 class="title">Ecology</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
