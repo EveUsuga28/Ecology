@@ -10,13 +10,14 @@
     <title>Ecology</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
 
-    <!-- Styles -->
+    <!-- Styles --> 
 	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -49,10 +50,15 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Modulo &nbsp;&nbsp;
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('users.index')}}" class="dropdown-item">
+                                        Usuarios
+                                    </a>
                                     <a class="dropdown-item" href="#">
-                                        Usuario
+                                        Materiales
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        Institucion
                                     </a>
                                 </div>
                             </li>
@@ -85,5 +91,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('js')
 </body>
 </html>
