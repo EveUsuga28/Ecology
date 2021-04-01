@@ -19,80 +19,94 @@
 
     <!-- Styles --> 
 	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/MenuEstilos.css') }}" rel="stylesheet">
 </head>
 <body>
 @guest
 
 @else
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Ecology
+    <div id="sidemenu" class="menu-collapsed">
+        <div id="header">
+            <div id="tittle"><span>Ecology</span></div>
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+            </div>
+        </div>
+        <div id="profile">
+            <div id="photo"><img src="img/perfildeusuario.jpg" alt=""></div>
+            <div id="name"><span>{{ Auth::user()->name }}</span></div>
+        </div>
+
+        <div id="menu-items">
+            <div class="item">
+                <a href="{{ route('home')}}">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Inicio</span></div>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <li><a class="nav-link" href="{{ route('home')}}">Inicio &nbsp;&nbsp;</a></li>
-                        <li><a class="nav-link" href="#">Nosotros &nbsp;&nbsp;</a></li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Modulo &nbsp;&nbsp;
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('users.index')}}" class="dropdown-item">
-                                        Usuarios
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        Materiales
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        Institucion
-                                    </a>
-                                </div>
-                            </li>
-                        <li><a class="nav-link" href="#">Contactenos &nbsp;&nbsp;</a></li>
-                        
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+            </div>
+            <div class="item">
+                <a href="{{ route('users.index')}}">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Usuarios</span></div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Usuarios</span></div>
+                </a>
+            </div>
+            <div class="item separator"></div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Usuarios</span></div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Usuarios</span></div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Usuarios</span></div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesion') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>{{ __('Cerrar Sesion') }}</span></div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </a>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    @endguest
+    <div id="main-container">
+        <p>
+        @yield('content')
+        </p>
+    </div>
 
+    <script>
+        const btn = document.querySelector('#menu-btn');
+        const menu = document.querySelector('#sidemenu');
+        btn.addEventListener('click', e => {
+            menu.classList.toggle("menu-expanded");
+            menu.classList.toggle("menu-collapsed");
+
+            document.querySelector('body').classList.toggle('body-expanded');
+        });
+    </script>
     @yield('js')
 </body>
 </html>
