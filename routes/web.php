@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\PuntajeMaterialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +22,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/material',MaterialController::class);
+
+Route::resource('material',MaterialController::class);
+Route::GET('/puntajeMaterial/Crear/{id}', [App\Http\Controllers\PuntajeMaterialController::class, 'Crear'])->name('puntajeMaterial.Crear');
+Route::resource('puntajeMaterial',PuntajeMaterialController::class);
+
+
+
+
+
