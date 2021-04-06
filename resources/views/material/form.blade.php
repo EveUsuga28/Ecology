@@ -30,4 +30,4 @@ Formulario Material
     <input type="submit"value="Guardar Datos">
      <a href="{{url('material/') }}">Atrás</a>
 
-     
+     @endsection
