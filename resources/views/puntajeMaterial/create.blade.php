@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 Crear Puntaje
 <form action="{{url('/puntajeMaterial')}}" method="POST">
 @csrf
@@ -25,3 +27,4 @@ $Fecha_Inicio =date("Y-m-d H:i:s");
  <a href="{{url('puntajeMaterial/') }}">Atrás</a>
 
 </form>
+@endsection

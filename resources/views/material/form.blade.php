@@ -1,5 +1,9 @@
 
+@extends('layouts.app')
 
+@section('content')
+Formulario Material
+<br>
 <label For="NomreMaterial" >Nombre Material</label>
     <input type="text" name="NomreMaterial"  value="{{ isset($material->NomreMaterial)?$material->NomreMaterial:'' }}" id="NomreMaterial">
     </br>
@@ -24,5 +28,6 @@
 
     </br>
     <input type="submit"value="Guardar Datos">
+     <a href="{{url('material/') }}">Atrás</a>
 
-    <a href="{{url('material/') }}">Atrás</a>
+     

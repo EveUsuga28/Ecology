@@ -1,5 +1,7 @@
-Index puntaje
+@extends('layouts.app')
 
+@section('content')
+Index Material
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -44,3 +46,4 @@ Index puntaje
     </tbody>
 
 </table>
+@endsection

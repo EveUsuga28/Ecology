@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
@@ -16,6 +15,10 @@ use App\Http\Controllers\PuntajeMaterialController;
 */
 
 Route::get('/', function () {
+    return view('./auth/index');
+});
+
+Route::get('/login', function () {
     return view('./auth/login');
 });
 
@@ -33,3 +36,6 @@ Route::resource('puntajeMaterial',PuntajeMaterialController::class);
 
 
 
+Route::resource('/users',UserController::class);
+
+Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 Mostrar Materiales Lista
 
 @if(Session::has('mensaje'))
@@ -43,3 +46,4 @@ Mostrar Materiales Lista
         @endforeach
     </tbody>
 </table>
+@endsection

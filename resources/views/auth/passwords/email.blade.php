@@ -14,13 +14,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!-------------------------------------------------------------------------------------------------------------->
-<!--div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-                <div class="card-body"-->
     <img class="wave" src="../img/wave.png">
 	<div class="contenedor">
 		<div class="img">
@@ -30,14 +23,7 @@
         <div class="login-content">
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
-
-<!--div class="form-group row">
-    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-    <div class="col-md-6"-->
-
                 <img src="../img/customer.png" height="200px" width="200px" >
-				<h2 class="title">Ecology</h2>
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -62,29 +48,14 @@
                             @enderror
                         </div>
                     </div>
-
-<!--div class="form-group row mb-0">
-    <div class="col-md-6 offset-md-4"-->
-
                     <button type="submit" class="btn">
                         {{ __('Generar enlace') }}
                     </button>
-                            <!--/div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div-->
                 </div>
             </form>
         </div>
     </div>
-<!------------------------------------------------------------------------------------>
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-	<!--script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script src="{{ asset('js/recuperar.js') }}"></script-->
 </body>
 </html>
 @endsection

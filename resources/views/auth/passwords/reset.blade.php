@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Ecology</title>
-	<link rel="shortcut icon" type="text/css" href="./img/logo.png">
+	<link rel="shortcut icon" type="text/css" href="./">
 
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
@@ -14,14 +14,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!-------------------------------------------------------------------------------------------------------------->
-<!--div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body"-->
     <img class="wave" src="../../img/wave.png">
 	<div class="contenedor">
 		<div class="img">
@@ -32,7 +24,6 @@
                 @csrf
 
                 <input type="hidden" name="token" value="{{ $token }}">       
-                <!--img src="./img/002-candado-1.svg" height="200px" width="200px"-->
 				<h2 class="title">Ecology</h2>
                 <div class="tituloC">
                     <h3>Cambiar Contraseña</h3>
@@ -43,20 +34,6 @@
            		   		    <i class="fas fa-user"></i>
                         </div>
            		        <div class="div">
-
-<!--div class="form-group row"-->
-
-                            <!--h5>correo</h5>
-
-<label for="email">{{ __('Correo') }}</label>
-<div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span
-                            @enderror-->
                             <h5>Correo</h5>
                             <input id="email" type="email" class="@error('email') is-invalid @enderror input" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
@@ -98,16 +75,8 @@
                     </button>
                 </div>
             </form>
-
-                <!--/div>
-            </div>
-        </div>
-    </div>
-</div-->
-
         </div> 
     </div>
-<!------------------------------------------------------------------------------------>
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 	<script>
 		var boton = document.getElementById('boton');

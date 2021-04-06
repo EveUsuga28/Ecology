@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 Editar Puntaje
 
 <form action="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail)}}" method="post">
@@ -24,4 +26,4 @@ Editar Puntaje
    <a href="{{url('puntajeMaterial/') }}">Atrás</a>
 
 </form>
-
+@endsection
