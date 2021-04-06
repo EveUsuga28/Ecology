@@ -9,5 +9,5 @@ class material extends Model
 {
     use HasFactory;
 
-    
+    protected $fillable = ['Puntaje'];
 }

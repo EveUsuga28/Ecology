@@ -16,7 +16,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        
+
 
          $datos['materials']=material::paginate(5);
         return view('material.index',$datos);

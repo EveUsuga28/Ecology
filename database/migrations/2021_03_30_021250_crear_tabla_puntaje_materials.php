@@ -19,7 +19,7 @@ class CrearTablaPuntajeMaterials extends Migration
             $table->datetime('Fecha_Inicio');
             $table->datetime('Fecha_Fin');
             $table->integer('Puntaje');
-            $table->timestamp('created_at');
+            $table->timestamps();
 
 
             $table->foreign("id_materials")
