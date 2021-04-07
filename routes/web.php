@@ -33,7 +33,7 @@ Route::GET('/puntajeMaterial/Crear/{id}', [App\Http\Controllers\PuntajeMaterialC
 Route::resource('puntajeMaterial',PuntajeMaterialController::class);
 
 
-
+//MASTER
 
 
 Route::resource('/users',UserController::class);
