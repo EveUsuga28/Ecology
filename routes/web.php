@@ -32,10 +32,6 @@ Route::resource('material',MaterialController::class);
 Route::GET('/puntajeMaterial/Crear/{id}', [App\Http\Controllers\PuntajeMaterialController::class, 'Crear'])->name('puntajeMaterial.Crear');
 Route::resource('puntajeMaterial',PuntajeMaterialController::class);
 
-
-//MASTER
-
-
 Route::resource('/users',UserController::class);
 
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
