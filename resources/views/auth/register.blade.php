@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
 	<title>Ecology</title>
@@ -12,7 +12,7 @@
 
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+</head><
 <body>
 	<img class="wave" src="img/wave.png">
 	<div class="contenedor">
