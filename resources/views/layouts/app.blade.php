@@ -62,19 +62,19 @@
             <div class="item">
                 <a href="#">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Usuarios</span></div>
+                    <div class="title"><span>Institución</span></div>
                 </a>
             </div>
             <div class="item">
                 <a href="#">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Usuarios</span></div>
+                    <div class="title"><span>Productos</span></div>
                 </a>
             </div>
             <div class="item">
                 <a href="#">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Usuarios</span></div>
+                    <div class="title"><span>Grupos</span></div>
                 </a>
             </div>
             <div class="item">
