@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -62,7 +63,7 @@
             <div class="item">
                 <a href="#">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Usuarios</span></div>
+                    <div class="title"><span>Noticias</span></div>
                 </a>
             </div>
             <div class="item">
