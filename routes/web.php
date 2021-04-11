@@ -3,22 +3,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
-<<<<<<< HEAD
 use App\Http\Controllers\InstitucionsController;
-=======
-use App\Http\Controllers\NoticiasController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
->>>>>>> 6e5d58671b7f641992615c661afb3c7741b98145
 
 Route::get('/', function () {
     return view('./auth/index');
