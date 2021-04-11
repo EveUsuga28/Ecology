@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\noticias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiasController extends Controller
 {
@@ -14,7 +15,8 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        //
+        $datosNoticias['noticias']=noticias:: paginate(5);
+        return view('noticias.index',$datosNoticias);
     }
 
     /**
@@ -24,7 +26,7 @@ class NoticiasController extends Controller
      */
     public function create()
     {
-        //
+        return view('noticias.create');
     }
 
     /**
@@ -35,7 +37,14 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosNoticias = request()->except('_token');
+
+        if($request->hasFile('Foto')){
+            $datosNoticias['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+        noticias::insert($datosNoticias);
+
+        return response()->json($datosNoticias);
     }
 
     /**
@@ -55,10 +64,13 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function edit(noticias $noticias)
+    public function edit($id_noticia)
     {
-        //
+        $noticias =noticias::findOrFail($id_noticia);
+
+        return view('noticias.edit',compact('noticias'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +79,21 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, noticias $noticias)
+    public function update(Request $request,$id_noticia)
     {
-        //
+        $datosNoticia = request()->except(['_token','_method']);
+
+        if($request->hasFile('Foto')){
+            $noticias =noticias::findOrFail($id_noticia);
+            storage::delete('public/'.$noticias->Foto);
+            $datosMaterial['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
+        noticias::where('id_noticia','=',$id_noticia)->update($datosNoticia);
+
+        $noticias =noticias::findOrFail($id_noticia);
+        return view('noticias.edit',compact('noticias'));
+
     }
 
     /**
