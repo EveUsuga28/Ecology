@@ -65,9 +65,11 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function edit(institucions $institucions)
+    public function edit($ID_Instituciones)
     {
         //
+        $institucion = institucions::findOrFail($ID_Instituciones);
+        return view('institucion.edit',compact('institucion'));
     }
 
     /**
@@ -88,8 +90,10 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(institucions $institucions)
+    public function destroy($ID_Instituciones)
     {
         //
+        //institucions::destroy($ID_Instituciones);    ERROR NO SOLUCIONADO EN ELIMINAR
+        return redirect('institucion');
     }
 }
