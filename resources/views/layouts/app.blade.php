@@ -60,7 +60,7 @@
             </div>
             <div class="item separator"></div>
             <div class="item">
-                <a href="#">
+                <a href="institucion">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
                     <div class="title"><span>Institución</span></div>
                 </a>

@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
+use App\Http\Controllers\InstitucionsController;
 
 Route::get('/', function () {
     return view('./auth/index');
@@ -12,6 +13,14 @@ Route::get('/login', function () {
     return view('./auth/login');
 });
 
+/* Rutas institucion */
+/*
+Route::get('/institucion', function () { return view('./institucion/index'); });
+Route::get('institucion/create',[InstitucionsController::class, 'create']);
+*/
+
+Route::resource('institucion', InstitucionsController::class);
+/* Fin rutas institucion */
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
