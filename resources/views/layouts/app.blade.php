@@ -61,7 +61,7 @@
             </div>
             <div class="item separator"></div>
             <div class="item">
-                <a href="{{route('noticias.index')}}">
+                <a href="noticias">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
                     <div class="title"><span>Noticias</span></div>
                 </a>

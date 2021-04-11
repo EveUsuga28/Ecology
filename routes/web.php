@@ -20,6 +20,7 @@ Route::get('institucion/create',[InstitucionsController::class, 'create']);
 */
 
 Route::resource('institucion', InstitucionsController::class);
+
 /* Fin rutas institucion */
 Auth::routes();
 
