@@ -29,7 +29,7 @@
 
         <div class="div">
  <label form="id_materials" >IdMaterial</label>
- <input type=""  class="form-control"value="{{$id}}"  name="id_materials" id="id_materials" >
+ <input type=""  class="form-control"value="{{$id}}"  name="id_materials" id="id_materials" required >
 </div>
 
 <div class="div">
@@ -39,18 +39,18 @@ $Fecha_Inicio =date("Y-m-d H:i:s");
 ?>
 
  <label form="Fecha_Inicio">Fecha_Inicio</label>
- <input type="datetime"  class="form-control"value="<?= $Fecha_Inicio ?>" name="Fecha_Inicio" id="Fecha_Inicio" >
+ <input type="datetime"  class="form-control"value="<?= $Fecha_Inicio ?>" name="Fecha_Inicio" id="Fecha_Inicio" required>
 </div>
 
 
 <div class="div">
     <label form="Fecha_Inicio">Fecha_Fin</label>
-    <input type="datetime" class="form-control" value="" name="Fecha_Fin" id="Fecha_Fin" >
+    <input type="datetime" class="form-control" value="" name="Fecha_Fin" id="Fecha_Fin" required>
 </div>
 
 <div class="div">
  <label form="Puntaje">Puntaje</label>
- <input type="number" class="form-control"value="" name="Puntaje" id="Puntaje" >
+ <input type="number" class="form-control"value="" name="Puntaje" id="Puntaje" required >
  <br>
  <input type="submit"  value="Guardar Datos " >
 </div>

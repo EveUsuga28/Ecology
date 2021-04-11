@@ -30,16 +30,16 @@
 
         <div class="div">
 <label For="NomreMaterial" >Nombre Material</label>
-    <input type="text"  class="form-control"name="NomreMaterial"  value="{{ isset($material->NomreMaterial)?$material->NomreMaterial:'' }}" id="NomreMaterial">
+    <input type="text"  class="form-control"name="NomreMaterial"  value="{{ isset($material->NomreMaterial)?$material->NomreMaterial:'' }}" id="NomreMaterial" required>
         </div>
         <div class="div">
     <label For="Puntaje" >Puntaje</label>
-    <input type="number" class="form-control"name="Puntaje"  value="{{ isset($material->Puntaje)?$material->Puntaje:'' }}" id="Puntaje">
+    <input type="number" class="form-control"name="Puntaje"  value="{{ isset($material->Puntaje)?$material->Puntaje:'' }}" id="Puntaje" required>
      </div>
 
      <div class="div">
     <label For="Kilos" >Kilos</label>
-    <input type="number" class="form-control"name="Kilos" value="{{ isset($material->Kilos)?$material->Kilos:'' }}" id="Kilos">
+    <input type="number" class="form-control"name="Kilos" value="{{ isset($material->Kilos)?$material->Kilos:'' }}" id="Kilos" required>
      </div>
      <div class="div">
 <br>
@@ -50,7 +50,7 @@
     <img src="{{asset('storage').'/'.$material->Foto}}"  width="100" alt="">
 
       @endif
-    <input type="file" name="Foto" value="" id="Foto">
+    <input type="file" name="Foto" value="" id="Foto" >
    </div>
     </br>
     <input type="submit"value="Guardar Datos">

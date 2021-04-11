@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -60,9 +61,9 @@
             </div>
             <div class="item separator"></div>
             <div class="item">
-                <a href="institucion">
+                <a href="{{route('noticias.index')}}">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Institución</span></div>
+                    <div class="title"><span>Noticias</span></div>
                 </a>
             </div>
             <div class="item">
