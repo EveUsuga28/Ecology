@@ -37,56 +37,40 @@
 <br>
 <br>
 <div class="container mt-4">
-<h1>Instituciones</h1> <br>
-
-<form action="{{ route('institucion.index')} }" method="get">
-        <div class="form-row">
-            <div class="col-sm-4 my-1">
-                <input type="text" class="form-control" name="texto" placeholder="Buscar">
-            </div>
-            <div class="col-auto my-1">
-                <input type="submit" class="btn btn-primary" value="Buscar">
-            </div>
-        </div>
-</form>
-
+<h1>Grupos</h1><br>
     <div class="card border-info" >
         <div class="card-header bg-success text-white" >
-<a href="{{ route('institucion.create') }}" class="btn btn-light">nuevo</a>
+<a href="{{ route('grupo.create') }}" class="btn btn-light">nuevo</a>
+
 </div>
+
 <table border="1" class="table table-sriped table-bordered">
     <thead align="center">
         <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Fecha Registro</th>
-            <th>Foto</th>
-            <th>Dirección</th>
+            <th>Grupo</th>
+            <th>ID_Instituciones</th>
+            <th>Estado</th>
             <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody align="center">
-        @foreach( $institucion as $instituciones )
+        @foreach( $grupo as $grupos )
         <tr>
-            <td>{{ $instituciones->ID_Instituciones }}</td>
-            <td>{{ $instituciones->Nombre }}</td>
-            <td>{{ $instituciones->Telefono }}</td>
-            <td>{{ $instituciones->fecha_Registro }}</td>
-            <td>
-            <img src="{{ asset('storage').'/'.$instituciones->Foto }}" alt="" width="100">
-            </td>
-            <td>{{ $instituciones->direccion }}</td>
+            <td>{{ $grupos->id_grupo }}</td>
+            <td>{{ $grupos->Grupo }}</td>
+            <td>{{ $grupos->ID_Instituciones }}</td>
+            <td>{{ $grupos->Estado }}</td>
             <td>
             
-            <a href="{{ url('/institucion/'.$instituciones->ID_Instituciones.'/edit') }}" class="btn btn-warning">
+            <a href="{{ url('/grupo/'.$grupos->id_grupo.'/edit') }}" class="btn btn-warning">
                 Editar
             </a>
 
              | 
             
-            <form action="{{ url('/institucion/'.$instituciones->ID_Instituciones ) }}" class="d-inline" method="post">
+            <form action="{{ url('/grupo/'.$grupos->id_grupo ) }}" class="d-inline" method="post">
 
             @csrf
             

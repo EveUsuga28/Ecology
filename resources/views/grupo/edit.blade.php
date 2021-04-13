@@ -36,38 +36,27 @@
             <h1>Editar Grupo</h1>
         </div>
 
-<form class="container" action="{{ url('/institucion/'.$institucion->ID_Instituciones ) }} " method="post" enctype="multipart/form-data">
+<form class="container" action="{{ url('/grupo/'.$grupo->id_grupo ) }} " method="post" enctype="multipart/form-data">
 @csrf
 
 {{ method_field('PATCH') }}
-<br>    
-<div class="form-group">
-<label for="foto"><img src="{{ asset('storage').'/'.$institucion->Foto }}" alt="" width="100"> </label><br>
-<input type="file" name="foto" id="foto">
-
-</div>
 
 <div class="form-group">
-<label for="nombre">Nombre</label><br>
-<input type="text" name="nombre" id="nombre" value="{{ $institucion-> Nombre}}" required>
+<label for="Grupo">Grupo</label><br>
+<input type="text" name="Grupo" id="Grupo" value="{{$grupo->Grupo}}" required maxLength="4"><br>
 </div>
-
 <div class="form-group">
-<label for="telefono">Teléfono</label><br>
-<input type="text" name="telefono" id="telefono" value="{{ $institucion-> Telefono}}" required>
+<label for="ID_Instituciones">Institución</label><br>
+<input type="text" name="ID_Instituciones" id="ID_Instituciones" value="{{$grupo->ID_Instituciones}}" readonly><br>
 </div>
-
 <div class="form-group">
-<label for="fecha_Registro">Fecha Registro</label><br>
-<input type="date" name="fecha_Registro" id="fecha_Registro" value="{{ $institucion->fecha_Registro }}" required>
+<label for="Estado">Estado</label><br>
+<select name="Estado" id="Estado">
+        <option value="1">habilitado</option>
+        <option value="0">deshabilitado</option>
+</select><br>
 </div>
-
-<div class="form-group">
-<label for="direccion">Dirección</label><br>
-<input type="text" name="direccion" id="direccion" value="{{ $institucion->direccion }}" required>
-</div>
-
-<input class="btn btn-success" type="submit" value="Actualizar"><br>
+<input class="btn btn-success" type="submit" value="Actualizar">
 
 </form>
 

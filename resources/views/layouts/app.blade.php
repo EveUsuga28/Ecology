@@ -66,13 +66,13 @@
                 </a>
             </div>
             <div class="item">
-                <a href="institucion">
+                <a href="{{ route('institucion.index') }}">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
                     <div class="title"><span>Institución</span></div>
                 </a>
             </div>
             <div class="item">
-                <a href="#">
+                <a href="{{ route('grupo.index') }}">
                     <div class="icon"><img src="img/logo.png" alt=""></div>
                     <div class="title"><span>Grupos</span></div>
                 </a>

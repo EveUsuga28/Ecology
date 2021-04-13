@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\institucions;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class InstitucionsController extends Controller
 {
     /**
@@ -45,7 +47,8 @@ class InstitucionsController extends Controller
 
         institucions::insert($datosInstitucion);
         
-        return response()->json($datosInstitucion);
+        return redirect('institucion')->with('mensaje','Empleado agregado exitosamente');
+        //return response()->json($datosInstitucion);
     }
 
     /**
@@ -79,9 +82,20 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, institucions $institucions)
+    public function update(Request $request, $ID_Instituciones)
     {
         //
+        $datosInstitucion = request()->except(['_token','_method']);
+
+        if($request->hasFile('foto')){
+            $instituto=institucions::findOrFail($ID_Instituciones);
+            Storage::delete('public/'.$instituto->Foto);
+            $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
+        }
+
+        institucions::where('ID_Instituciones','=',$ID_Instituciones)->update($datosInstitucion);
+        $institucion = institucions::findOrFail($ID_Instituciones);
+        return view('institucion.edit',compact('institucion'));
     }
 
     /**
@@ -92,8 +106,13 @@ class InstitucionsController extends Controller
      */
     public function destroy($ID_Instituciones)
     {
-        //
-        //institucions::destroy($ID_Instituciones);    ERROR NO SOLUCIONADO EN ELIMINAR
-        return redirect('institucion');
+        // 
+        $instituciones=institucions::findOrFail($ID_Instituciones);
+
+        if(Storage::delete('public/'.$instituciones->Foto)){
+            institucions::destroy($ID_Instituciones);
+        }
+
+        return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');
     }
 }
