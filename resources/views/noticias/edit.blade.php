@@ -1,4 +1,6 @@
-Editar Noticias
+@extends('layouts.app')
+
+@section('content')
 <form action="{{url('/noticias/'.$noticias->id_noticia)}}" method="post" enctype="multipart/form-data">
 @csrf
 {{method_field('PATCH')}}
