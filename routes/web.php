@@ -40,3 +40,10 @@ Route::resource('/users',UserController::class);
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
 
 Route::resource('noticias',NoticiasController::class);
+<<<<<<< HEAD
+=======
+
+Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
+
+
+>>>>>>> noticias

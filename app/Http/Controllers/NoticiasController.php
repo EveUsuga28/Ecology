@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\noticias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 
 class NoticiasController extends Controller
 {
@@ -13,10 +15,17 @@ class NoticiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datosNoticias['noticias']=noticias:: paginate(5);
-        return view('noticias.index',$datosNoticias);
+        $texto=trim($request->get('texto'));
+        $noticias=DB::table('noticias')
+                ->select('id_noticia','titulo','contexto','Fecha', 'estado', 'Foto')
+                ->where('titulo','LIKE','%'.$texto.'%')
+                ->orWhere('id_noticia','LIKE','%'.$texto.'%')
+                ->orWhere('contexto','LIKE','%'.$texto.'%')
+                ->orderBy('id_noticia', 'asc')
+                ->paginate(10);
+        return view('noticias.index', compact('noticias','texto'));
     }
 
     /**
@@ -86,7 +95,7 @@ class NoticiasController extends Controller
         if($request->hasFile('Foto')){
             $noticias =noticias::findOrFail($id_noticia);
             storage::delete('public/'.$noticias->Foto);
-            $datosMaterial['Foto']=$request->file('Foto')->store('uploads','public');
+            $datosNoticia['Foto']=$request->file('Foto')->store('uploads','public');
         }
 
         noticias::where('id_noticia','=',$id_noticia)->update($datosNoticia);
@@ -105,5 +114,23 @@ class NoticiasController extends Controller
     public function destroy(noticias $noticias)
     {
         //
+    }
+
+    public function Deshabilitar($id_noticia)
+    {
+
+        $Noticia = noticias::find($id_noticia);
+
+        if($Noticia->estado == 1)
+        {
+            $Noticia->estado = 0;
+        }else
+        {
+            $Noticia->estado = 1;
+        }
+
+        $Noticia->save();
+
+        return redirect()->route('noticias.index')->with('eliminar' , 'true');
     }
 }
