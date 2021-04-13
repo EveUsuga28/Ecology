@@ -20,8 +20,8 @@
 <body>
     <img class="wave" src="../img/wave.png">
 	<div class="contenedor">
-		<div class="img">
-			<img src="../img/planet-earth.svg">
+		<div >
+
 		</div>
         <div class="login-content">
       <div  class="form-group">

@@ -1,4 +1,7 @@
-Crear Noticias
+
+@extends('layouts.app')
+
+@section('content')
 <form action="{{url('/noticias')}}" method="post" enctype="multipart/form-data">
 @csrf
 
