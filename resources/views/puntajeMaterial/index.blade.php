@@ -24,8 +24,7 @@
 </head>
 <body>
 <form >
-    <div class="container mt-4" align="right"
-        <input type="submit" class="btn btn-dark" value="Buscar">
+    <div class="container mt-4" align="right">
     </div>
     </form>
     <div class="container mt-4">

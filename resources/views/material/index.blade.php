@@ -29,6 +29,7 @@
 <body>
 <form >
     <div class="container mt-4" align="right">
+        <input type="text" name="texto" value="{{$texto}}">
         <input type="submit" class="btn btn-dark" value="Buscar">
     </div>
     </form>
@@ -37,11 +38,11 @@
         <div class="card-header bg-success text-white" >
 
             <a href="{{url('material/create') }}" class="btn btn-light">NUEVO</a>
+
         </div>
         <div class="card-body" >
         <table border="1" class="table table-sriped table-bordered" id="Materiales" >
             <thead align="center">
-
                 <th>
                     Id
                 </th>
@@ -87,3 +88,4 @@
         </tr>
         @endforeach
     </form>
+
