@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\institucions;
 use App\Models\grupos;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class GruposController extends Controller
 {
@@ -13,11 +16,19 @@ class GruposController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $datos['grupo']=grupos::paginate(5);
-        return view('grupo.index',$datos);
+        $texto=trim($request->get('texto'));
+        $grupo=DB::table('grupos')
+                ->select('id_grupo','Grupo','ID_Instituciones', 'Estado')
+                ->where('id_grupo','LIKE','%'.$texto.'%')
+                ->orWhere('Grupo','LIKE','%'.$texto.'%')
+                ->orWhere('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->orWhere('Estado','LIKE','%'.$texto.'%')
+                ->orderBy('id_grupo', 'asc')
+                ->paginate(10);
+        return view('grupo.index', compact('grupo','texto'));
     }
 
     /**

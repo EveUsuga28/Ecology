@@ -38,6 +38,19 @@
 <br>
 <div class="container mt-4">
 <h1>Grupos</h1><br>
+
+
+<form >
+        <div class="form-row" align="rigth">
+            <div class="col-sm-4 my-1">
+                <input type="text" class="form-control" name="texto" placeholder="Buscar">
+            </div>
+            <div class="col-auto my-1">
+                <input type="submit" class="btn btn-primary" value="Buscar">
+            </div>
+        </div>
+</form> 
+
     <div class="card border-info" >
         <div class="card-header bg-success text-white" >
 <a href="{{ route('grupo.create') }}" class="btn btn-light">nuevo</a>

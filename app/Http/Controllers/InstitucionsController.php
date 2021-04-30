@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\institucions;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class InstitucionsController extends Controller
 {
@@ -14,10 +16,19 @@ class InstitucionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['institucion']=institucions::paginate(5);
-        return view('institucion.index',$datos);
+        $texto=trim($request->get('texto'));
+        $institucion=DB::table('institucions')
+                ->select('ID_Instituciones','Nombre','Telefono', 'fecha_Registro','Foto','direccion')
+                ->where('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->orWhere('Nombre','LIKE','%'.$texto.'%')
+                ->orWhere('Telefono','LIKE','%'.$texto.'%')
+                ->orWhere('fecha_Registro','LIKE','%'.$texto.'%')
+                ->orWhere('direccion','LIKE','%'.$texto.'%')
+                ->orderBy('ID_Instituciones', 'asc')
+                ->paginate(10);
+        return view('institucion.index', compact('institucion','texto'));
     }
 
     /**

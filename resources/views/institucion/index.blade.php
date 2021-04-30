@@ -39,8 +39,8 @@
 <div class="container mt-4">
 <h1>Instituciones</h1> <br>
 
-<form action="{{ route('institucion.index')} }" method="get">
-        <div class="form-row">
+<form >
+        <div class="form-row" align="rigth">
             <div class="col-sm-4 my-1">
                 <input type="text" class="form-control" name="texto" placeholder="Buscar">
             </div>
