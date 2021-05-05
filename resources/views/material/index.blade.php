@@ -30,13 +30,14 @@
 <body>
 <form >
     <div class="container mt-4" align="right">
+        <h2 align="center">Materiales</h2>
         <input type="text" name="texto" value="{{$texto}}">
         <input type="submit" class="btn btn-dark" value="Buscar">
     </div>
     </form>
     <div class="container mt-4">
-    <div class="card border-info" >
-        <div class="card-header bg-info text-white" >
+    <div class="card border-success" >
+        <div class="card-header bg-success text-white" >
             <a href="{{url('material/create') }}" class="btn btn-light">NUEVO</a>
 
         </div>

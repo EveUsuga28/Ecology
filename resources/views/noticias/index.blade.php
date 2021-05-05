@@ -30,7 +30,7 @@
     </form>
     <div class="container mt-4">
     <div class="card border-sucess" > <!--success contenido verde-->
-        <div class="card-header bg-dark text-white" >
+        <div class="card-header bg-success text-white" >
 
         <a href="{{url('noticias/create')}}" class="btn btn-light">NUEVO</a>
 
