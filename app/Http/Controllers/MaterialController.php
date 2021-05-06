@@ -50,6 +50,13 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
+            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
        // $datosMaterial = request()->all();
         $datosMaterial = request()->except('_token');
 
@@ -96,6 +103,13 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
+            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
         $datosMaterial = request()->except(['_token','_method']);
 
         if($request->hasFile('Foto')){
