@@ -7,6 +7,9 @@
     <title>Ecology</title>
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body class="hidden">
@@ -14,7 +17,7 @@
         <nav id="nav" class="nav1">
             <div class="contenedor-nav">
                 <div class="logo">
-                    <h1>Eco<span>logy</span></h1>
+                <!--    <h1>Eco<span>logy</span></h1>-->
                 </div>
                 <div class="enlaces" id="enlaces">
                         <a href="#" id="enlace-inicio" class="btn-header">Inicio</a> 
@@ -29,70 +32,86 @@
             </div>
         </nav>
         <div class="textos">
-            <h1>Ecology</h1>
-            <h2>El futuro esta en nuestras manos</h2>
+            <h1>Eco<span>logy</span></h1>
+            <h2>La creación de mil bosques está en una bellota</h2>
         </div>
     </header>
     <main>
+
+
         <section class="team contenedor" id="equipo">
             <h3>Nuestro equipo</h3>
             <p class="after">Conoce a la gente asombrosa y creativa</p>
             <div class="card">
                 <div class="content-card">
                     <div class="people">
-                        <img src="img/people1.jpg" alt="">
+                        <img src="img/Evelyn.png" alt="">
                     </div>
                     <div class="texto-team">
-                        <h4>K</h4>
-                        <p>Lorem ipsum dolor sit.</p>
+                        <h4>E</h4>
+                        <p class="verdecito" >Evelyn Juliana Usuga Fernadez</p>
                     </div>
                 </div>
                 <div class="content-card">
                     <div class="people">
-                        <img src="img/people2.jpg" alt="">
+                        <img src="img/Juanda.png" alt="">
                     </div>
                     <div class="texto-team">
-                        <h4>C</h4>
-                        <p>Lorem ipsum dolor sit.</p>
+                        <h4>J</h4>
+                        <p class="verdecito" >Juan David Osorio Bedoya</p>
                     </div>
                 </div>
                 <div class="content-card">
                     <div class="people">
-                        <img src="img/people3.jpg" alt="">
+                        <img src="img/Muriel.png" alt="">
                     </div>
                     <div class="texto-team">
                         <h4>M</h4>
-                        <p>Lorem ipsum dolor sit.</p>
+                        <p class="verdecito" >Julián Andres Muriel Herrera</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="people">
+                        <img src="img/Osorio.png" alt="">
+                    </div>
+                    <div class="texto-team">
+                        <h4>J</h4>
+                        <p class="verdecito" >Julián David Osorio Villegas</p>
                     </div>
                 </div>
             </div>
         </section>
+
+
         <section class="about" id="servicio">
             <div class="contenedor">
-                <h3>Nuestros servicios</h3>
-                <p class="after">Siempre mejorando para ti</p>
+                <h3 class="NuServicios">Nuestros servicios</h3>
+                <p class="after NuServicios">Siempre mejorando para ti</p>
                 <div class="servicios">
                     <div class="caja-servicios">
-                        <img src="img/heart.png" alt="">
-                        <h4>Creativos y asombrosos</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                        <!--img src="img/heart.png" alt=""-->
+                        <h4>Ecology</h4>
+                        <p class="MVecology">Ecology tiene como finalidad concientizar a las instituciones acerca de la adecuada clasificación de los residuos sólidos</p>
                     </div>
                     <div class="caja-servicios">
-                        <img src="img/responsive.png" alt="">
-                        <h4>Creativos y asombrosos</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                        <!--img src="img/responsive.png" alt=""-->
+                        <h4>Misión</h4>
+                        <p class="MVecology">Somos una empresa dedicada a ofrecer las mejores manualidades destacando nos por nuestros diseños únicos, brindando variedad a nuestros clientes y otorgándoles derecho a crear y escoger el valor agregado a nuestro servicio, generando una mayor confianza en nuestro cliente</p>
                     </div>
                     <div class="caja-servicios">
-                        <img src="img/efectos.png" alt="">
-                        <h4>Creativos y asombrosos</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                        <!--img src="img/efectos.png" alt=""-->
+                        <h4>Visión</h4>
+                        <p class="MVecology">Ser una empresa líder y reconocida en el mercado de manualidades destacando nos por la excelencia y calidad en nuestros productos, logrando fortalecer nuestra empresa</p>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="work contenedor" id="trabajo">
-            <h3>Nuestro trabajo</h3>
-            <p class="after">Hacemos de algo simple algo extraordinario</p>
+        
+            <h3>Noticias</h3>
+            <p class="after">Nunca la sabiduría dice una cosa y la naturaleza otra</p>
+            <!--
             <div class="botones-work">
                 <ul>
                     <li class="filter active" data-nombre='todos'>Todos</li>
@@ -175,19 +194,21 @@
                     </div>
                 </div>
             </div>
+            -->
         </section>
     </main>
     <footer id="contacto">
         <div class="footer contenedor">
-            <div class="marca-logo">
-                <img src="img/logo.png" alt="">
+            <div class="logo">
+                <h1>Contact <span>Us</span></h1>
+                <!--<img src="img/logo.png" alt="">-->
             </div>
             <div class="iconos">
                 <i class="fab fa-youtube"></i>
                 <i class="fab fa-facebook-square"></i>
                 <i class="fab fa-github"></i>
             </div>
-            <p>La pasión e innovación es lo que nos distingue del resto</p>
+            <p><i>Tú opinión es un paso más para la perfección</i> </p>
         </div>
 
     </footer>
