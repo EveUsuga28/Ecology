@@ -46,7 +46,7 @@
                     <div class="title"><span>Inicio</span></div>
                 </a>
             </div>
-            @can('ejemplo')
+            @can('usuarios')
                 <div class="item">
                     <a href="{{ route('users.index')}}">
                         <div class="icon"><img src="img/logo.png" alt=""></div>

@@ -15,18 +15,16 @@ class CrearTablaPuntajeMaterials extends Migration
     {
         Schema::create('puntajeMaterials', function (Blueprint $table) {
             $table->bigIncrements('idPuntajeMaterail');
-            $table->unsignedSmallInteger('id_materials');
+            $table->unsignedBigInteger('id_materials');
             $table->datetime('Fecha_Inicio');
             $table->datetime('Fecha_Fin');
             $table->integer('Puntaje');
-            $table->timestamps();
+
 
 
             $table->foreign("id_materials")
             ->references("id")
-            ->on("materials")
-            ->onDelete("cascade")
-            ->onUpdate("cascade");
+            ->on("materials");
         });
     }
 

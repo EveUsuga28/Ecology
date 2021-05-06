@@ -22,7 +22,9 @@ class Rolseeder extends Seeder
         Permission::create(['name'=>'material/create'])->syncRoles([$role1]);
         Permission::create(['name'=>'material/edit'])->syncRoles([$role1]);
 
-        Permission::create(['name'=>''])->syncRoles([$role1]);
+        Permission::create(['name'=>'editar'])->syncRoles([$role1]);
+
+        Permission::create(['name'=>'crear'])->syncRoles([$role1]);
 
     }
 }
