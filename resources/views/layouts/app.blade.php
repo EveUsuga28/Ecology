@@ -46,12 +46,14 @@
                     <div class="title"><span>Inicio</span></div>
                 </a>
             </div>
-            <div class="item">
-                <a href="{{ route('users.index')}}">
-                    <div class="icon"><img src="img/logo.png" alt=""></div>
-                    <div class="title"><span>Usuarios</span></div>
-                </a>
-            </div>
+            @can('ejemplo')
+                <div class="item">
+                    <a href="{{ route('users.index')}}">
+                        <div class="icon"><img src="img/logo.png" alt=""></div>
+                        <div class="title"><span>Usuarios</span></div>
+                    </a>
+                </div>
+            @endcan
             <div class="item">
                 <a href="{{route('material.index')}}">
                     <div class="icon"><img src="img/logo.png" alt=""></div>

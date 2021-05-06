@@ -35,3 +35,5 @@ Route::resource('puntajeMaterial',PuntajeMaterialController::class);
 Route::resource('/users',UserController::class);
 
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
+
+
