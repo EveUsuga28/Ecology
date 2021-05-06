@@ -17,7 +17,7 @@ class PuntajeMaterialController extends Controller
      */
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('ejemplo');
+
     }
 
     public function index()
