@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
-            $table->unsignedBigInteger('id_institucion');
+            $table->unsignedBigInteger('id_institucion')->nullable();
             $table->timestamps();
 
             $table->foreign("id_institucion")
