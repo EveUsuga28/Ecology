@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,11 @@ use App\Http\Controllers\PuntajeMaterialController;
 |
 */
 
+use App\Http\Controllers\InstitucionsController;
+use App\Http\Controllers\GruposController;
+use App\Http\Controllers\NoticiasController;
+
+
 Route::get('/', function () {
     return view('./auth/index');
 });
@@ -21,6 +27,20 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('./auth/login');
 });
+
+/* Rutas institucion */
+Route::resource('institucion', InstitucionsController::class)->middleware('auth');/* el " ->middlware('auth');  " es de cuestion de seguridad para protejer rutas a aquellas personas que no estan logueadas*/
+/*
+Route::get('/institucion', function () { return view('./institucion/index'); });
+Route::get('institucion/create',[InstitucionsController::class, 'create']);
+*/
+
+
+/* Fin rutas institucion */
+
+/* Rutas grupo */
+Route::resource('grupo', GruposController::class);
+/* Fin rutas grupo */
 
 Auth::routes();
 
