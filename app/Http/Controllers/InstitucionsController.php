@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\institucions;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class InstitucionsController extends Controller
 {
@@ -12,10 +16,19 @@ class InstitucionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['institucion']=institucions::paginate(5);
-        return view('institucion.index',$datos);
+        $texto=trim($request->get('texto'));
+        $institucion=DB::table('institucions')
+                ->select('ID_Instituciones','Nombre','Telefono', 'fecha_Registro','Foto','direccion')
+                ->where('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->orWhere('Nombre','LIKE','%'.$texto.'%')
+                ->orWhere('Telefono','LIKE','%'.$texto.'%')
+                ->orWhere('fecha_Registro','LIKE','%'.$texto.'%')
+                ->orWhere('direccion','LIKE','%'.$texto.'%')
+                ->orderBy('ID_Instituciones', 'asc')
+                ->paginate(10);
+        return view('institucion.index', compact('institucion','texto'));
     }
 
     /**
@@ -45,7 +58,8 @@ class InstitucionsController extends Controller
 
         institucions::insert($datosInstitucion);
         
-        return response()->json($datosInstitucion);
+        return redirect('institucion')->with('mensaje','Empleado agregado exitosamente');
+        //return response()->json($datosInstitucion);
     }
 
     /**
@@ -79,9 +93,20 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, institucions $institucions)
+    public function update(Request $request, $ID_Instituciones)
     {
         //
+        $datosInstitucion = request()->except(['_token','_method']);
+
+        if($request->hasFile('foto')){
+            $instituto=institucions::findOrFail($ID_Instituciones);
+            Storage::delete('public/'.$instituto->Foto);
+            $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
+        }
+
+        institucions::where('ID_Instituciones','=',$ID_Instituciones)->update($datosInstitucion);
+        $institucion = institucions::findOrFail($ID_Instituciones);
+        return view('institucion.edit',compact('institucion'));
     }
 
     /**
@@ -92,8 +117,13 @@ class InstitucionsController extends Controller
      */
     public function destroy($ID_Instituciones)
     {
-        //
-        //institucions::destroy($ID_Instituciones);    ERROR NO SOLUCIONADO EN ELIMINAR
-        return redirect('institucion');
+        // 
+        $instituciones=institucions::findOrFail($ID_Instituciones);
+
+        if(Storage::delete('public/'.$instituciones->Foto)){
+            institucions::destroy($ID_Instituciones);
+        }
+
+        return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');
     }
 }
