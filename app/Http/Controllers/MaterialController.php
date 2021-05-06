@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\material;
-use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
+
 
 class MaterialController extends Controller
 {
@@ -15,19 +14,18 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
+
+
     public function index(Request $request)
     {
 
-        $texto=trim($request->get('texto'));
-        $materials=DB::table('materials')
-                ->select('id','NomreMaterial','Kilos', 'Puntaje','Foto')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('NomreMaterial','LIKE','%'.$texto.'%')
-                ->orWhere('Puntaje','LIKE','%'.$texto.'%')
-                ->orWhere('Kilos','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('material.index', compact('materials','texto'));
+
+         $datos['materials']=material::paginate(5);
+        return view('material.index',$datos);
     }
 
     /**
@@ -50,13 +48,6 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
-            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
-            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
-            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
-        ]);
-
        // $datosMaterial = request()->all();
         $datosMaterial = request()->except('_token');
 
@@ -103,13 +94,6 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
-            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
-            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
-            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
-        ]);
-
         $datosMaterial = request()->except(['_token','_method']);
 
         if($request->hasFile('Foto')){
