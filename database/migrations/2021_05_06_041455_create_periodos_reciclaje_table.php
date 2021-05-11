@@ -16,7 +16,7 @@ class CreatePeriodosReciclajeTable extends Migration
         Schema::create('periodos_reciclaje', function (Blueprint $table) {
             $table->id();
             $table->date('fechaInicio');
-            $table->date('fechaFin');
+            $table->date('fechaFin')->nullable();
             $table->string('estado');
             $table->unsignedBigInteger('id_institucion');
 

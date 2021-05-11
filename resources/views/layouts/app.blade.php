@@ -61,6 +61,12 @@
                     <div class="title"><span>Materiales</span></div>
                 </a>
             </div>
+            <div class="item">
+                <a href="{{route('reciclaje.index')}}">
+                    <div class="icon"><img src="img/logo.png" alt=""></div>
+                    <div class="title"><span>Gestion reciclaje</span></div>
+                </a>
+            </div>
             <div class="item separator"></div>
             <div class="item">
                 <a href="noticias">

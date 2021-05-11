@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
             'email' => 'director@example.com',
             'Estado' => 'habilitado',
             'password' => bcrypt('dic1234'),
+            'id_institucion' => '1'
         ])->assignRole('Director');
 
     }
