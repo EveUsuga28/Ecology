@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class material extends Model
 {
     use HasFactory;
+    protected $fillable = ['id','NomreMaterial','Puntaje','Kilos'];
 
-    
+
 }

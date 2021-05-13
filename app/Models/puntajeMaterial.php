@@ -12,6 +12,11 @@ class puntajeMaterial extends Model
 
     protected $table = 'puntajeMaterials';
     protected $primaryKey = "idPuntajeMaterail";
-
+    protected $fillable = [
+    'idPuntajeMaterail',
+    'id_materials',
+    'Fecha_Inicio',
+    'Fecha_Fin',
+    'Puntaje'];
 
 }

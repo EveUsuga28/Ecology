@@ -1,28 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-Mostrar Materiales Lista
 
 @if(Session::has('mensaje'))
 {{session::get('mensaje')}}
 
 
 @endif
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boton{
+            width: 54%;
+        }
+    </style>
 
-<a href="{{url('material/create') }}">Crear Material</a>
-<table class="table table-light">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
 
-   <thead class="thead-light">
-       <tr>
-           <th>#</th>
-           <th>Nombre Material</th>
-           <th>Puntaje</th>
-           <th>Kilos</th>
-           <th>Fotos</th>
-           <th>Acciones</th>
-        </tr>
-   </thead>
-   <tbody>
+
+</head>
+<body>
+<form >
+    <div class="container mt-4" align="right">
+        <h2 align="center">Materiales</h2>
+        <input type="text" name="texto" value="{{$texto}}">
+        <input type="submit" class="btn btn-dark" value="Buscar">
+    </div>
+    </form>
+    <div class="container mt-4">
+    <div class="card border-success" >
+        <div class="card-header bg-success text-white" >
+            <a href="{{url('material/create') }}" class="btn btn-light">NUEVO</a>
+
+        </div>
+        <div class="card-body" >
+        <table border="1" class="table table-sriped table-bordered" id="Materiales" >
+            <thead align="center">
+                <th>
+                    Id
+                </th>
+                <th>
+                    Nombre Material
+                </th>
+                <th>
+                    Puntaje
+                </th>
+                <th>
+                   Kilos
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th>
+                    Acción
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+
     @foreach($materials as $material)
         <tr>
            <th>{{$material->id}}</th>
@@ -35,15 +79,13 @@ Mostrar Materiales Lista
             <!-- {{$material->Foto}}-->
            </td>
            <td>
-            <a href="{{Route('puntajeMaterial.Crear',$material->id)}}">Crear Nuevo Puntaje</a>
+            <a class="btn btn-outline-warning" href="{{Route('puntajeMaterial.Crear',$material->id) }}">Crear Nuevo Puntaje</a>
            <br>
-           <a href="{{url('/material/'.$material->id.'/edit')}}">
+           <a  class="btn btn-outline-success" href="{{url('/material/'.$material->id.'/edit') }}">
                   Editar
            </a>
 
            </td>
         </tr>
         @endforeach
-    </tbody>
-</table>
-@endsection
+    </form>

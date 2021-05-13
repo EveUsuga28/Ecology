@@ -6,6 +6,7 @@ use App\Models\puntajeMaterial;
 use CrearTablaPuntajeMaterials;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\material;
 
 class PuntajeMaterialController extends Controller
 {
@@ -41,9 +42,19 @@ class PuntajeMaterialController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+        ]);
        // $datosPuntajeMaterial = request()->all();
        $datosPuntajeMaterial = request()->except('_token');
        puntajeMaterial::insert($datosPuntajeMaterial);
+
+       $material =material::find($request->input('id_materials'));
+
+        $material->fill(array('Puntaje' => $request->input('Puntaje')));
+
+        $material->save();
         return response()->json($datosPuntajeMaterial);
     }
 
