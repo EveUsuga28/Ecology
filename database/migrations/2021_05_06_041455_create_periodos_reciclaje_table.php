@@ -17,7 +17,7 @@ class CreatePeriodosReciclajeTable extends Migration
             $table->id();
             $table->date('fechaInicio');
             $table->date('fechaFin')->nullable();
-            $table->string('estado');
+            $table->string('estado')->default('EN PROCESO');
             $table->unsignedBigInteger('id_institucion');
 
             $table->foreign("id_institucion")
