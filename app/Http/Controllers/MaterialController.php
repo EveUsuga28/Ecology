@@ -141,4 +141,6 @@ class MaterialController extends Controller
 
         return redirect('material')->with('mensaje','Material Borrado');**/
     }
+
+    
 }
