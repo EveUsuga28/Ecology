@@ -24,20 +24,24 @@
                         <td>Id</td>
                         <td>fecha Inicio</td>
                         <td>Fecha fin</td>
+                        <td>Materiales Totales</td>
                         <td>Estado</td>
                         <td>Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($reciclaje_institucion as $reciclaje)
-                        <tr>
-                            <td>{{$reciclaje->id}}</td>
-                            <td>{{$reciclaje->fechaInicio}}</td>
-                            <td>{{$reciclaje->fechaFin}}</td>
-                            <td>{{$reciclaje->estado}}</td>
-                            <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light">editar</a></td>
-                        </tr>
-                    @endforeach
+                @for($i = 0; $i <sizeof($reciclaje_institucion); $i++)
+                    <hiden>{{$reciclaje=$reciclaje_institucion[$i]}}</hiden>
+                    <hiden>{{$valores=$camposcalculados[$i]}}</hiden>
+                    <tr>
+                        <td>{{$reciclaje->id}}</td>
+                        <td>{{$reciclaje->fechaInicio}}</td>
+                        <td>{{$valores->Total_Materiales}}</td>
+                        <td>{{$reciclaje->fechaFin}}</td>
+                        <td>{{$reciclaje->estado}}</td>
+                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light">editar</a></td>
+                    </tr>
+                @endfor
                 </tbody>
             </table>
           </div>

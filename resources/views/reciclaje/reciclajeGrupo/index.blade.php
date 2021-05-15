@@ -1,1 +1,7 @@
-<h1>reciclaje grupo</h1>
+<x-datos :list="{$camposcalculados}"/>
+
+
+
+
+
+

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\material;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Table;
 
 class reciclajeIntitucionControlller extends Controller
 {
@@ -15,12 +16,18 @@ class reciclajeIntitucionControlller extends Controller
 
        if($rol[0]=='admin'){
            $reciclaje_institucion = reciclaje_institucion::all();
+
+           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }else{
            $reciclaje_institucion = reciclaje_institucion::all()
                ->where('id_institucion', '=',auth()->user()->id_institucion);
+
+           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }
 
-        return view('reciclaje.index',compact('reciclaje_institucion'));
+
+
+       return view('reciclaje/reciclajeGrupo.index',compact('reciclaje_institucion','camposcalculados'));
     }
 
     public function crear()
@@ -49,6 +56,29 @@ class reciclajeIntitucionControlller extends Controller
 
         $reciclaje = DB::table('periodos_reciclaje')->where('fechaFin','=',null)
             ->update(['fechaFin'=>$now->format('Y-m-d')]);
+    }
+
+    public function calcularReciclajeInstitucion($reciclajeInstitucion){
+
+        $aux = array();
+        $contador = 0;
+        foreach ($reciclajeInstitucion as $reciclaje){
+            $aux[$contador]=DB::Table('reciclaje_grupos')->select(DB::raw('sum(total_kilos_material_grupo) as Total_Materiales
+            ,sum(total_puntaje_material_grupo) as puntaje_material_total'))
+                ->where('id_periodo_reciclaje','=',$reciclaje->id)->get();
+            $contador++;
+        }
+
+       $result = array();
+        $i=0;
+        foreach ($aux as $aux2){
+            foreach ($aux2 as $aux3){
+                $result[$i]= $aux3;
+            }
+            $i++;
+        }
+
+        return $result;
     }
 
 }
