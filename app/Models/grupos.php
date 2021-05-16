@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class grupos extends Model
 {
     use HasFactory;
-    protected $primaryKey = "id_grupo";
+    protected $primaryKey = "id";
 }

@@ -19,11 +19,11 @@ class NoticiasController extends Controller
     {
         $texto=trim($request->get('texto'));
         $noticias=DB::table('noticias')
-                ->select('id_noticia','titulo','contexto','Fecha', 'estado', 'Foto')
+                ->select('id','titulo','contexto','Fecha', 'estado', 'Foto')
                 ->where('titulo','LIKE','%'.$texto.'%')
-                ->orWhere('id_noticia','LIKE','%'.$texto.'%')
+                ->orWhere('id','LIKE','%'.$texto.'%')
                 ->orWhere('contexto','LIKE','%'.$texto.'%')
-                ->orderBy('id_noticia', 'asc')
+                ->orderBy('id', 'asc')
                 ->paginate(10);
         return view('noticias.index', compact('noticias','texto'));
     }
@@ -73,9 +73,9 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_noticia)
+    public function edit($id)
     {
-        $noticias =noticias::findOrFail($id_noticia);
+        $noticias =noticias::findOrFail($id);
 
         return view('noticias.edit',compact('noticias'));
     }
@@ -88,19 +88,19 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id_noticia)
+    public function update(Request $request,$id)
     {
         $datosNoticia = request()->except(['_token','_method']);
 
         if($request->hasFile('Foto')){
-            $noticias =noticias::findOrFail($id_noticia);
+            $noticias =noticias::findOrFail($id);
             storage::delete('public/'.$noticias->Foto);
             $datosNoticia['Foto']=$request->file('Foto')->store('uploads','public');
         }
 
-        noticias::where('id_noticia','=',$id_noticia)->update($datosNoticia);
+        noticias::where('id','=',$id)->update($datosNoticia);
 
-        $noticias =noticias::findOrFail($id_noticia);
+        $noticias =noticias::findOrFail($id);
         return view('noticias.edit',compact('noticias'));
 
     }
@@ -116,10 +116,10 @@ class NoticiasController extends Controller
         //
     }
 
-    public function Deshabilitar($id_noticia)
+    public function Deshabilitar($id)
     {
 
-        $Noticia = noticias::find($id_noticia);
+        $Noticia = noticias::find($id);
 
         if($Noticia->estado == 1)
         {

@@ -21,12 +21,12 @@ class GruposController extends Controller
         //
         $texto=trim($request->get('texto'));
         $grupo=DB::table('grupos')
-                ->select('id_grupo','Grupo','ID_Instituciones', 'Estado')
-                ->where('id_grupo','LIKE','%'.$texto.'%')
+                ->select('id','Grupo','id', 'Estado')
+                ->where('id','LIKE','%'.$texto.'%')
                 ->orWhere('Grupo','LIKE','%'.$texto.'%')
-                ->orWhere('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->orWhere('id','LIKE','%'.$texto.'%')
                 ->orWhere('Estado','LIKE','%'.$texto.'%')
-                ->orderBy('id_grupo', 'asc')
+                ->orderBy('id', 'asc')
                 ->paginate(10);
         return view('grupo.index', compact('grupo','texto'));
     }
@@ -74,17 +74,17 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id_grupo)
+    public function edit( $id)
     {
         
         $datos['institucion']=institucions::all();
         //return view('grupo.create',$datos);
 //------------------------------------------
-        $grupo = grupos::findOrFail($id_grupo);
-        $ID_Instituciones = $grupo->ID_Instituciones;
-        $institucion = institucions::findOrFail($ID_Instituciones);
+        $grupo = grupos::findOrFail($id);
+        $id = $grupo->id;
+        $institucion = institucions::findOrFail($id);
 
-        $grupo = grupos::findOrFail($id_grupo);
+        $grupo = grupos::findOrFail($id);
         return view('grupo.edit',compact('grupo', 'institucion'));
     }
 
@@ -95,12 +95,12 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_grupo)
+    public function update(Request $request, $id)
     {
         $datosgrupo = request()->except(['_token','_method']);
 
-        grupos::where('id_grupo','=',$id_grupo)->update($datosgrupo);
-        $grupo = grupos::findOrFail($id_grupo);
+        grupos::where('id','=',$id)->update($datosgrupo);
+        $grupo = grupos::findOrFail($id);
         return view('grupo.edit',compact('grupo'));
     }
 
@@ -110,11 +110,11 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_grupo)
+    public function destroy($id)
     {
         //
 
-        grupos::destroy($id_grupo);
+        grupos::destroy($id);
         return redirect('grupo')->with('mensaje','Grupo eliminado exitosamente exitosamente');
     }
 }

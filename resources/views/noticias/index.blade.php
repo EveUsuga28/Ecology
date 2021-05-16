@@ -70,7 +70,7 @@
             @else
             @foreach ($noticias as  $noticia)
                 <tr align="center">
-                    <td>{{$noticia->id_noticia}}</td>
+                    <td>{{$noticia->id}}</td>
                     <td>{{$noticia->titulo}}</td>
                     <td>{{$noticia->contexto}}</td>
                     <td>{{$noticia->Fecha}}</td>
@@ -83,7 +83,7 @@
 
                     @if ($noticia->estado == 0)
                     <td>
-                        <form action="{{ route('noticias.Deshabilitar', $noticia->id_noticia)}}" method="POST" class="formulario-eliminar">
+                        <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
 
 
                             @csrf
@@ -98,10 +98,10 @@
                 </td>
 
                     <td>
-                        <a  class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id_noticia.'/edit') }}">
+                        <a  class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">
                             Editar
                         </a>
-                        <form action="{{ route('noticias.Deshabilitar', $noticia->id_noticia)}}" method="POST" class="formulario-eliminar">
+                        <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
 
 
                             @csrf

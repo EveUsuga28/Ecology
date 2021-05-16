@@ -16,7 +16,7 @@ class CreateReciclajeGruposTable extends Migration
         Schema::create('reciclaje_grupos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_periodo_reciclaje');
-            $table->unsignedBigInteger('id_grupo');
+            $table->unsignedBigInteger('id');
             $table->integer('total_kilos_material_grupo');
             $table->integer('total_puntaje_material_grupo');
             $table->integer('total_cantidad_productos_grupo');
@@ -28,7 +28,7 @@ class CreateReciclajeGruposTable extends Migration
                 ->references("id")
                 ->on("periodos_reciclaje");
 
-            $table->foreign("id_grupo")
+            $table->foreign("id")
                 ->references("id")
                 ->on("grupos");
         });

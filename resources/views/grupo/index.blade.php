@@ -62,7 +62,7 @@
         <tr>
             <th>#</th>
             <th>Grupo</th>
-            <th>ID_Instituciones</th>
+            <th>id</th>
             <th>Estado</th>
             <th>Acciones</th>
         </tr>
@@ -71,19 +71,19 @@
     <tbody align="center">
         @foreach( $grupo as $grupos )
         <tr>
-            <td>{{ $grupos->id_grupo }}</td>
+            <td>{{ $grupos->id }}</td>
             <td>{{ $grupos->Grupo }}</td>
-            <td>{{ $grupos->ID_Instituciones }}</td>
+            <td>{{ $grupos->id }}</td>
             <td>{{ $grupos->Estado }}</td>
             <td>
             
-            <a href="{{ url('/grupo/'.$grupos->id_grupo.'/edit') }}" class="btn btn-warning">
+            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-warning">
                 Editar
             </a>
 
              | 
             
-            <form action="{{ url('/grupo/'.$grupos->id_grupo ) }}" class="d-inline" method="post">
+            <form action="{{ url('/grupo/'.$grupos->id ) }}" class="d-inline" method="post">
 
             @csrf
             

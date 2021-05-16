@@ -36,7 +36,7 @@
             <h1>Editar Grupo</h1>
         </div>
 
-<form class="container" action="{{ url('/institucion/'.$institucion->ID_Instituciones ) }} " method="post" enctype="multipart/form-data">
+<form class="container" action="{{ url('/institucion/'.$institucion->id ) }} " method="post" enctype="multipart/form-data">
 @csrf
 
 {{ method_field('PATCH') }}

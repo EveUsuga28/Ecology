@@ -9,5 +9,5 @@ class institucions extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "ID_Instituciones";
+    protected $primaryKey = "id";
 }

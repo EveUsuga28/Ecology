@@ -20,13 +20,13 @@ class InstitucionsController extends Controller
     {
         $texto=trim($request->get('texto'));
         $institucion=DB::table('institucions')
-                ->select('ID_Instituciones','Nombre','Telefono', 'fecha_Registro','Foto','direccion')
-                ->where('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->select('id','Nombre','Telefono', 'fecha_Registro','Foto','direccion')
+                ->where('id','LIKE','%'.$texto.'%')
                 ->orWhere('Nombre','LIKE','%'.$texto.'%')
                 ->orWhere('Telefono','LIKE','%'.$texto.'%')
                 ->orWhere('fecha_Registro','LIKE','%'.$texto.'%')
                 ->orWhere('direccion','LIKE','%'.$texto.'%')
-                ->orderBy('ID_Instituciones', 'asc')
+                ->orderBy('id', 'asc')
                 ->paginate(10);
         return view('institucion.index', compact('institucion','texto'));
     }
@@ -79,10 +79,10 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function edit($ID_Instituciones)
+    public function edit($id)
     {
         //
-        $institucion = institucions::findOrFail($ID_Instituciones);
+        $institucion = institucions::findOrFail($id);
         return view('institucion.edit',compact('institucion'));
     }
 
@@ -93,19 +93,19 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ID_Instituciones)
+    public function update(Request $request, $id)
     {
         //
         $datosInstitucion = request()->except(['_token','_method']);
 
         if($request->hasFile('foto')){
-            $instituto=institucions::findOrFail($ID_Instituciones);
+            $instituto=institucions::findOrFail($id);
             Storage::delete('public/'.$instituto->Foto);
             $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
         }
 
-        institucions::where('ID_Instituciones','=',$ID_Instituciones)->update($datosInstitucion);
-        $institucion = institucions::findOrFail($ID_Instituciones);
+        institucions::where('id','=',$id)->update($datosInstitucion);
+        $institucion = institucions::findOrFail($id);
         return view('institucion.edit',compact('institucion'));
     }
 
@@ -115,13 +115,13 @@ class InstitucionsController extends Controller
      * @param  \App\Models\institucions  $institucions
      * @return \Illuminate\Http\Response
      */
-    public function destroy($ID_Instituciones)
+    public function destroy($id)
     {
         // 
-        $instituciones=institucions::findOrFail($ID_Instituciones);
+        $instituciones=institucions::findOrFail($id);
 
         if(Storage::delete('public/'.$instituciones->Foto)){
-            institucions::destroy($ID_Instituciones);
+            institucions::destroy($id);
         }
 
         return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');

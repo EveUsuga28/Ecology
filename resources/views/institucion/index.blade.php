@@ -70,7 +70,7 @@
     <tbody align="center">
         @foreach( $institucion as $instituciones )
         <tr>
-            <td>{{ $instituciones->ID_Instituciones }}</td>
+            <td>{{ $instituciones->id }}</td>
             <td>{{ $instituciones->Nombre }}</td>
             <td>{{ $instituciones->Telefono }}</td>
             <td>{{ $instituciones->fecha_Registro }}</td>
@@ -80,13 +80,13 @@
             <td>{{ $instituciones->direccion }}</td>
             <td>
             
-            <a href="{{ url('/institucion/'.$instituciones->ID_Instituciones.'/edit') }}" class="btn btn-warning">
+            <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-warning">
                 Editar
             </a>
 
              | 
             
-            <form action="{{ url('/institucion/'.$instituciones->ID_Instituciones ) }}" class="d-inline" method="post">
+            <form action="{{ url('/institucion/'.$instituciones->id ) }}" class="d-inline" method="post">
 
             @csrf
             
