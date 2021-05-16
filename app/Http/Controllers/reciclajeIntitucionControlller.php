@@ -26,8 +26,7 @@ class reciclajeIntitucionControlller extends Controller
        }
 
 
-
-       return view('reciclaje/reciclajeGrupo.index',compact('reciclaje_institucion','camposcalculados'));
+       return view('reciclaje.index',compact('reciclaje_institucion','camposcalculados'));
     }
 
     public function crear()
@@ -41,11 +40,14 @@ class reciclajeIntitucionControlller extends Controller
 
         $reciclaje->save();
 
+        session(['id_reciclaje' => $reciclaje->id]);
 
          return redirect()->route('reciclajeGrupo.index');
     }
 
     public function editarReciclaje($id){
+
+        session(['id_reciclaje' => $id]);
 
         return redirect()->route('reciclajeGrupo.index');
     }
@@ -60,21 +62,15 @@ class reciclajeIntitucionControlller extends Controller
 
     public function calcularReciclajeInstitucion($reciclajeInstitucion){
 
-        $aux = array();
-        $contador = 0;
+        $aux='';
+        $result = array();
+        $i = 0;
         foreach ($reciclajeInstitucion as $reciclaje){
-            $aux[$contador]=DB::Table('reciclaje_grupos')->select(DB::raw('sum(total_kilos_material_grupo) as Total_Materiales
-            ,sum(total_puntaje_material_grupo) as puntaje_material_total'))
+            $aux=DB::Table('reciclaje_grupos')->select(DB::raw('sum(total_kilos_material_grupo) as MaterialTotal
+            ,sum(total_puntaje_material_grupo) as PuntajeMaterial'))
                 ->where('id_periodo_reciclaje','=',$reciclaje->id)->get();
-            $contador++;
-        }
 
-       $result = array();
-        $i=0;
-        foreach ($aux as $aux2){
-            foreach ($aux2 as $aux3){
-                $result[$i]= $aux3;
-            }
+            $result[$i]=$aux;
             $i++;
         }
 

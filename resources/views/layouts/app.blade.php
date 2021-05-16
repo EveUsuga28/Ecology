@@ -11,7 +11,8 @@
     <title>Ecology</title>
 
     <!-- Scripts -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -111,6 +112,9 @@
         </p>
     </div>
 
+
+
+
     <script>
         const btn = document.querySelector('#menu-btn');
         const menu = document.querySelector('#sidemenu');
@@ -121,6 +125,13 @@
             document.querySelector('body').classList.toggle('body-expanded');
         });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+
     @yield('js')
+
+
 </body>
 </html>

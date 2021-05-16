@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+
 @endsection
 
 @section('content')
@@ -24,24 +23,20 @@
                         <td>Id</td>
                         <td>fecha Inicio</td>
                         <td>Fecha fin</td>
-                        <td>Materiales Totales</td>
                         <td>Estado</td>
                         <td>Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
-                @for($i = 0; $i <sizeof($reciclaje_institucion); $i++)
-                    <hiden>{{$reciclaje=$reciclaje_institucion[$i]}}</hiden>
-                    <hiden>{{$valores=$camposcalculados[$i]}}</hiden>
+                @foreach($reciclaje_institucion as $reciclaje)
                     <tr>
                         <td>{{$reciclaje->id}}</td>
                         <td>{{$reciclaje->fechaInicio}}</td>
-                        <td>{{$valores->Total_Materiales}}</td>
                         <td>{{$reciclaje->fechaFin}}</td>
                         <td>{{$reciclaje->estado}}</td>
                         <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light">editar</a></td>
                     </tr>
-                @endfor
+                @endforeach
                 </tbody>
             </table>
           </div>
@@ -51,18 +46,15 @@
 
 @section('js')
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
-
-
     <script>
-        $('#reciclaje').DataTable({
-
-        });
+        $(document).ready(function() {
+            $('#reciclaje').DataTable( {
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                }
+            } );
+        } );
     </script>
-
-
 
 @endsection
 
