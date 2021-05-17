@@ -9,7 +9,7 @@
 
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	
+
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -39,7 +39,7 @@
                       </div>
            		</div>
            		<div class="input-div pass">
-           		   <div class="i"> 
+           		   <div class="i">
                       <i class="fas fa-id-card"></i>
            		   </div>
            		   <div  for="tipo_doc" class="div">
@@ -76,7 +76,7 @@
            		   </div>
                   <div for="email"class="div">
            		   		<h5></h5>
-                              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo Electrónico">                              
+                              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo Electrónico">
                               @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
            		   </div>
                   <div for="password"class="div">
            		   		<h5></h5>
-                              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contraseña">                              
+                              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contraseña">
                               @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -104,7 +104,7 @@
            		   </div>
                   <div for="password-confirm" class="div">
            		   		<h5></h5>
-                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Contraseña">       
+                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Contraseña">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -112,15 +112,32 @@
                                 @enderror
                       </div>
            		</div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div  for="tipo_doc" class="div">
+                        <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="rol" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
+                            <option>rol</option>
+                            <option value='1'>administrador</option>
+                            <option value='2'>Director</option>
+                        </select>
+                        @error('tipo_doc')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                </div>
                    <input type="hidden" name="Estado" value="habilitado" />
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrarse') }}
                                 </button>
-                        
+
             </form>
-			
+
         </div>
     </div>
 </body>
-</html>    
+</html>
 @endsection

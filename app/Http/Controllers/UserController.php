@@ -12,17 +12,24 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('can:usuarios');
+    }
+
+
     public function index(Request $request)
     {
         $texto=trim($request->get('texto'));
-        $users=DB::table('users')  
+        $users=DB::table('users')
                 ->select('id','name','tipo_doc','nro_documento', 'email','Estado')
                 ->where('nro_documento','LIKE','%'.$texto.'%')
                 ->orWhere('name','LIKE','%'.$texto.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(10);
         return view('users.index', compact('users','texto'));
-        
+
     }
 
     /**
@@ -43,10 +50,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->only('name','tipo_doc','nro_documento','email','Estado')
+        $usuario = User::create($request->only('name','tipo_doc','nro_documento','email','Estado')
         +[
             'password' => bcrypt($request->input('password')),
         ]);
+
+        $usuario->assignRole($request->input('rol'));
+
         return redirect()->route('users.index');
     }
 

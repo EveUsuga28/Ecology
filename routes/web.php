@@ -3,7 +3,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
-use App\Http\Controllers\NoticiasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +15,11 @@ use App\Http\Controllers\NoticiasController;
 |
 */
 
+use App\Http\Controllers\InstitucionsController;
+use App\Http\Controllers\GruposController;
+use App\Http\Controllers\NoticiasController;
+
+
 Route::get('/', function () {
     return view('./auth/index');
 });
@@ -24,10 +28,26 @@ Route::get('/login', function () {
     return view('./auth/login');
 });
 
-Auth::routes();
+
+/* Rutas institucion */
+Route::resource('institucion', InstitucionsController::class)->middleware('auth');/* el " ->middlware('auth');  " es de cuestion de seguridad para protejer rutas a aquellas personas que no estan logueadas*/
+/*
+Route::get('/institucion', function () { return view('./institucion/index'); });
+Route::get('institucion/create',[InstitucionsController::class, 'create']);
+*/
+
+
+/* Fin rutas institucion */
+
+/* Rutas grupo */
+Route::resource('grupo', GruposController::class);
+/* Fin rutas grupo */
+
+Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('/material',MaterialController::class);
 
 Route::resource('material',MaterialController::class);
 
@@ -39,8 +59,31 @@ Route::resource('/users',UserController::class);
 
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
 
+
+
 Route::resource('noticias',NoticiasController::class);
 
 Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
+
+//Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
+
+Route::get('/reciclaje/crear',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'crear'])->name('reciclaje.crear');
+
+Route::get('/reciclaje/editarReciclaje/{id}',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'editarReciclaje'])->name('reciclaje.Editar');
+
+Route::resource('/reciclaje',\App\Http\Controllers\reciclajeIntitucionControlller::class)->names('reciclaje');
+
+Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
+
+
+
+
+
+
+
+
+
+
+
 
 
