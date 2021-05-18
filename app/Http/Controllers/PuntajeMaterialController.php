@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\puntajeMaterial;
-use CrearTablaPuntajeMaterials;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;;
 use App\Models\material;
 
 class PuntajeMaterialController extends Controller
@@ -20,7 +18,7 @@ class PuntajeMaterialController extends Controller
     {
         $texto=trim($request->get('texto'));
         $puntajeMaterials=DB::table('puntajeMaterials')
-                ->select('idPuntajeMaterail','id_materials','Fecha_Inicio', 'Fecha_Fin','Puntaje')
+                ->select('idPuntajeMaterail','id_materials','Fecha_Inicio', 'Fecha_Fin','Puntaje','Estado')
                 ->where('idPuntajeMaterail','LIKE','%'.$texto.'%')
                 ->orWhere('Fecha_Inicio','LIKE','%'.$texto.'%')
                 ->orWhere('Fecha_Fin','LIKE','%'.$texto.'%')
@@ -66,8 +64,8 @@ class PuntajeMaterialController extends Controller
         $material->fill(array('Puntaje' => $request->input('Puntaje')));
 
         $material->save();
-        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
-        //return response()->json($datosPuntajeMaterial);
+      //  return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+        return response()->json($datosPuntajeMaterial);
     }
 
     /**
@@ -128,17 +126,17 @@ class PuntajeMaterialController extends Controller
     public function Deshabilitar($idPuntajeMaterail)
     {
 
-            $puntajeMaterials = puntajeMaterial::find($idPuntajeMaterail);
+            $puntajeMaterial = puntajeMaterial::find($idPuntajeMaterail);
 
-            if($puntajeMaterials->Estado == 'habilitado')
+            if($puntajeMaterial->Estado == 'habilitado')
             {
-                $puntajeMaterials->Estado = 'Deshabilitado';
+                $puntajeMaterial->Estado = 'Deshabilitado';
             }else
             {
-                $puntajeMaterials->Estado = 'habilitado';
+                $puntajeMaterial->Estado = 'habilitado';
             }
 
-            $puntajeMaterials->save();
+            $puntajeMaterial->save();
 
             return redirect()->route('puntajeMaterial.index')->with('eliminar' , 'true');
         }

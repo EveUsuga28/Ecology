@@ -17,6 +17,7 @@ class puntajeMaterial extends Model
     'id_materials',
     'Fecha_Inicio',
     'Fecha_Fin',
-    'Puntaje'];
+    'Puntaje',
+    'Estado'];
 
 }

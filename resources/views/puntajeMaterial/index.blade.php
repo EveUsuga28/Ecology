@@ -55,6 +55,9 @@
                     Puntaje
                 </th>
                 <th>
+                    Estado
+                </th>
+                <th>
                     Acción
                 </th>
             </tr>
@@ -74,50 +77,43 @@
             <td>{{$puntajeMaterial->Fecha_Inicio}}</td>
             <td>{{$puntajeMaterial->Fecha_Fin}}</td>
             <td>{{$puntajeMaterial->Puntaje}}</td>
-                @if($puntajeMaterials->estado == 1)
-                 <td bgcolor="#81F79F">Habilitado</td>
+            @if($puntajeMaterial->Estado == 'habilitado')
+            <td bgcolor="#81F79F">{{ $puntajeMaterial->Estado}}</td>
 
-                @else
-                <td bgcolor="#FA5858">Deshabilitar</td>
-                @endif
+           @else
+           <td bgcolor="#FA5858">{{ $puntajeMaterial->Estado}}</td>
+           @endif
 
-                @if ($puntajeMaterials->estado == 0)
-                <td>
-                    <form action="{{ route('puntajeMaterials.Deshabilitar', $puntajeMaterials->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
+           @if ($puntajeMaterial->Estado == 'Deshabilitado')
+           <td>
+               <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
 
+                   @csrf
+                   @method('PUT')
+                   <button type="submit" class="btn btn-success boton">habilitar</button>
+               </form>
+           </td>
+           @else
+           <td>
+               <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
+                <a  class="btn btn-outline-success" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
+                    Editar
+                </a>
 
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-success ">habilitar</button>
-                    </form>
-                </td>
-
-                @else
-                <td>
-
-                    <a  class="btn btn-outline-success" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
-                        Editar
-                    </a>
-                    <form action="{{ route('puntajeMaterials.Deshabilitar', $puntajeMaterials->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
-
-
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                    </form>
-                </td>
-
-                @endif
-
+                   @csrf
+                   @method('PUT')
+                   <button type="submit" class="btn btn-danger">Deshabilitar</button>
+               </form>
+           </td>
+           @endif
 
         @endforeach
         @endif
-
-    </tbody>
-</table>
-{{$noticias->links()}}
-</div>
-</div>
-
+        </tbody>
+        </table>
+        {{$puntajeMaterials->links()}}
+        </div>
+        </div>
 </body>
 </html>
+
