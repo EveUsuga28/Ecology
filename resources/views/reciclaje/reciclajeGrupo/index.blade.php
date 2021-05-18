@@ -69,12 +69,12 @@
                             <td>{{$reciclaje->id}}</td>
                             <td>{{$reciclaje->grupo}}</td>
                             <td>{{$reciclaje->total_kilos_material_grupo}}</td>
-                            <td>Puntaje Material</td>
+                            <td>{{$reciclaje->total_puntaje_material_grupo}}</td>
                             <td>{{$reciclaje->total_cantidad_productos_grupo}}</td>
-                            <td>Puntaje Productos</td>
-                            <td>Fecha registro</td>
-                            <td>Total</td>
-                            <td><a href="" class="btn btn-light">editar</a></td>
+                            <td>{{$reciclaje->total_puntaje_productos_grupo}}</td>
+                            <td>{{$reciclaje->fecha}}</td>
+                            <td>{{$reciclaje->total_puntaje_grupo}}</td>
+                            <td><a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-light">editar</a></td>
                         </tr>
                     @endforeach
                     </tbody>

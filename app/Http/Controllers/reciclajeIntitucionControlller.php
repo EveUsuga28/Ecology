@@ -29,12 +29,19 @@ class reciclajeIntitucionControlller extends Controller
     {
         $now = Carbon::now();
 
-        $reciclaje = reciclaje_institucion::firstOrNew([
-            'fechaInicio' => $now->format('Y-m-d'),
-            'id_institucion' => auth()->user()->id_institucion
-        ]);
+        $rol = auth()->user()->getRoleNames();
 
-        $reciclaje->save();
+
+        if($rol[0]=='admin'){
+
+            return redirect()->route('reciclaje.index')->with('institucion','true');
+        }else{
+            $reciclaje = reciclaje_institucion::create([
+                'fechaInicio' => $now->format('Y-m-d'),
+                'id_institucion' => auth()->user()->id_institucion
+            ]);
+
+        }
 
         session(['id_reciclaje' => $reciclaje->id]);
         session(['id_institucion'=> $reciclaje->id_institucion]);
@@ -62,7 +69,7 @@ class reciclajeIntitucionControlller extends Controller
 
     public function calcularReciclajeInstitucion($reciclajeInstitucion){
 
-        $aux='';
+
         $result = array();
         $i = 0;
         foreach ($reciclajeInstitucion as $reciclaje){

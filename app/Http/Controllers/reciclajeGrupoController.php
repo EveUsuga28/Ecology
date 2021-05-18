@@ -55,9 +55,18 @@ class reciclajeGrupoController extends Controller
 
     }
 
-    public function CrearDetalle(){
+    public function EditarDetalle($id){
 
-        return view('reciclaje/reciclajeGrupo.create');
+        $materiales = material::all();
+
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
+    }
+
+    public function CrearDetalle($id){
+
+        $materiales = material::all();
+
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
     }
 
 
