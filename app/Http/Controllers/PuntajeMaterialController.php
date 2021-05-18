@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\puntajeMaterial;
 use CrearTablaPuntajeMaterials;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\material;
 
@@ -15,10 +16,20 @@ class PuntajeMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(5);
-        return view('puntajeMaterial.index',$datosPuntajeMaterial );
+        $texto=trim($request->get('texto'));
+        $puntajeMaterials=DB::table('puntajeMaterials')
+                ->select('idPuntajeMaterail','id_materials','Fecha_Inicio', 'Fecha_Fin','Puntaje')
+                ->where('idPuntajeMaterail','LIKE','%'.$texto.'%')
+                ->orWhere('Fecha_Inicio','LIKE','%'.$texto.'%')
+                ->orWhere('Fecha_Fin','LIKE','%'.$texto.'%')
+                ->orWhere('Puntaje','LIKE','%'.$texto.'%')
+                ->orderBy('idPuntajeMaterail', 'asc')
+                ->paginate(10);
+                return view('puntajeMaterial.index', compact('puntajeMaterials','texto'));
+        //$datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(5);
+        //return view('puntajeMaterial.index',$datosPuntajeMaterial );
     }
 
      /**
@@ -55,7 +66,8 @@ class PuntajeMaterialController extends Controller
         $material->fill(array('Puntaje' => $request->input('Puntaje')));
 
         $material->save();
-        return response()->json($datosPuntajeMaterial);
+        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+        //return response()->json($datosPuntajeMaterial);
     }
 
     /**
@@ -108,6 +120,7 @@ class PuntajeMaterialController extends Controller
      */
     public function destroy($idPuntajeMaterail)
     {
+
         puntajeMaterial::destroy($idPuntajeMaterail);
 
         return redirect('puntajeMaterial');

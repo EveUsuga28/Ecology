@@ -3,6 +3,7 @@
 @section('content')
 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,13 +26,14 @@
 <body>
 <form >
     <div class="container mt-4" align="right">
+        <h2 align="center">Puntajes Productos</h2>
+        <input type="text" name="texto" value="{{$texto}}">
+        <input type="submit" class="btn btn-dark" value="Buscar">
     </div>
     </form>
     <div class="container mt-4">
-    <div class="card border-info" >
-        <div class="card-header bg-info text-white" >
-
-
+    <div class="card border-success" >
+        <div class="card-header bg-success text-white" >
         </div>
         <div class="card-body" >
         <table border="1" class="table table-sriped table-bordered" id="Materiales" >

@@ -23,7 +23,7 @@
             </div>
             <div class="login-content">
           <div  class="form-group">
-            <h5 class="title">Registrar Usuario</h5>
+            <h5 class="title">Registrar Puntaje Material</h5>
 
 
             <div class="div">
