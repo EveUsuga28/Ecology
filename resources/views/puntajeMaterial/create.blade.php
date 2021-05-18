@@ -63,5 +63,17 @@
      <input type="submit"  value="Guardar Datos " >
     </div>
      <a href="{{url('puntajeMaterial/') }}">Atrás</a>
+    </div>
+</div>
+        <input type="hidden" name="Estado" value="habilitado" />
+                    <button type="submit" class="btn btn-primary">
+                    </button>
 
     </form>
+
+</div>
+</div>
+
+</body>
+</html>
+

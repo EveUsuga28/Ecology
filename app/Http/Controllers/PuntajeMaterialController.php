@@ -64,8 +64,8 @@ class PuntajeMaterialController extends Controller
         $material->fill(array('Puntaje' => $request->input('Puntaje')));
 
         $material->save();
-      //  return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
-        return response()->json($datosPuntajeMaterial);
+        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+      //  return response()->json($datosPuntajeMaterial);
     }
 
     /**
@@ -108,6 +108,7 @@ class PuntajeMaterialController extends Controller
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
 
         return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+
     }
 
     /**
