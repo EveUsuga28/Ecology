@@ -16,7 +16,6 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div>
             <table id="reciclaje" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -39,7 +38,6 @@
                 @endforeach
                 </tbody>
             </table>
-          </div>
         </div>
     </div>
 @endsection
@@ -49,6 +47,8 @@
     <script>
         $(document).ready(function() {
             $('#reciclaje').DataTable( {
+                responsive: true,
+                autoWidth: false,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
                 }

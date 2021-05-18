@@ -16,17 +16,13 @@ class reciclajeIntitucionControlller extends Controller
 
        if($rol[0]=='admin'){
            $reciclaje_institucion = reciclaje_institucion::all();
-
-           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }else{
            $reciclaje_institucion = reciclaje_institucion::all()
                ->where('id_institucion', '=',auth()->user()->id_institucion);
-
-           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }
 
 
-       return view('reciclaje.index',compact('reciclaje_institucion','camposcalculados'));
+       return view('reciclaje.index',compact('reciclaje_institucion'));
     }
 
     public function crear()
@@ -41,13 +37,17 @@ class reciclajeIntitucionControlller extends Controller
         $reciclaje->save();
 
         session(['id_reciclaje' => $reciclaje->id]);
+        session(['id_institucion'=> $reciclaje->id_institucion]);
 
-         return redirect()->route('reciclajeGrupo.index');
+         return redirect()->route('reciclajeGrupo.index')->with('creado','true');
     }
 
     public function editarReciclaje($id){
 
-        session(['id_reciclaje' => $id]);
+        $reciclaje = reciclaje_institucion::find($id);
+
+        session(['id_reciclaje' => $reciclaje->id]);
+        session(['id_institucion'=> $reciclaje->id_institucion]);
 
         return redirect()->route('reciclajeGrupo.index');
     }

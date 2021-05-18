@@ -1,16 +1,41 @@
+@extends('layouts.app')
+
+@section('css')
+
+@endsection
 
 
-@foreach($grupos as $grupo)
+@section('content')
 
-    <p>{{$grupo->grupo}}</p>
+@endsection
 
-@endforeach
+@section('js')
 
-@foreach($materiales as $material)
+    @if(session('registradoGrupo') == 'true')
+        <script>
+            Command: toastr["success"]("¡Creado Exitosamente!", "Reciclaje Grupo")
 
-    <p>{{$material->NomreMaterial}}</p>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
+    @endif
 
-@endforeach
+@endsection
 
 
 
