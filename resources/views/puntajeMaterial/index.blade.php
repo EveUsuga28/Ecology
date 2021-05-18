@@ -60,6 +60,11 @@
             </tr>
         </thead>
         <tbody>
+            @if(count($puntajeMaterials)<=0)
+            <tr>
+                <td colspan="8">Material no encontrada</td>
+            </tr>
+        @else
         @foreach ( $puntajeMaterials as $puntajeMaterial )
 
 
@@ -69,22 +74,50 @@
             <td>{{$puntajeMaterial->Fecha_Inicio}}</td>
             <td>{{$puntajeMaterial->Fecha_Fin}}</td>
             <td>{{$puntajeMaterial->Puntaje}}</td>
-            <td>
+                @if($puntajeMaterials->estado == 1)
+                 <td bgcolor="#81F79F">Habilitado</td>
 
-            <a  class="btn btn-outline-success" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
-                Editar
-            </a>
+                @else
+                <td bgcolor="#FA5858">Deshabilitar</td>
+                @endif
 
-         <form action="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail)}}"  method="post">
-          @csrf
-
-            {{method_field('DELETE')}}
-
-           <input type="submit"   class="btn btn-outline-danger" onclick="return confirm('¿Quieres borrar el Puntaje?')"
-           value="Borrar">
+                @if ($puntajeMaterials->estado == 0)
+                <td>
+                    <form action="{{ route('puntajeMaterials.Deshabilitar', $puntajeMaterials->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
 
 
-            </td>
-        </tr>
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-success ">habilitar</button>
+                    </form>
+                </td>
+
+                @else
+                <td>
+
+                    <a  class="btn btn-outline-success" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
+                        Editar
+                    </a>
+                    <form action="{{ route('puntajeMaterials.Deshabilitar', $puntajeMaterials->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
+
+
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                    </form>
+                </td>
+
+                @endif
+
+
         @endforeach
-     </form>
+        @endif
+
+    </tbody>
+</table>
+{{$noticias->links()}}
+</div>
+</div>
+
+</body>
+</html>

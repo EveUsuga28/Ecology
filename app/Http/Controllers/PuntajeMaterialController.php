@@ -121,8 +121,25 @@ class PuntajeMaterialController extends Controller
     public function destroy($idPuntajeMaterail)
     {
 
-        puntajeMaterial::destroy($idPuntajeMaterail);
+       // puntajeMaterial::destroy($idPuntajeMaterail);
 
-        return redirect('puntajeMaterial');
+        //return redirect('puntajeMaterial');
     }
+    public function Deshabilitar($idPuntajeMaterail)
+    {
+
+            $puntajeMaterials = puntajeMaterial::find($idPuntajeMaterail);
+
+            if($puntajeMaterials->Estado == 'habilitado')
+            {
+                $puntajeMaterials->Estado = 'Deshabilitado';
+            }else
+            {
+                $puntajeMaterials->Estado = 'habilitado';
+            }
+
+            $puntajeMaterials->save();
+
+            return redirect()->route('puntajeMaterial.index')->with('eliminar' , 'true');
+        }
 }
