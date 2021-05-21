@@ -16,38 +16,45 @@ class reciclajeIntitucionControlller extends Controller
 
        if($rol[0]=='admin'){
            $reciclaje_institucion = reciclaje_institucion::all();
-
-           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }else{
            $reciclaje_institucion = reciclaje_institucion::all()
                ->where('id_institucion', '=',auth()->user()->id_institucion);
-
-           $camposcalculados = $this->calcularReciclajeInstitucion($reciclaje_institucion);
        }
 
 
-       return view('reciclaje.index',compact('reciclaje_institucion','camposcalculados'));
+       return view('reciclaje.index',compact('reciclaje_institucion'));
     }
 
     public function crear()
     {
         $now = Carbon::now();
 
-        $reciclaje = reciclaje_institucion::firstOrNew([
-            'fechaInicio' => $now->format('Y-m-d'),
-            'id_institucion' => auth()->user()->id_institucion
-        ]);
+        $rol = auth()->user()->getRoleNames();
 
-        $reciclaje->save();
+
+        if($rol[0]=='admin'){
+
+            return redirect()->route('reciclaje.index')->with('institucion','true');
+        }else{
+            $reciclaje = reciclaje_institucion::create([
+                'fechaInicio' => $now->format('Y-m-d'),
+                'id_institucion' => auth()->user()->id_institucion
+            ]);
+
+        }
 
         session(['id_reciclaje' => $reciclaje->id]);
+        session(['id_institucion'=> $reciclaje->id_institucion]);
 
-         return redirect()->route('reciclajeGrupo.index');
+         return redirect()->route('reciclajeGrupo.index')->with('creado','true');
     }
 
     public function editarReciclaje($id){
 
-        session(['id_reciclaje' => $id]);
+        $reciclaje = reciclaje_institucion::find($id);
+
+        session(['id_reciclaje' => $reciclaje->id]);
+        session(['id_institucion'=> $reciclaje->id_institucion]);
 
         return redirect()->route('reciclajeGrupo.index');
     }
@@ -62,7 +69,7 @@ class reciclajeIntitucionControlller extends Controller
 
     public function calcularReciclajeInstitucion($reciclajeInstitucion){
 
-        $aux='';
+
         $result = array();
         $i = 0;
         foreach ($reciclajeInstitucion as $reciclaje){

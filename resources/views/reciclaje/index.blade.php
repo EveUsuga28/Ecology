@@ -16,7 +16,6 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div>
             <table id="reciclaje" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -39,7 +38,6 @@
                 @endforeach
                 </tbody>
             </table>
-          </div>
         </div>
     </div>
 @endsection
@@ -49,12 +47,37 @@
     <script>
         $(document).ready(function() {
             $('#reciclaje').DataTable( {
+                responsive: true,
+                autoWidth: false,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
                 }
             } );
         } );
     </script>
+    @if(session('institucion') == 'true')
+        <script>
+            Command: toastr["warning"]("Necesita tener una institución asociada para generar reciclaje", "Error")
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
+    @endif
 
 @endsection
 
