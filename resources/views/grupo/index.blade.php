@@ -62,7 +62,7 @@
         <tr>
             <th>#</th>
             <th>Grupo</th>
-            <th>ID_Instituciones</th>
+            <th>id</th>
             <th>Estado</th>
             <th>Acciones</th>
         </tr>
@@ -73,7 +73,7 @@
         <tr>
             <td>{{ $grupos->id_grupo }}</td>
             <td>{{ $grupos->Grupo }}</td>
-            <td>{{ $grupos->ID_Instituciones }}</td>
+            <td>{{ $grupos->id }}</td>
             <td>{{ $grupos->Estado }}</td>
             <td>
             

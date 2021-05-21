@@ -46,8 +46,8 @@
 <input type="text" name="Grupo" id="Grupo" value="{{$grupo->Grupo}}" required maxLength="4"><br>
 </div>
 <div class="form-group">
-<label for="ID_Instituciones">Institución</label><br>
-<input type="text" name="ID_Instituciones" id="ID_Instituciones" value="{{$grupo->ID_Instituciones}}" readonly><br>
+<label for="id">Institución</label><br>
+<input type="text" name="id" id="id" value="{{$grupo->id}}" readonly><br>
 </div>
 <div class="form-group">
 <label for="Estado">Estado</label><br>

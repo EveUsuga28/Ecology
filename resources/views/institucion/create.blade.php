@@ -55,8 +55,8 @@
 </div>
 
 <div class="form-group">
-<label for="fecha_Registro">Fecha Registro</label><br>
-<input type="date" name="fecha_Registro" id="fecha_Registro" required><br>
+<label for="fechaRegistro">Fecha Registro</label><br>
+<input type="date" name="fechaRegistro" id="fechaRegistro" required><br>
 </div>
 
 <div class="form-group">

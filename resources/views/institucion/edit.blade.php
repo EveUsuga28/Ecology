@@ -36,7 +36,7 @@
             <h1>Editar Grupo</h1>
         </div>
 
-<form class="container" action="{{ url('/institucion/'.$institucion->ID_Instituciones ) }} " method="post" enctype="multipart/form-data">
+<form class="container" action="{{ url('/institucion/'.$institucion->id ) }} " method="post" enctype="multipart/form-data">
 @csrf
 
 {{ method_field('PATCH') }}
@@ -58,8 +58,8 @@
 </div>
 
 <div class="form-group">
-<label for="fecha_Registro">Fecha Registro</label><br>
-<input type="date" name="fecha_Registro" id="fecha_Registro" value="{{ $institucion->fecha_Registro }}" required>
+<label for="fechaRegistro">Fecha Registro</label><br>
+<input type="date" name="fechaRegistro" id="fechaRegistro" value="{{ $institucion->fechaRegistro }}" required>
 </div>
 
 <div class="form-group">

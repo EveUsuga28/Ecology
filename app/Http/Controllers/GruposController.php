@@ -21,10 +21,10 @@ class GruposController extends Controller
         //
         $texto=trim($request->get('texto'));
         $grupo=DB::table('grupos')
-                ->select('id_grupo','Grupo','ID_Instituciones', 'Estado')
+                ->select('id_grupo','Grupo','id', 'Estado')
                 ->where('id_grupo','LIKE','%'.$texto.'%')
                 ->orWhere('Grupo','LIKE','%'.$texto.'%')
-                ->orWhere('ID_Instituciones','LIKE','%'.$texto.'%')
+                ->orWhere('id','LIKE','%'.$texto.'%')
                 ->orWhere('Estado','LIKE','%'.$texto.'%')
                 ->orderBy('id_grupo', 'asc')
                 ->paginate(10);
@@ -81,8 +81,8 @@ class GruposController extends Controller
         //return view('grupo.create',$datos);
 //------------------------------------------
         $grupo = grupos::findOrFail($id_grupo);
-        $ID_Instituciones = $grupo->ID_Instituciones;
-        $institucion = institucions::findOrFail($ID_Instituciones);
+        $id = $grupo->id;
+        $institucion = institucions::findOrFail($id);
 
         $grupo = grupos::findOrFail($id_grupo);
         return view('grupo.edit',compact('grupo', 'institucion'));
