@@ -20,11 +20,11 @@
                 <!--    <h1>Eco<span>logy</span></h1>-->
                 </div>
                 <div class="enlaces" id="enlaces">
-                        <a href="#" id="enlace-inicio" class="btn-header">Inicio</a> 
-                        <a href="#" id="enlace-equipo" class="btn-header">Acerca De</a> 
+                        <a href="#" id="enlace-inicio" class="btn-header">Inicio</a>
+                        <a href="#" id="enlace-equipo" class="btn-header">Acerca De</a>
                         <a href="#" id="enlace-servicio" class="btn-header">Servicios</a>
-                        <a href="#" id="enlace-contacto" class="btn-header">Contacto</a> 
-                        <a href="{{ route('login')}}"  class="btn-header">Iniciar Sesión</a> 
+                        <a href="#" id="enlace-contacto" class="btn-header">Contacto</a>
+                        <a href="{{ route('login')}}"  class="btn-header">Iniciar Sesión</a>
                 </div>
                 <div class="icono" id="open">
                     <span>&#9776;</span>
@@ -108,7 +108,7 @@
         </section>
 
         <section class="work contenedor" id="trabajo">
-        
+
             <h3>Noticias</h3>
             <p class="after">Nunca la sabiduría dice una cosa y la naturaleza otra</p>
             <!--

@@ -20,9 +20,7 @@ use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NoticiasController;
 
 
-Route::get('/', function () {
-    return view('./auth/index');
-});
+Route::get('/', \App\Http\Controllers\publico::class);
 
 Route::get('/login', function () {
     return view('./auth/login');
