@@ -133,4 +133,8 @@ class NoticiasController extends Controller
 
         return redirect()->route('noticias.index')->with('eliminar' , 'true');
     }
+
+
+    /* Prueba de Controllador vista noticias a usuarios no logueados ._. */
+    
 }

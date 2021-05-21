@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,6 +112,7 @@
         
             <h3>Noticias</h3>
             <p class="after">Nunca la sabiduría dice una cosa y la naturaleza otra</p>
+            <p class="after">ejemplo id</p>
             <!--
             <div class="botones-work">
                 <ul>

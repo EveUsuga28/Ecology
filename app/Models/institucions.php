@@ -10,4 +10,6 @@ class institucions extends Model
     use HasFactory;
 
     protected $primaryKey = "id";
+
+    public $timestamps = false;
 }
