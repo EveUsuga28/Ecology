@@ -12,7 +12,11 @@
 
 @section('content')
 
-
+    <!--Encabezado-->
+    <blockquote class="blockquote">
+        <h1 class="h2 bg-success">Encabezado h1 con estilo h2</h1>
+    </blockquote>
+    <!--Encabezado-->
     <div class="container-fluid">
     <a href="javascript:void(0)" onclick="CrearReciclaje()" class="btn btn-primary">
         Nuevo
@@ -47,6 +51,8 @@
         </div>
     </div>
     <!-- Modal -->
+    <br>
+    <div class="container-fluid">
     <div class="card">
         <div class="card-body">
                 <table id="reciclajeGrupo" class="table table-striped" style="width:100%">
@@ -81,6 +87,8 @@
                 </table>
             </div>
         </div>
+
+    </div>
 @endsection
 
 @section('js')
