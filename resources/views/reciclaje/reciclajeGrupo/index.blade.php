@@ -2,10 +2,7 @@
 
 @section('css')
     <style>
-        table thead {
-            background-color:#39A131 ;
-            color: white;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
     </style>
 @endsection
 
@@ -13,14 +10,12 @@
 @section('content')
 
     <!--Encabezado-->
-    <blockquote class="blockquote">
-        <h1 class="h2 bg-success">Encabezado h1 con estilo h2</h1>
-    </blockquote>
+    <x-datos datos="Reciclaje Grupo"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
+
+    <br>
     <div class="container-fluid">
-    <a href="javascript:void(0)" onclick="CrearReciclaje()" class="btn btn-primary">
-        Nuevo
-    </a>
+
     </div>
     <!-- Modal -->
     <div class="modal fade" id="grupo_crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,7 +49,12 @@
     <br>
     <div class="container-fluid">
     <div class="card">
+
         <div class="card-body">
+            <a href="javascript:void(0)" onclick="CrearReciclaje()" class="btn btn-success">
+                <b>Nuevo</b>
+            </a>
+            <hr>
                 <table id="reciclajeGrupo" class="table table-striped" style="width:100%">
                     <thead>
                     <tr>
@@ -115,12 +115,12 @@
             Command: toastr["warning"]("Reciclaje grupo ya creado", "Error")
 
             toastr.options = {
-                "closeButton": true,
+                "closeButton": false,
                 "debug": false,
                 "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": true,
+                "progressBar": false,
+                "positionClass": "toast-bottom-full-width",
+                "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "300",
                 "hideDuration": "1000",

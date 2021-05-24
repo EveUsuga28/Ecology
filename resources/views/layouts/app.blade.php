@@ -36,9 +36,12 @@
 @guest
 
 @else
+    <!--div class="spaceEncabezado">
+        <h1 id="EncabezadoModulo"><b>Reciclaje Grupo</b></h1>
+    </div-->
     <div id="sidemenu" class="menu-collapsed">
         <div id="header">
-            <div id="tittle"><span>Ecology</span></div>
+            <div id="tittle"><span><img src="{{asset('img/logo.png')}}" alt="" width="40"> Ecology</span></div>
             <div id="menu-btn">
                 <div class="btn-hamburger"></div>
                 <div class="btn-hamburger"></div>
@@ -54,54 +57,53 @@
             <div class="item">
                 <a href="{{ route('home')}}">
                     <div class="icon"><i class="fas fa-home fa-2x"></i></div>
-                    <div class="title"><span>Inicio</span></div>
+                    <div class="title"><span><b>Inicio</b></span></div>
                 </a>
             </div>
             @can('usuarios')
                 <div class="item">
                     <a href="{{ route('users.index')}}">
                         <div class="icon"><i class="fas fa-user fa-2x"></i></div>
-                        <div class="title"><span>Usuarios</span></div>
+                        <div class="title"><span><b>Usuarios</b></span></div>
                     </a>
                 </div>
             @endcan
             <div class="item">
                 <a href="{{route('material.index')}}">
                     <div class="icon"><i class="fas fa-tree fa-2x"></i></div>
-                    <div class="title"><span>Materiales</span></div>
+                    <div class="title"><span><b>Materiales</b></span></div>
                 </a>
             </div>
             <div class="item">
                 <a href="{{route('reciclaje.index')}}">
                     <div class="icon"><i class="fas fa-recycle fa-2x"></i></div>
-                    <div class="title"><span>Gestion reciclaje</span></div>
+                    <div class="title"><span><b>Gestion reciclaje</b></span></div>
                 </a>
             </div>
-            <div class="item separator"></div>
             <div class="item">
                 <a href="noticias">
                     <div class="icon"><i class="fas fa-newspaper fa-2x"></i></div>
-                    <div class="title"><span>Noticias</span></div>
+                    <div class="title"><span><b>Noticias</b></span></div>
                 </a>
             </div>
             <div class="item">
                 <a href="{{ route('institucion.index') }}">
                     <div class="icon"><i class="fas fa-school fa-2x"></i></div>
-                    <div class="title"><span>Institución</span></div>
+                    <div class="title"><span><b>Institución</b></span></div>
                 </a>
             </div>
             <div class="item">
                 <a href="{{ route('grupo.index') }}">
                     <div class="icon"><i class="fas fa-user-graduate fa-2x"></i></div>
-                    <div class="title"><span>Grupos</span></div>
+                    <div class="title"><span><b>Grupos</b></span></div>
                 </a>
             </div>
-            <div class="item">
+            <div class="item salir">
                 <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    <div class="icon"><i class="far fa-sign-out-alt"></i></div>
-                    <div class="title"><span>{{ __('Cerrar Sesion') }}</span></div>
+                    <div class="icon"><i class="fas fa-power-off fa-2x"></i></div>
+                    <div class="title"><span><b>{{ __('Cerrar Sesion') }}</b></span></div>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -111,9 +113,9 @@
     </div>
     @endguest
     <div id="main-container">
-        <p>
+
         @yield('content')
-        </p>
+
     </div>
 
     <script>
