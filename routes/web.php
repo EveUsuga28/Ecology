@@ -26,7 +26,6 @@ Route::get('/login', function () {
     return view('./auth/login');
 });
 
-
 /* Rutas institucion */
 Route::resource('institucion', InstitucionsController::class)->middleware('auth');/* el " ->middlware('auth');  " es de cuestion de seguridad para protejer rutas a aquellas personas que no estan logueadas*/
 /*

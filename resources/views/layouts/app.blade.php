@@ -22,7 +22,7 @@
 
 
     <!-- Styles -->
-	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
+	<link rel="shortcut icon" type="text/css" href="{{asset('img/logo.png')}} ">
     <link href="{{ asset('css/MenuEstilos.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div id="profile">
-            <div id="photo"><img src="img/perfildeusuario.jpg" alt=""></div>
+            <div id="photo"><img src="{{asset('img/perfildeusuario.jpg')}}" alt=""></div>
             <div id="name"><span>{{ Auth::user()->name }}</span></div>
         </div>
 
