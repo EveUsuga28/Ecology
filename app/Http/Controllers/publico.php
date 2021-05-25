@@ -11,7 +11,6 @@ class publico extends Controller
 
         $noticias = noticias::all();
 
-
         return view('./auth/index',compact('noticias'));
 
     }

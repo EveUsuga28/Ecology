@@ -11,11 +11,17 @@
             color: white;
         }
     </style>
-    <div>
-        <a href="{{ route('reciclaje.crear')}}" class="btn btn-light">Nuevo</a>
-    </div>
+    <!--Encabezado-->
+    <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+    <br>
+    <div class="container-fluid">
     <div class="card">
         <div class="card-body">
+            <div>
+                <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+            </div>
+            <hr>
             <table id="reciclaje" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -39,6 +45,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 @endsection
 
