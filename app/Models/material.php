@@ -10,5 +10,6 @@ class material extends Model
     use HasFactory;
     protected $fillable = ['id','NomreMaterial','Puntaje','Kilos'];
 
+    public $timestamps = false;
 
 }

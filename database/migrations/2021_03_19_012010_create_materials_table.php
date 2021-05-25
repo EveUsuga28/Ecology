@@ -19,7 +19,7 @@ class CreateMaterialsTable extends Migration
             $table->integer('Puntaje');
             $table->integer('Kilos');
             $table->string('Foto');
-            $table->timestamps();
+          
         });
 
     }

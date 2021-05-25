@@ -17,10 +17,10 @@ class CrearTablaPuntajeMaterials extends Migration
             $table->bigIncrements('idPuntajeMaterail');
             $table->unsignedSmallInteger('id_materials');
             $table->datetime('Fecha_Inicio');
-            $table->datetime('Fecha_Fin');
+            $table->datetime('Fecha_Fin')->nullable();
             $table->integer('Puntaje');
-            
-            $table->timestamp('created_at');
+            $table->string('Estado')-> default('habilitado');
+
 
 
             $table->foreign("id_materials")

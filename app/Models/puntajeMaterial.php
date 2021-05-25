@@ -20,4 +20,6 @@ class puntajeMaterial extends Model
     'Puntaje',
     'Estado'];
 
+    public $timestamps = false;
+
 }
