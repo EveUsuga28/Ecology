@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detalle_grupos_materiales;
 use App\Models\grupos;
 use App\Models\material;
 use App\Models\reciclaje_grupo;
@@ -90,6 +91,33 @@ class reciclajeGrupoController extends Controller
                 ->make(true);
         }
 
+    }
+
+    public function crearDetalleMateriales(Request $request)
+    {
+
+        if(DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo',$request->idGrupo)
+        ->where('id_materiales',$request->material)->exists()){
+            return 1;
+        }else{
+            DB::table('detalle_reciclaje_grupos_materiales')->insert([
+                'id_reciclaje_grupo' => $request->idGrupo,
+                'id_materiales' => $request->material,
+                'kilos' =>  $request->kilos,
+                'puntaje' => $this->calcularPuntajeMaterial($request->material, $request->kilos)
+            ]);
+
+            return 2;
+        }
+    }
+
+    public function calcularPuntajeMaterial($id,$kilos){
+
+        $material = material::find($id);
+
+        $resultado = floor($kilos/$material->Kilos)*$material->Puntaje;
+
+        return $resultado;
     }
 
 }

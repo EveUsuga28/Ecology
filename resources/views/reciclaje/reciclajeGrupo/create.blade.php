@@ -2,6 +2,11 @@
 
 @section('content')
 
+
+    <!--Encabezado-->
+    <x-datos datos="Materiales y Productos grupo"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+    <br>
     <div class="container-fluid">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -20,7 +25,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6">
-                            formulario registro Materiales
+                            <form id="detalle-material">
+                                @csrf
+                                <input type="hidden" value="{{$id}}" id="id_grupo" name="id_grupo">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Crear Material</label>
+                                    <select class="form-select" aria-label="Default select example" id="material" name="material" required>
+                                        <option value="">Seleccione un Material</option>
+                                        @foreach($materiales as $material)
+                                            <option value="{{$material->id}}">{{$material->NomreMaterial}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">kilos</label>
+                                    <input type="number" class="form-control" id="kilos" name="kilos" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </form>
                         </div>
                         <div class="col-xl-6">
                             <div class="card">
@@ -95,5 +118,40 @@
         });
     </script>
 
+    <script>
+        $('#detalle-material').submit(function(e){
+            e.preventDefault();
+            var material = $('#material').val();
+            var kilos = $('#kilos').val();
+            var id_grupo = $('#id_grupo').val();
+            var _token = $("input[name=_token]").val();
+            $.ajax({
+                url: "{{ route('reciclajeGrupo.crearDetalle') }}",
+                type: "POST",
+                data:{
+                    material: material,
+                    kilos: kilos,
+                    idGrupo: id_grupo,
+                    _token:_token
+                }
+            }).done(function (res){
+                if(res == 1){
+                    toastr.warning('El material ya existe', 'Material ya creado', {timeOut:10000});
+                }else{
+                    $('#detalle-material')[0].reset();
+                    toastr.success('Material creado exitosamente.', 'Nuevo Registro', {timeOut:10000});
+                    $('#table-materiales').DataTable().ajax.reload();
+                }
+            });
+        });
+    </script>
+
 @endsection
+
+<!--,
+success:function(response){
+if(response){
+
+}
+}-->
 
