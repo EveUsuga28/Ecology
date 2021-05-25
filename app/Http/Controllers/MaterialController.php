@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MaterialController extends Controller
 {
@@ -67,7 +68,7 @@ class MaterialController extends Controller
         material::insert($datosMaterial);
 
         //return response()->json($datosMaterial);
-        return redirect('material')->with('mensaje','Material Creado Exitosamente');
+        return redirect('material')->with('mensaje');
     }
 
     /**
@@ -121,7 +122,9 @@ class MaterialController extends Controller
         material::where('id','=',$id)->update($datosMaterial);
 
         $material =material::findOrFail($id);
-        return view('material.edit',compact('material'));
+
+        return redirect('material');
+        //return view('material.edit',compact('material'));
 
     }
 
@@ -140,5 +143,12 @@ class MaterialController extends Controller
         }
 
         return redirect('material')->with('mensaje','Material Borrado');**/
+    }
+    public function actualizarFechaPuntaje(){
+
+        $now = Carbon::now();
+
+        $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
+            ->update(['Fecha_Fin'=>$now->format('Y-m-d')]);
     }
 }

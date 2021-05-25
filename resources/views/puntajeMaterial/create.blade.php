@@ -11,7 +11,7 @@
 
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/a81368914c.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -23,6 +23,7 @@
             </div>
             <div class="login-content">
           <div  class="form-group">
+              <br>
             <h5 class="title">Registrar Puntaje Material</h5>
 
 
@@ -37,14 +38,14 @@
     $Fecha_Inicio =date("Y-m-d H:i:s");
     ?>
 
-     <label form="Fecha_Inicio">Fecha_Inicio</label>
-     <input type="datetime"  class="form-control"value="<?= $Fecha_Inicio ?>" name="Fecha_Inicio" id="Fecha_Inicio" required>
+        <label form="Fecha_Inicio">Fecha_Inicio</label>
+        <input type="datetime"  class="form-control"value="<?= $Fecha_Inicio ?>" name="Fecha_Inicio" id="Fecha_Inicio" required>
     </div>
 
 
     <div class="div">
         <label form="Fecha_Inicio">Fecha_Fin</label>
-        <input type="datetime" class="form-control" value="" name="Fecha_Fin" id="Fecha_Fin" required>
+        <input type="datetime" class="form-control" value="" name="Fecha_Fin" id="Fecha_Fin" >
     </div>
 
     <div class="div">
@@ -66,14 +67,15 @@
     </div>
 </div>
         <input type="hidden" name="Estado" value="habilitado" />
-                    <button type="submit" class="btn btn-primary">
+
                     </button>
-
     </form>
-
 </div>
 </div>
 
 </body>
 </html>
+
+
+
 

@@ -28,18 +28,20 @@
 
 </head>
 <body>
-<form >
+<form  class="formulario-registrarMaterial">
     <div class="container mt-4" align="right">
         <h2 align="center">Materiales</h2>
         <input type="text" name="texto" value="{{$texto}}">
         <input type="submit" class="btn btn-dark" value="Buscar">
     </div>
-    </form>
+
+
     <div class="container mt-4">
     <div class="card border-success" >
         <div class="card-header bg-success text-white" >
-            <a href="{{url('material/create') }}" class="btn btn-light">NUEVO</a>
 
+    <a href="{{url('material/create') }}" class="btn btn-light " >NUEVO</a>
+</form>
         </div>
         <div class="card-body" >
         <table border="1" class="table table-sriped table-bordered" id="Materiales" >
@@ -65,7 +67,7 @@
             </tr>
         </thead>
         <tbody>
-
+        </form>
 
     @foreach($materials as $material)
         <tr>
@@ -79,7 +81,7 @@
             <!-- {{$material->Foto}}-->
            </td>
            <td>
-            <a class="btn btn-outline-warning" href="{{Route('puntajeMaterial.Crear',$material->id) }}">Crear Nuevo Puntaje</a>
+            <a class="btn btn-outline-warning formulario-registro" href="{{Route('puntajeMaterial.Crear',$material->id) }}"   >Crear Nuevo Puntaje<a>
            <br>
            <a  class="btn btn-outline-success" href="{{url('/material/'.$material->id.'/edit') }}">
                   Editar
@@ -89,3 +91,6 @@
         </tr>
         @endforeach
     </form>
+
+
+

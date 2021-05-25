@@ -40,7 +40,7 @@
         </div>
 
     </label>
-        <input type="text"  class="form-control"name="NomreMaterial"   value="{{old('NomreMaterial',$material->NomreMaterial)}}"  id="NomreMaterial" required>
+        <input type="text"  class="form-control"name="NomreMaterial"   value="{{old('NomreMaterial',$material->NomreMaterial)}}"  id="NomreMaterial" required  >
             </div>
             <div class="div">
         <label For="Puntaje" >Puntaje
@@ -53,7 +53,7 @@
                 @enderror
             </div>
         </label>
-        <input type="number" class="form-control"name="Puntaje"  value="{{ old( 'Puntaje' ,$material->Puntaje) }}" id="Puntaje" required>
+        <input type="number" class="form-control"name="Puntaje"  value="{{ old( 'Puntaje' ,$material->Puntaje) }}" id="Puntaje" required disabled=»disabled>
          </div>
 
          <div class="div">

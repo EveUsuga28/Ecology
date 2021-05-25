@@ -78,10 +78,10 @@
             <td>{{$puntajeMaterial->Fecha_Fin}}</td>
             <td>{{$puntajeMaterial->Puntaje}}</td>
             @if($puntajeMaterial->Estado == 'habilitado')
-            <td bgcolor="#81F79F">{{ $puntajeMaterial->Estado}}</td>
+            <td >{{ $puntajeMaterial->Estado}}</td>
 
            @else
-           <td bgcolor="#FA5858">{{ $puntajeMaterial->Estado}}</td>
+           <td >{{ $puntajeMaterial->Estado}}</td>
            @endif
 
            @if ($puntajeMaterial->Estado == 'Deshabilitado')
@@ -117,3 +117,46 @@
 </body>
 </html>
 
+@endsection
+@section('js')
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        @if(session('eliminar') == 'true')
+            <script>
+                Swal.fire(
+                    'Exito!',
+                    'Estado Cambiado',
+                    'success'
+                )
+            </script>
+
+        @endif
+
+
+
+        <script>
+
+        $('.formulario-eliminar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+        </script>
+
+@endsection

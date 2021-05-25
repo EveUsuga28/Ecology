@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\puntajeMaterial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;;
@@ -107,7 +107,8 @@ class PuntajeMaterialController extends Controller
 
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
 
-        return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+        return redirect('puntajeMaterial');
+        //return view('puntajeMaterial.edit',compact('puntajeMaterial'));
 
     }
 
@@ -140,5 +141,12 @@ class PuntajeMaterialController extends Controller
             $puntajeMaterial->save();
 
             return redirect()->route('puntajeMaterial.index')->with('eliminar' , 'true');
+        }
+        public function actualizarFechaPuntaje(){
+
+            $now = Carbon::now();
+
+            $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
+                ->update(['Fecha_Fin'=>$now->format('Y-m-d')]);
         }
 }
