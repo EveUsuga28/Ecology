@@ -21,18 +21,9 @@ class PuntajeMaterialController extends Controller
 
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
-        $puntajeMaterials=DB::table('puntajeMaterials')
-                ->select('idPuntajeMaterail','id_materials','Fecha_Inicio', 'Fecha_Fin','Puntaje','Estado')
-                ->where('idPuntajeMaterail','LIKE','%'.$texto.'%')
-                ->orWhere('Fecha_Inicio','LIKE','%'.$texto.'%')
-                ->orWhere('Fecha_Fin','LIKE','%'.$texto.'%')
-                ->orWhere('Puntaje','LIKE','%'.$texto.'%')
-                ->orderBy('idPuntajeMaterail', 'asc')
-                ->paginate(10);
-                return view('puntajeMaterial.index', compact('puntajeMaterials','texto'));
-        //$datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(5);
-        //return view('puntajeMaterial.index',$datosPuntajeMaterial );
+
+        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
+        return view('puntajeMaterial.index',$datosPuntajeMaterial );
     }
 
      /**
@@ -61,12 +52,14 @@ class PuntajeMaterialController extends Controller
             'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
         ]);
        // $datosPuntajeMaterial = request()->all();
+       $this->actualizarFechaPuntaje();
        $datosPuntajeMaterial = request()->except('_token');
        puntajeMaterial::insert($datosPuntajeMaterial);
 
        $material =material::find($request->input('id_materials'));
 
         $material->fill(array('Puntaje' => $request->input('Puntaje')));
+
 
         $material->save();
         return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
@@ -152,6 +145,6 @@ class PuntajeMaterialController extends Controller
             $now = Carbon::now();
 
             $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
-                ->update(['Fecha_Fin'=>$now->format('Y-m-d')]);
+                ->update(['Fecha_Fin'=>$now->format('Y-m-d H:i:s')]);
         }
 }

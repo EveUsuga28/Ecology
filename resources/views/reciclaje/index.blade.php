@@ -12,7 +12,7 @@
         }
     </style>
     <div>
-        <a href="{{ route('reciclaje.crear')}}" class="btn btn-light">Nuevo</a>
+        <a href="{{ route('reciclaje.crear')}}" class="btn btn-light">NUEVO</a>
     </div>
     <div class="card">
         <div class="card-body">
@@ -33,7 +33,7 @@
                         <td>{{$reciclaje->fechaInicio}}</td>
                         <td>{{$reciclaje->fechaFin}}</td>
                         <td>{{$reciclaje->estado}}</td>
-                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light">editar</a></td>
+                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light" >editar</a></td>
                     </tr>
                 @endforeach
                 </tbody>

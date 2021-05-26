@@ -24,7 +24,7 @@ class MaterialController extends Controller
 
     public function index(Request $request)
     {
-         $datos['materials']=material::paginate(5);
+         $datos['materials']=material::paginate();
         return view('material.index',$datos);
     }
 
@@ -38,6 +38,7 @@ class MaterialController extends Controller
 
 
         return view('material.create');
+
     }
 
     /**
@@ -65,7 +66,8 @@ class MaterialController extends Controller
         material::insert($datosMaterial);
 
         //return response()->json($datosMaterial);
-        return redirect('material')->with('mensaje');
+        return redirect('material')->with('material','true');
+
     }
 
     /**

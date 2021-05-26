@@ -11,13 +11,16 @@
             color: white;
         }
     </style>
-    <div>
-    <div>
+    <br>
+    <h1 align="center">Materiales</h1>
+    <br>
          <a href="{{url('material/create') }}" class="btn btn-light " >NUEVO</a>
+         <a href="{{url('puntajeMaterial') }}" class="btn btn-light " >PUNTAJES</a>
     </div>
+<br>
     <div class="card">
         <div class="card-body" >
-            <table id="materiales" class="table table-striped" style="width:100%">
+            <table id="materiales" class="table table-striped table-bordered" style="width:100%">
             <thead align="center">
             <tr>
                 <th>Id</th>
@@ -42,11 +45,13 @@
             <!-- {{$material->Foto}}-->
            </td>
            <td>
-            <a class="btn btn-outline-warning formulario-registro" href="{{Route('puntajeMaterial.Crear',$material->id) }}"   >Crear Nuevo Puntaje<a>
+               <br>
+               <a  class="btn btn-outline-info" href="{{url('/material/'.$material->id.'/edit')}}" title="
+                Editar">
+                <i class="fas fa-edit"></i>
+               </a>
+            <a class="btn btn-outline-secondary formulario-registro" href="{{Route('puntajeMaterial.Crear',$material->id) }}"   >Crear Nuevo Puntaje<a>
            <br>
-           <a  class="btn btn-outline-success" href="{{url('/material/'.$material->id.'/edit') }}">
-                  Editar
-           </a>
 
            </td>
         </tr>
@@ -70,6 +75,30 @@
             } );
         } );
     </script>
+    @if(session('material'))
+    <script>
+     Command: toastr["success"]("¡Creado Exitosamente!", "Material")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-bottom-left",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+</script>
+@endif
 
 @endsection
 
