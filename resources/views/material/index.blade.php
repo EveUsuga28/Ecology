@@ -1,73 +1,34 @@
 @extends('layouts.app')
 
+@section('css')
+
+@endsection
+
 @section('content')
-
-@if(Session::has('mensaje'))
-{{session::get('mensaje')}}
-
-
-@endif
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        .boton{
-            width: 54%;
+        table thead {
+            background-color:#39A131 ;
+            color: white;
         }
     </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
-
-
-</head>
-<body>
-<form  class="formulario-registrarMaterial">
-    <div class="container mt-4" align="right">
-        <h2 align="center">Materiales</h2>
-        <input type="text" name="texto" value="{{$texto}}">
-        <input type="submit" class="btn btn-dark" value="Buscar">
+    <div>
+    <div>
+         <a href="{{url('material/create') }}" class="btn btn-light " >NUEVO</a>
     </div>
-
-
-    <div class="container mt-4">
-    <div class="card border-success" >
-        <div class="card-header bg-success text-white" >
-
-    <a href="{{url('material/create') }}" class="btn btn-light " >NUEVO</a>
-</form>
-        </div>
+    <div class="card">
         <div class="card-body" >
-        <table border="1" class="table table-sriped table-bordered" id="Materiales" >
+            <table id="materiales" class="table table-striped" style="width:100%">
             <thead align="center">
-                <th>
-                    Id
-                </th>
-                <th>
-                    Nombre Material
-                </th>
-                <th>
-                    Puntaje
-                </th>
-                <th>
-                   Kilos
-                </th>
-                <th>
-                    Foto
-                </th>
-                <th>
-                    Acción
-                </th>
+            <tr>
+                <th>Id</th>
+                <th> Nombre Material</th>
+                <th> Puntaje</th>
+                <th>Kilos</th>
+                <th>Foto</th>
+                <th>Acción</th>
             </tr>
         </thead>
-        <tbody>
-        </form>
+<tbody>
 
     @foreach($materials as $material)
         <tr>
@@ -90,7 +51,25 @@
            </td>
         </tr>
         @endforeach
-    </form>
+     </tbody>
+ </table>
+  </div>
+</div>
+@endsection
 
+@section('js')
 
+    <script>
+        $(document).ready(function() {
+            $('#materiales').DataTable( {
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                }
+            } );
+        } );
+    </script>
+
+@endsection
 
