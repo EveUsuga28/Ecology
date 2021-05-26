@@ -223,31 +223,6 @@ background: linear-gradient(to right, #16A085, #27AE60  );
   text-align: center;
 }
 /*Contenedor noticias :D ----------------------------------*/
-.botones-work{
-  overflow: hidden;
-}
-
-.botones-work li{
-  display: inline-block;
-  text-align: center;
-  margin-left: var(--espacios);
-  margin-bottom: var(--espacios-contenido);
-  padding: 6px 12px;
-  border: 1px solid var(--color1);
-  list-style: none;
-  color: var(--color1);
-}
-
-.botones-work li:hover{
-  background: var(--color1);
-  color:#fff;
-  cursor: pointer;
-}
-
-.botones-work .active{
-  background: var(--color1);
-  color:#fff;
-}
 
 .galeria-work{
   display:flex;
@@ -259,8 +234,15 @@ background: linear-gradient(to right, #16A085, #27AE60  );
   width: 31%;
   box-shadow: 0 0 6px 0 rgba(0,0,0,.5);
   height:300px;
+  border-radius: 8px;
   overflow: hidden;
   margin-bottom: var(--espacios-contenido);
+  transition: all 0.25s;
+}
+
+.cont-work:hover{
+  transform: translateY(-15px);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
 }
 
 .img-work{
@@ -275,7 +257,14 @@ background: linear-gradient(to right, #16A085, #27AE60  );
 }
 
 .textos-work{
-  height: 10%;
+  font-family: 'Nunito', sans-serif;
+  height: 50%;
+  
+}
+
+.textos-work, a{
+  text-decoration: none;
+  color: #364e40;
 }
 
 .textos-work h4{

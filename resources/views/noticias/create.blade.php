@@ -24,6 +24,11 @@
   </div>
 
   <div class="div">
+        <label for="introduccion">Introducción</label>
+        <textarea name="introduccion" id="introduccion" cols="30" rows="10"></textarea>
+  </div>
+
+  <div class="div">
         <label for="contexto">Contexto</label>
         <textarea name="contexto" id="contexto" cols="30" rows="10"></textarea>
   </div>
@@ -43,9 +48,10 @@
         <input type="file" name="Foto" id="Foto">
   </div>
 
-  <div class="div">
-        <label for="id_users">Foto</label>
-        <input type="text" name="id_users" id="id_users" value="{{ Auth::user()->id }}">
+  <div class="div"><!--MODIFICANDOOOOOOOOOOOOOOOOOOOOOOO-->
+        <label for="id_users">Autor: </label>
+        <label for="">{{Auth::user()->name}}</label>
+        <input type="text" name="id_users" id="id_users" value="{{ Auth::user()->id }}" hidden>
   </div>
         <input type="submit" value="Guardar Datos">
 

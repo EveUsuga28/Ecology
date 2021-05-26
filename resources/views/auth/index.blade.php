@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body class="hidden">
@@ -112,20 +114,21 @@
 
             <h3>Noticias</h3>
             <p class="after">Nunca la sabiduría dice una cosa y la naturaleza otra</p>
-            
             <div class="galeria-work">
+
                 @foreach ($noticias as $datos)
+                
                 <div class="cont-work programacion">
                     <div class="img-work">
                         <img src="{{asset('storage').'/'.$datos->foto}}" alt="">
                     </div>
                     <div class="textos-work">
-                        <h4>{{$datos->titulo}}</h4>
-                        <a href="#">Leer más</a>
+                        <a href="{{ route('vista.noticia',$datos->id) }}"><h4>{{$datos->titulo}}</h4></a>
                     </div>
                 </div>
-                @endforeach
                 
+                @endforeach
+
             </div>
             
         </section>

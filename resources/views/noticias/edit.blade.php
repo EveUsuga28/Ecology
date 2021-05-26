@@ -8,6 +8,9 @@
     <label for="titulo">Titulo</label>
     <input type="text" value="{{$noticias->titulo}}"name="titulo" id="titulo">
     <br>
+    <label for="introduccion">Introducción</label>
+    <textarea name="introduccion" id="introduccion" cols="30" rows="10" >{{$noticias->introduccion}}</textarea >
+    <br>
     <label for="contexto">Contexto</label>
     <textarea name="contexto" id="contexto" cols="30" rows="10" >{{$noticias->contexto}}</textarea >
     <br>

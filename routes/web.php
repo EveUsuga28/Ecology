@@ -18,9 +18,16 @@ use App\Http\Controllers\PuntajeMaterialController;
 use App\Http\Controllers\InstitucionsController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NoticiasController;
+use App\Http\Controllers\PublicoController;
 
 
-Route::get('/', \App\Http\Controllers\publico::class);
+/*Route::get('/', function(){
+    return view('./auth/index');
+});*/
+
+Route::get('/', [PublicoController::class, 'index']);
+
+Route::get('/noticia/{id}',[PublicoController::class, 'vista'])->name('vista.noticia');
 
 Route::get('/login', function () {
     return view('./auth/login');
