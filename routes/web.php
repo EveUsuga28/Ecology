@@ -20,9 +20,7 @@ use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NoticiasController;
 
 
-Route::get('/', function () {
-    return view('./auth/index');
-});
+Route::get('/', \App\Http\Controllers\publico::class);
 
 Route::get('/login', function () {
     return view('./auth/login');
@@ -42,7 +40,7 @@ Route::get('institucion/create',[InstitucionsController::class, 'create']);
 Route::resource('grupo', GruposController::class);
 /* Fin rutas grupo */
 
-Auth::routes();
+Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -63,5 +61,30 @@ Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::cla
 Route::resource('noticias',NoticiasController::class);
 
 Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
+
+Route::get('/reciclaje/crear',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'crear'])->name('reciclaje.crear');
+
+Route::get('/reciclaje/editarReciclaje/{id}',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'editarReciclaje'])->name('reciclaje.Editar');
+
+Route::resource('/reciclaje',\App\Http\Controllers\reciclajeIntitucionControlller::class)->names('reciclaje');
+
+Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'CrearDetalle'])->name('reciclajeGrupo.Crear');
+
+Route::get('/reciclajeGrupo/EditarDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'EditarDetalle'])->name('reciclajeGrupo.Editar');
+
+Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');
+
+Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
+
+
+
+
+
+
+
+
+
+
+
 
 
