@@ -72,6 +72,8 @@ Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\
 
 Route::post('/reciclajeGrupo/crearDetalle',[\App\Http\Controllers\reciclajeGrupoController::class,'crearDetalleMateriales'])->name('reciclajeGrupo.crearDetalle');
 
+Route::get('/reciclajeGrupo/deshabilitar/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'deshabilitar_habilitar'])->name('reciclajeGrupo.deshabilitarDetalle');
+
 Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'CrearDetalle'])->name('reciclajeGrupo.Crear');
 
 Route::get('/reciclajeGrupo/EditarDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'EditarDetalle'])->name('reciclajeGrupo.Editar');
