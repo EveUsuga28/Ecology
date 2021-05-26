@@ -86,13 +86,13 @@
 
         <section class="about" id="servicio">
             <div class="contenedor">
-                <h3 class="NuServicios">Nuestros servicios</h3>
-                <p class="after NuServicios">Siempre mejorando para ti</p>
+                <h3 class="NuServicios">Ecology</h3>
+                <p class="after NuServicios">tiene como finalidad concientizar a las instituciones acerca de la adecuada clasificación de los residuos sólidos</p>
                 <div class="servicios">
-                    <div class="caja-servicios">
-                        <!--img src="img/heart.png" alt=""-->
-                        <h4>Ecology</h4>
-                        <p class="MVecology">Ecology tiene como finalidad concientizar a las instituciones acerca de la adecuada clasificación de los residuos sólidos</p>
+                    <div class="caja-servicios circuloIMG">
+                        <img src="img/logo.png" alt="" width="200">
+                        <!--<h4>Ecology</h4>
+                        <p class="MVecology">Ecology</p>-->
                     </div>
                     <div class="caja-servicios">
                         <!--img src="img/responsive.png" alt=""-->
@@ -112,91 +112,22 @@
 
             <h3>Noticias</h3>
             <p class="after">Nunca la sabiduría dice una cosa y la naturaleza otra</p>
-            <p class="after">ejemplo id</p>
-            <!--
-            <div class="botones-work">
-                <ul>
-                    <li class="filter active" data-nombre='todos'>Todos</li>
-                    <li class="filter" data-nombre='diseño'>Diseño</li>
-                    <li class="filter" data-nombre='programacion'>Programacion</li>
-                    <li class="filter" data-nombre='marketing'>Marketing</li>
-                </ul>
-            </div>
+            
             <div class="galeria-work">
+                @foreach ($noticias as $datos)
                 <div class="cont-work programacion">
                     <div class="img-work">
-                        <img src="img/programacion1.jpeg" alt="">
+                        <img src="{{asset('storage').'/'.$datos->foto}}" alt="">
                     </div>
                     <div class="textos-work">
-                        <h4>Programacion</h4>
+                        <h4>{{$datos->titulo}}</h4>
+                        <a href="#">Leer más</a>
                     </div>
                 </div>
-                <div class="cont-work programacion">
-                    <div class="img-work">
-                        <img src="img/programacion2.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Programacion</h4>
-                    </div>
-                </div>
-                <div class="cont-work programacion">
-                    <div class="img-work">
-                        <img src="img/programacion3.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Programacion</h4>
-                    </div>
-                </div>
-                <div class="cont-work diseño">
-                    <div class="img-work">
-                        <img src="img/diseño1.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Diseño</h4>
-                    </div>
-                </div>
-                <div class="cont-work diseño">
-                    <div class="img-work">
-                        <img src="img/diseño2.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Diseño</h4>
-                    </div>
-                </div>
-                <div class="cont-work diseño">
-                    <div class="img-work">
-                        <img src="img/diseño3.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Diseño</h4>
-                    </div>
-                </div>
-                <div class="cont-work marketing">
-                    <div class="img-work">
-                        <img src="img/marketing1.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Marketing</h4>
-                    </div>
-                </div>
-                <div class="cont-work marketing">
-                    <div class="img-work">
-                        <img src="img/marketing2.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Marketing</h4>
-                    </div>
-                </div>
-                <div class="cont-work marketing">
-                    <div class="img-work">
-                        <img src="img/marketing3.jpeg" alt="">
-                    </div>
-                    <div class="textos-work">
-                        <h4>Marketing</h4>
-                    </div>
-                </div>
+                @endforeach
+                
             </div>
-            -->
+            
         </section>
     </main>
     <footer id="contacto">

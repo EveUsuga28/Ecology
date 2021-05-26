@@ -73,7 +73,7 @@
             <td>{{ $instituciones->id }}</td>
             <td>{{ $instituciones->Nombre }}</td>
             <td>{{ $instituciones->Telefono }}</td>
-            <td>{{ $instituciones->fecha_Registro }}</td>
+            <td>{{ $instituciones->fechaRegistro }}</td>
             <td>
             <img src="{{ asset('storage').'/'.$instituciones->Foto }}" alt="" width="100">
             </td>

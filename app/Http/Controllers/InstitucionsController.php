@@ -20,11 +20,11 @@ class InstitucionsController extends Controller
     {
         $texto=trim($request->get('texto'));
         $institucion=DB::table('institucions')
-                ->select('id','Nombre','Telefono', 'fecha_Registro','Foto','direccion')
+                ->select('id','Nombre','Telefono', 'fechaRegistro','Foto','direccion')
                 ->where('id','LIKE','%'.$texto.'%')
                 ->orWhere('Nombre','LIKE','%'.$texto.'%')
                 ->orWhere('Telefono','LIKE','%'.$texto.'%')
-                ->orWhere('fecha_Registro','LIKE','%'.$texto.'%')
+                ->orWhere('fechaRegistro','LIKE','%'.$texto.'%')
                 ->orWhere('direccion','LIKE','%'.$texto.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(10);

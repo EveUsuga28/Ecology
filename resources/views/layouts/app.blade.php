@@ -36,7 +36,7 @@
 @guest
 
 @else
-    <div id="sidemenu" class="menu-expanded">
+    <div id="sidemenu" class="menu-collapsed">
         <div id="header">
             <div id="tittle"><span>Ecology</span></div>
             <div id="menu-btn">
@@ -123,7 +123,8 @@
             menu.classList.toggle("menu-collapsed");
             menu.classList.toggle("menu-expanded");
 
-            document.querySelector('body').classList.toggle('body-collapsed');
+
+            document.querySelector('body').classList.toggle('body-expanded');
         });
     </script>
 

@@ -222,7 +222,7 @@ background: linear-gradient(to right, #16A085, #27AE60  );
 .caja-servicios>p{
   text-align: center;
 }
-
+/*Contenedor noticias :D ----------------------------------*/
 .botones-work{
   overflow: hidden;
 }
@@ -282,6 +282,13 @@ background: linear-gradient(to right, #16A085, #27AE60  );
   line-height: 30px;
   font-weight: 300;
 }
+
+.circuloIMG> img{
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Footer */
 

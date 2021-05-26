@@ -66,13 +66,10 @@ Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::cla
 
 
 
-<<<<<<< HEAD
 //Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
-=======
-Route::resource('noticias',NoticiasController::class);
+//Route::resource('noticias',NoticiasController::class);
 
-Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
->>>>>>> baf8ae3f70e56746df1978f7bc55469c12c2f0c7
+//Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
 
 Route::get('/reciclaje/crear',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'crear'])->name('reciclaje.crear');
 

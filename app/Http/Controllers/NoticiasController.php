@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\noticias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,6 +53,7 @@ class NoticiasController extends Controller
             $datosNoticias['Foto']=$request->file('Foto')->store('uploads','public');
         }
         noticias::insert($datosNoticias);
+        Cache::forget('noticias');
 
         return response()->json($datosNoticias);
     }
@@ -133,8 +135,5 @@ class NoticiasController extends Controller
 
         return redirect()->route('noticias.index')->with('eliminar' , 'true');
     }
-
-
-    /* Prueba de Controllador vista noticias a usuarios no logueados ._. */
     
 }

@@ -17,7 +17,7 @@ class CreateInstitucionsTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('telefono');
-            $table->date('fecha_Registro');
+            $table->date('fechaRegistro');
             $table->string('foto');
             $table->string('direccion');
         });
