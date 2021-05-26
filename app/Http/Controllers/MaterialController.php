@@ -16,19 +16,16 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
+
+
     public function index(Request $request)
     {
-
-        $texto=trim($request->get('texto'));
-        $materials=DB::table('materials')
-                ->select('id','NomreMaterial','Kilos', 'Puntaje','Foto')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('NomreMaterial','LIKE','%'.$texto.'%')
-                ->orWhere('Puntaje','LIKE','%'.$texto.'%')
-                ->orWhere('Kilos','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('material.index', compact('materials','texto'));
+         $datos['materials']=material::paginate(5);
+        return view('material.index',$datos);
     }
 
     /**
@@ -151,4 +148,7 @@ class MaterialController extends Controller
         $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
             ->update(['Fecha_Fin'=>$now->format('Y-m-d')]);
     }
+
+
 }
+

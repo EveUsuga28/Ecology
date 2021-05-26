@@ -12,14 +12,14 @@
             width: 54%;
         }
     </style>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
-    
-    
+
+
 </head>
 <body>
     <form action="{{route('users.index')}}" method="GET">
@@ -29,11 +29,11 @@
     </div>
     </form>
     <div class="container mt-4">
-    <div class="card border-info" > <!--success contenido verde-->
-        <div class="card-header bg-info text-white" >
-            
+    <div class="card border-success" > <!--success contenido verde-->
+        <div class="card-header bg-success text-white" >
+
         <a href="{{ route('users.create')}}" class="btn btn-light">NUEVO</a>
-        
+
     </div>
     <div class="card-body" >
     <table border="1" class="table table-sriped table-bordered" id="usuarios" >
@@ -43,7 +43,7 @@
                     Id
                 </th>
                 <th>
-                    Nombre 
+                    Nombre
                 </th>
                 <th>
                     Tipo de Documento
@@ -77,16 +77,16 @@
                     <td>{{ $user->email}}</td>
                     @if($user->Estado == 'habilitado')
                      <td bgcolor="#81F79F">{{ $user->Estado}}</td>
-                 
+
                     @else
                     <td bgcolor="#FA5858">{{ $user->Estado}}</td>
                     @endif
-                   
+
                     @if ($user->Estado == 'Deshabilitado')
                     <td>
                         <form action="{{ route('users.Deshabilitar', $user->id)}}" method="POST" class="formulario-eliminar">
                             <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}">Editar</a>
-                
+
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success boton">habilitar</button>
@@ -96,14 +96,14 @@
                     <td>
                         <form action="{{ route('users.Deshabilitar', $user->id)}}" method="POST" class="formulario-eliminar">
                             <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}">Editar</a>
-                
+
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-danger">Deshabilitar</button>
                         </form>
                     </td>
                     @endif
-                    
+
 
             @endforeach
             @endif
@@ -112,12 +112,12 @@
     {{$users->links()}}
     </div>
     </div>
-    
-   
+
+
 </body>
 </html>
 
-@endsection 
+@endsection
 @section('js')
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

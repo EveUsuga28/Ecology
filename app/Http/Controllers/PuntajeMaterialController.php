@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\puntajeMaterial;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;;
+use Illuminate\Support\Facades\DB;
 use App\Models\material;
 
 class PuntajeMaterialController extends Controller
@@ -14,6 +14,11 @@ class PuntajeMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
+
     public function index(Request $request)
     {
         $texto=trim($request->get('texto'));
