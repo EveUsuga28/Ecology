@@ -8,7 +8,7 @@ use App\Models\reciclaje_grupo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\DataTables;
+use DataTables;
 
 class reciclajeGrupoController extends Controller
 {
@@ -55,13 +55,41 @@ class reciclajeGrupoController extends Controller
 
     }
 
-    public function CrearDetalle(){
+    public function EditarDetalle($id, Request $request){
 
-        return view('reciclaje/reciclajeGrupo.create');
+        $materiales = material::all();
+
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
+    }
+
+    public function CrearDetalle($id){
+
+        $materiales = material::all();
+
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
     }
 
 
+    public function indexMaterialesDetalle($id,Request $request){
 
 
+        if($request->ajax()){
+            $materiales =  DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo','=',$id)
+                ->join("materials","materials.id", "=", "detalle_reciclaje_grupos_materiales.id_materiales")
+                ->select("detalle_reciclaje_grupos_materiales.kilos as kilos"
+                    ,"detalle_reciclaje_grupos_materiales.puntaje as puntaje"
+                    ,"materials.NomreMaterial as nombre")
+                ->get();
+            return DataTables::of($materiales)
+                ->addColumn('action', function($materiales){
+                    $acciones = '<a href="" class=""><i class="fas fa-edit"></i></a>';
+                    $acciones .= '&nbsp;&nbsp;<button type="button" name="delete" id="" class="delete btn btn-danger btn-sm"> Eliminar </button>';
+                    return $acciones;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+    }
 
 }
