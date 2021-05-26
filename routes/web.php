@@ -65,6 +65,7 @@ Route::resource('material',MaterialController::class);
 Route::GET('/puntajeMaterial/Crear/{id}', [App\Http\Controllers\PuntajeMaterialController::class, 'Crear'])->name('puntajeMaterial.Crear');
 
 Route::resource('puntajeMaterial',PuntajeMaterialController::class);
+Route::PUT('/puntajeMaterial/{idPuntajeMaterail}/Deshabilitar', [App\Http\Controllers\PuntajeMaterialController::class, 'Deshabilitar'])->name('puntajeMaterial.Deshabilitar');
 
 Route::resource('/users',UserController::class);
 
@@ -75,7 +76,7 @@ Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::cla
 //Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
 //Route::resource('noticias',NoticiasController::class);
 
-//Route::PUT('/noticias/{id_noticia}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
+Route::PUT('/noticias/{id}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
 
 Route::get('/reciclaje/crear',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'crear'])->name('reciclaje.crear');
 

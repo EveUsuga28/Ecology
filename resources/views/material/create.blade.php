@@ -1,99 +1,104 @@
 
 <form action="{{url('/material')}}" method="post" enctype="multipart/form-data">
-  @extends('layouts.app')
+    @extends('layouts.app')
 
-  @section('content')
-@csrf
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Ecology</title>
-	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
+    @section('content')
+  @csrf
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Ecology</title>
+      <link rel="shortcut icon" type="text/css" href="../img/logo.png">
 
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-	  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <img class="wave" src="../img/wave.png">
-	<div class="contenedor">
-		<div >
+      <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+      <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+      <img class="wave" src="../img/wave.png">
+      <div class="contenedor">
+          <div >
 
-		</div>
-
-
-        <div class="login-content">
-      <div  class="form-group">
-        <h3 class="title">Registrar Material</h3>
-
-    <div class="div">
-      <label For="NomreMaterial" >Nombre Material
-
-      <div class="  alert-danger" role="alert">
-
-            @error('NomreMaterial')
-            <br>
-            <small>*{{$message}}</small>
-            <br>
-            @enderror
-        </div>
-    </label>
-
-       <input type="text"  class="form-control"name="NomreMaterial"  value="{{old('NomreMaterial')}}" id="NomreMaterial"  required >
+          </div>
 
 
-    </div>
+          <div class="login-content">
+        <div  class="form-group">
+          <h3 class="title">Registrar Material</h3>
 
-    <div class="div">
-     <label For="Puntaje" >Puntaje
-    <div class=" alert-danger">
-        @error('Puntaje')
-        <br>
-        <small>*{{$message}}</small>
-        <br>
-        @enderror
-    </div>
-     </label>
-      <input type="number" class="form-control"name="Puntaje" value="{{old('Puntaje')}}" id="Puntaje" required>
+      <div class="div">
+        <label For="NomreMaterial" >Nombre Material
 
-    </div>
+        <div class="  alert-danger" role="alert">
 
-    <div class="div">
-     <label For="Kilos" >Kilos
-        <div class=" alert-danger">
-            @error('Kilos')
-            <br>
-            <small>*{{$message}}</small>
-            <br>
-            @enderror
-        </div>
-     </label>
-      <input type="number" class="form-control"name="Kilos" value="{{old('Kilos')}}" id="Kilos" required>
+              @error('NomreMaterial')
+              <br>
+              <small>*{{$message}}</small>
+              <br>
+              @enderror
+          </div>
+      </label>
 
-    </div>
-
-     <div class="div">
+         <input type="text"  class="form-control"name="NomreMaterial"  value="{{old('NomreMaterial')}}" id="NomreMaterial"  required >
 
 
-<br>
-    @if(isset($material->Foto))
-    <label For="Foto" >Foto</label>
-      <!--{{$material->Foto}}-->
+      </div>
 
-    <img src="{{asset('storage').'/'.$material->Foto}}"  width="100" alt="">
+      <div class="div">
+       <label For="Puntaje" >Puntaje
+      <div class=" alert-danger">
+          @error('Puntaje')
+          <br>
+          <small>*{{$message}}</small>
+          <br>
+          @enderror
+      </div>
+       </label>
+        <input type="number" class="form-control"name="Puntaje" value="{{old('Puntaje')}}" id="Puntaje" required>
 
-      @endif
-      <label for='Kilos'>Foto
-        @error('Foto')
-        <br>
-        <small>*{{$message}}</small>
-        <br>
-        @enderror
-     </label>
-    <input type="file" name="Foto" value="{{old('Foto')}}" id="Foto"  required>
-   </div>
+      </div>
 
-    <input type="submit"value="Guardar Datos">
-</form>
+      <div class="div">
+       <label For="Kilos" >Kilos
+          <div class=" alert-danger">
+              @error('Kilos')
+              <br>
+              <small>*{{$message}}</small>
+              <br>
+              @enderror
+          </div>
+       </label>
+        <input type="number" class="form-control"name="Kilos" value="{{old('Kilos')}}" id="Kilos" required>
+
+      </div>
+
+       <div class="div">
+
+
+  <br>
+      @if(isset($material->Foto))
+      <label For="Foto" >Foto</label>
+        <!--{{$material->Foto}}-->
+
+      <img src="{{asset('storage').'/'.$material->Foto}}"  width="100" alt="">
+
+        @endif
+        <label for='Kilos'>Foto
+          @error('Foto')
+          <br>
+          <small>*{{$message}}</small>
+          <br>
+          @enderror
+       </label>
+      <input type="file" name="Foto" value="{{old('Foto')}}" id="Foto"  required>
+     </div>
+
+      <input type="submit"value="Guardar Datos">
+  </form>
+</div>
+</div>
+
+</body>
+</html>

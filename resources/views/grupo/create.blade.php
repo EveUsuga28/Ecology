@@ -14,11 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+
         .boton{
             width: 54%;
         }
-        
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,11 +49,11 @@
 </div>
 
 <div class="form-group">
-<label for="ID_Instituciones">institución</label><br>
+<label for="id">institución</label><br>
 
-<select name="ID_Instituciones" id="ID_Instituciones">
+<select name="id" id="id">
     @foreach ( $institucion as $grupos)
-        <option value="{{ $grupos->ID_Instituciones}}">{{ $grupos->Nombre}}</option>
+        <option value="{{ $grupos->id}}">{{ $grupos->Nombre}}</option>
     @endforeach
 </select><br>
 </div>

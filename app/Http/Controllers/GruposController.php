@@ -53,7 +53,7 @@ class GruposController extends Controller
         $datosgrupo = request()->except('_token');
 
         grupos::insert($datosgrupo);
-        
+
         return redirect('grupo')->with('mensaje','Empleado agregado exitosamente');
     }
 
@@ -76,7 +76,7 @@ class GruposController extends Controller
      */
     public function edit( $id)
     {
-        
+
         $datos['institucion']=institucions::all();
         //return view('grupo.create',$datos);
 //------------------------------------------

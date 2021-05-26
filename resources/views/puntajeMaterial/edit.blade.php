@@ -28,23 +28,31 @@
    {{method_field('PATCH')}}
 <div class="div">
    <label form="id_materials" >IdMaterial</label>
-   <input type=""  class="form-control"value="{{isset($puntajeMaterial->id_materials)?$puntajeMaterial->id_materials:'' }}"  name="id_materials" id="id_materials" required>
+   <input type=""  class="form-control"value="{{isset($puntajeMaterial->id_materials)?$puntajeMaterial->id_materials:'' }}"  name="id_materials" id="id_materials" required disabled=»disabled>
 </div>
 <div class="div">
-   <label form="Fecha_Inicio">Fecha_Inicio</label>
+   <label form="Fecha_Inicio">Fecha Inicio</label>
    <input type="datetime" class="form-control"value="{{isset($puntajeMaterial->Fecha_Inicio)?$puntajeMaterial->Fecha_Inicio:''}}" name="Fecha_Inicio" id="Fecha_Inicio" required>
    <br>
 </div>
 <div class="div">
-   <label form="Fecha_Inicio" >Fecha_Fin</label>
-   <input type="datetime" value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin"  required>
+   <label form="Fecha_Inicio" >Fecha Fin</label>
+   <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin"  required>
 </div>
 <div>
-   <label form="Puntaje">Puntaje</label>
-   <input type="number"  class="form-control"value="{{isset($puntajeMaterial->Puntaje)?$puntajeMaterial->Puntaje:''}}" name="Puntaje" id="Puntaje" required>
+   <label form="Puntaje">Puntaje
+
+    <div class=" alert-danger">
+        @error('Puntaje')
+        <br>
+        <small>*{{$message}}</small>
+        <br>
+        @enderror
+    </div>
+   </label>
+   <input type="number"  class="form-control" value="{{old('Puntaje',$puntajeMaterial->Puntaje)}}" name="Puntaje" id="Puntaje" required disabled=»disabled>
 </div>
 <br>
    <input type="submit"  value="Guardar Datos " >
 
 </form>
-

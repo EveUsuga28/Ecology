@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class material extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['Puntaje'];
-
+    protected $fillable = ['id','NomreMaterial','Puntaje','Kilos'];
 
     public $timestamps = false;
+
 }
