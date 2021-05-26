@@ -19,6 +19,7 @@ class CreatePuntajeProductsTable extends Migration
             $table->date('fechaInicio');
             $table->date('fechaFin');
             $table->integer('puntaje');
+            $table->string('estado')->default('habilitado');
 
             $table->foreign("idproducto")
                 ->references("id")

@@ -26,5 +26,6 @@ class Rolseeder extends Seeder
 
         Permission::create(['name'=>'crear'])->syncRoles([$role1]);
 
+        
     }
 }

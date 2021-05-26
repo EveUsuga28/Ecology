@@ -69,6 +69,12 @@
                 </a>
             </div>
             <div class="item">
+                <a href="{{route('producto.index')}}">
+                    <div class="icon"><i class="fa fa-box fa-2x"></i></div>
+                    <div class="title"><span>Productos</span></div>
+                </a>
+            </div>
+            <div class="item">
                 <a href="{{route('reciclaje.index')}}">
                     <div class="icon"><i class="fas fa-recycle fa-2x"></i></div>
                     <div class="title"><span>Gestion reciclaje</span></div>

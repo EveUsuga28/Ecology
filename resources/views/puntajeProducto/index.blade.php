@@ -1,0 +1,136 @@
+@extends('layouts.app')
+
+@section('css')
+
+@endsection
+
+<div>
+    <h1 align="center">Puntaje Producto</h1>
+</div>
+
+@section('content')
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
+    
+    <div class="card">
+        <div class="card-body">
+            <table id="productosPuntaje" class="table table-striped" style="width:100%">
+                <thead align="center">
+                    <tr>
+                        <td>Id</td>
+                        <td>Id Producto</td>
+                        <td>Fecha Inicio</td>
+                        <td>Fecha Fin</td>
+                        <td>Puntaje</td>
+                        <td>Estado</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($puntajeProductos as $puntajeProducto)
+                <tr>
+                    <td>{{$puntajeProducto->id}}</td>
+                    <td>{{$puntajeProducto->idproducto}}</td>
+                    <td>{{$puntajeProducto->fechaInicio}}</td>
+                    <td>{{$puntajeProducto->fechaFin}}</td>
+                    <td>{{$puntajeProducto->puntaje}}</td>
+                    @if($puntajeProducto->estado == 'habilitado')
+                     <td bgcolor="#81F79F">{{ $puntajeProducto->estado}}</td>
+
+                    @else
+                    <td bgcolor="#FA5858">{{ $puntajeProducto->estado}}</td>
+                    @endif
+
+                    @if ($puntajeProducto->estado == 'Deshabilitado')
+                    <td>
+                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
+                            
+
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success boton">habilitar</button>
+                            
+                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}" >Editar</a>
+                        </form>
+                    </td>
+                    @else
+                    <td>
+                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
+
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                            
+                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}">Editar</a>
+                        </form>
+                    </td>
+                    @endif
+                    
+         
+                    
+                 </tr>
+                @endforeach
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection
+
+@section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function() {
+            $('#productosPuntaje').DataTable( {
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                }
+            } );
+        } );
+    </script>
+
+
+        @if(session('eliminar') == 'true')
+            <script>
+                Swal.fire(
+                    'Éxito!',
+                    'Estado Cambiado',
+                    'success'
+                )
+            </script>
+
+        @endif
+
+
+
+        <script>
+
+        $('.formulario-eliminar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+        </script>
+
+@endsection

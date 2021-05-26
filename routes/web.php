@@ -3,7 +3,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
-
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PuntajeProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,7 +60,7 @@ Route::resource('/users',UserController::class);
 
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
 
-
+Route::PUT('/producto/{id}/Deshabilitar', [App\Http\Controllers\ProductoController::class, 'Deshabilitar'])->name('producto.Deshabilitar');
 
 Route::resource('noticias',NoticiasController::class);
 
@@ -76,9 +77,12 @@ Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeG
 Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
 
 
+Route::resource('/producto',ProductoController::class);
 
+Route::GET('/puntajeProducto/Crear/{id}', [App\Http\Controllers\PuntajeProductoController::class, 'Crear'])->name('puntajeProducto.Crear');
+Route::resource('puntajeProducto',PuntajeProductoController::class);
 
-
+Route::PUT('/puntajeProducto/{id}/Deshabilitar', [App\Http\Controllers\puntajeProductoController::class, 'Deshabilitar'])->name('puntajeProducto.Deshabilitar');
 
 
 
