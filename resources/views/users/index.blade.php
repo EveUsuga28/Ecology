@@ -133,8 +133,6 @@
 
         @endif
 
-
-
         <script>
 
         $('.formulario-eliminar').submit(function (e){

@@ -75,6 +75,8 @@
 
 @section('js')
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     @if(session('registradoGrupo') == 'true')
         <script>
             Command: toastr["success"]("¡Creado Exitosamente!", "Reciclaje Grupo")
@@ -105,6 +107,11 @@
             var tablaMateriales = $('#table-materiales').DataTable({
                 processing:true,
                 serverSide:true,
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                },
                 ajax:{
                     url: "{{ route('reciclajeGrupo.indexMateriales',$id) }}",
                 },
@@ -136,7 +143,25 @@
                 }
             }).done(function (res){
                 if(res == 1){
-                    toastr.warning('El material ya existe', 'Material ya creado', {timeOut:10000});
+                    Command: toastr["info"]("Este material ya existe en este reciclaje", "Material ya creado")
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
                 }else{
                     $('#detalle-material')[0].reset();
                     toastr.success('Material creado exitosamente.', 'Nuevo Registro', {timeOut:10000});
@@ -146,12 +171,67 @@
         });
     </script>
 
+    <script>
+
+        function deshabilitar_habilitar(id){
+
+            var material_id = id;
+
+            $.ajax({
+                url:"/reciclajeGrupo/deshabilitar/"+material_id,
+                success:function (data){
+                    $('#table-materiales').DataTable().ajax.reload();
+                    Swal.fire(
+                        '!EXITO!',
+                        'Estado cambiado',
+                        'success'
+                    )
+                }
+            });
+        }
+
+
+
+       function AlertaDeshabilitar(id) {
+           Swal.fire({
+               title: 'Estas seguro?',
+               text: "El puntaje y cantidad ya no contaran para el reciclaje grupo",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'si, hazlo!',
+               cancelButtonText: 'cancelar!'
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   deshabilitar_habilitar(id);
+               }
+           })
+       }
+
+        function AlertaHabilitar(id) {
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "Que desea habilitar material",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'si, hazlo!',
+                cancelButtonText: 'cancelar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deshabilitar_habilitar(id);
+                }
+            })
+        }
+    </script>
+
+
+
 @endsection
 
-<!--,
-success:function(response){
-if(response){
 
-}
-}-->
+
+
 
