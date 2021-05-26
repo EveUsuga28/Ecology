@@ -24,7 +24,7 @@ body{
 }
 
 #sidemenu{
-    background-color: var(--bgcolor);
+    background-color: #0e6405;
     color: rgb(253, 254, 255);
     position: fixed;
     height: 100%;
@@ -38,8 +38,10 @@ body{
 }
 
 #sidemenu #header{
+    height: 50px;
     box-sizing: border-box;
-    border-bottom: solid 1px var(--hovercolor);
+    /*border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px -6px rgba(0,0,0,1);*/
 }
 
 #sidemenu #header #tittle{
@@ -74,7 +76,9 @@ body{
 }
 
 #sidemenu #profile{
-    border-bottom: solid 1px var(--hovercolor);
+    /*border-bottom: solid 10px var(--hovercolor);*/
+    /*border-bottom: 2px solid rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: 0px 10px 10px -6px rgba(0,0,0,1) inset;*/
     padding: var(--padding) 0;
     text-align: center;
 }
@@ -95,7 +99,7 @@ body{
     padding: var(--padding) 0;
     overflow: hidden;
 }
- 
+
 #sidemenu #menu-items{
     overflow: hidden;
 }
@@ -189,6 +193,20 @@ body{
     width: 100px;
 }
 /*CONTENIDO :) JAJAJAJAJAJAJ --------------------------------------------*/
-p{
+table thead {
+    background-color: #545454;
+    color: white;
+}
+
+.spaceEncabezado{
+    background-color: #32847e;
+    text-align: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,1);
+}
+
+#EncabezadoModulo{
+    font-family: 'Varela Round', sans-serif;
     padding: 20px;
+    color: white;
 }
