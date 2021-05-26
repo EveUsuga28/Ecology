@@ -33,7 +33,6 @@ Route::get('/login', function () {
     return view('./auth/login');
 });
 
-
 /* Rutas institucion */
 Route::resource('institucion', InstitucionsController::class)->middleware('auth');/* el " ->middlware('auth');  " es de cuestion de seguridad para protejer rutas a aquellas personas que no estan logueadas*/
 /*
@@ -87,6 +86,8 @@ Route::resource('/reciclaje',\App\Http\Controllers\reciclajeIntitucionControllle
 Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'CrearDetalle'])->name('reciclajeGrupo.Crear');
 
 Route::get('/reciclajeGrupo/EditarDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'EditarDetalle'])->name('reciclajeGrupo.Editar');
+
+Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');
 
 Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
 
