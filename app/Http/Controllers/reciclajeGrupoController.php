@@ -16,7 +16,7 @@ class reciclajeGrupoController extends Controller
 {
     public function index(){
 
-        $reciclajeGrupo = reciclaje_grupo::join("grupos","grupos.id", "=", "reciclaje_grupos.id")
+        $reciclajeGrupo = reciclaje_grupo::join("grupos","grupos.id", "=", "reciclaje_grupos.id_grupo")
             ->select("reciclaje_grupos.*","grupos.grupo as grupo")->where('id_periodo_reciclaje',"=",session('id_reciclaje'))
             ->get();
         $grupos = grupos::join("institucions","institucions.id", "=", "grupos.id_institucion")
@@ -31,7 +31,7 @@ class reciclajeGrupoController extends Controller
         $now = Carbon::now();
         $grupo = $request->input('grupo');
 
-        $comprobarReciclajeExiste = reciclaje_grupo::all()->where('id','=',$grupo)
+        $comprobarReciclajeExiste = reciclaje_grupo::all()->where('id_grupo','=',$grupo)
             ->where('id_periodo_reciclaje','=',session('id_reciclaje'));
 
 
@@ -39,7 +39,7 @@ class reciclajeGrupoController extends Controller
 
                $reciclajeGrupo = reciclaje_grupo::create([
                    'id_periodo_reciclaje' => session('id_reciclaje'),
-                   'id' => $grupo,
+                   'id_grupo' => $grupo,
                    'total_kilos_material_grupo' => 0,
                    'total_puntaje_material_grupo' => 0,
                    'total_cantidad_productos_grupo' => 0,
