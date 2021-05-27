@@ -75,6 +75,7 @@ Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::cla
 
 //Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
 //Route::resource('noticias',NoticiasController::class);
+Route::resource('noticias',NoticiasController::class);
 
 Route::PUT('/noticias/{id}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
 
@@ -84,11 +85,19 @@ Route::get('/reciclaje/editarReciclaje/{id}',[\App\Http\Controllers\reciclajeInt
 
 Route::resource('/reciclaje',\App\Http\Controllers\reciclajeIntitucionControlller::class)->names('reciclaje');
 
+Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');
+
+Route::post('/reciclajeGrupo/crearDetalle',[\App\Http\Controllers\reciclajeGrupoController::class,'crearDetalleMateriales'])->name('reciclajeGrupo.crearDetalle');
+
+Route::get('/reciclajeGrupo/deshabilitar/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'deshabilitar_habilitar'])->name('reciclajeGrupo.deshabilitarDetalle');
+
+Route::get('/reciclajeGrupo/enviarEditarDetalleMaterial/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'enviarEditarDetalleMaterial'])->name('reciclajeGrupo.enviarEditarDetalleMaterial');
+
+Route::post('/reciclajeGrupo/ActualizarDetalleMaterial',[\App\Http\Controllers\reciclajeGrupoController::class,'ActualizarDetalleMaterial'])->name('reciclajeGrupo.ActualizarDetalleMaterial');
+
 Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'CrearDetalle'])->name('reciclajeGrupo.Crear');
 
 Route::get('/reciclajeGrupo/EditarDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'EditarDetalle'])->name('reciclajeGrupo.Editar');
-
-Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');
 
 Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
 
