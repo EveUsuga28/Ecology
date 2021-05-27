@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use function PHPUnit\Framework\returnArgument;
 
 class reciclajeGrupoController extends Controller
 {
@@ -73,7 +74,6 @@ class reciclajeGrupoController extends Controller
 
     public function indexMaterialesDetalle($id,Request $request){
 
-
         if($request->ajax()){
             $materiales =  DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo','=',$id)
                 ->join("materials","materials.id", "=", "detalle_reciclaje_grupos_materiales.id_materiales")
@@ -85,8 +85,9 @@ class reciclajeGrupoController extends Controller
                 ->get();
             return DataTables::of($materiales)
                 ->addColumn('action', function($materiales){
-                    $acciones = '<a href="" class=""><i class="fas fa-edit"></i></a>';
+                        $acciones ='';
                     if($materiales->estado == 1) {
+                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class=""><i class="fas fa-edit"></i></a>';
                         $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger">Deshabilitar</button>';
                     }else{
                         $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitar('.$materiales->id.')" id="'.$materiales->id.'"  class="btn btn-secondary">habilitar</button>';
@@ -167,8 +168,22 @@ class reciclajeGrupoController extends Controller
     }
 
 
-   public function editarMaterialDetalle(Request $request){
+   public function enviarEditarDetalleMaterial($id){
 
+       $detalleReciclajeGrupo = DB::table('detalle_reciclaje_grupos_materiales')->where('id','=',$id)->get();
+
+       return response()->json($detalleReciclajeGrupo);
    }
+
+    public function ActualizarDetalleMaterial(Request $request){
+
+          DB::table('detalle_reciclaje_grupos_materiales')
+            ->where('id', '=',$request->id)
+              ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
+
+          $this->calcularDetalleGrupoMaterial($request->id_grupo);
+
+        return  back();
+    }
 
 }
