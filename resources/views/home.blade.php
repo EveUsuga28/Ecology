@@ -13,8 +13,8 @@
                 </div>
             </div>
             <div class="card-body">
-              <a href="{{route('material.index')}}" class="nav-link active">
-              <p>Materiales</p>
+              <a href="{{route('informes.index')}}" class="nav-link active">
+              <p>Informes</p>
               </a>
             </div>
         </div>

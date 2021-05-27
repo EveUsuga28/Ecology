@@ -44,6 +44,8 @@ Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 Route::resource('/material',MaterialController::class);
 
 Route::resource('material',MaterialController::class);
@@ -78,8 +80,10 @@ Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[\App\Http\Controllers\
 Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
 
 
-
-
+//Route::POST('/', [InformesController::class, 'all']);
+Route::post('/informes/all',[\App\Http\Controllers\InformesController::class,'all'])->name('informes.all');
+//Route::post('/informes','App\Http\Controllers\InformesController@all');
+Route::resource('informes',App\Http\Controllers\InformesController::class);
 
 
 
