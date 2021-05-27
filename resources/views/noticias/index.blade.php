@@ -54,45 +54,44 @@
                     <td>{{$noticia->titulo}}</td>
                     <td>{{$noticia->introduccion}}</td>
                     <td>{{$noticia->Fecha}}</td>
+
                     @if($noticia->estado == 1)
-                     <td bgcolor="#81F79F">Habilitado</td>
+                        <td bgcolor="#81F79F">Habilitado</td>
 
                     @else
-                    <td bgcolor="#FA5858">Deshabilitar</td>
+                        <td bgcolor="#FA5858">Deshabilitar</td>
                     @endif
-
+                        <td>
+                            <img src="{{asset('storage').'/'.$noticia->foto}}" width="100"alt="">
+                        </td>
                     @if ($noticia->estado == 0)
-                    <td>
-                        <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
+                        <td>
+                            <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
 
 
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success ">habilitar</button>
-                        </form>
-                    </td>
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success ">habilitar</button>
+                            </form>
+                        </td>
 
                     @else
-                <td>
-                    <img src="{{asset('storage').'/'.$noticia->Foto}}" width="100"alt="">
-                </td>
 
-                    <td>
-                        <a  class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">
-                            Editar
-                        </a>
-                        <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
+                        <td>
+                            <a  class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">
+                                Editar
+                            </a>
+                            <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
 
 
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                        </form>
-                    </td>
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                            </form>
+                        </td>
 
                     @endif
-
-
+                </tr>
             @endforeach
             @endif
 

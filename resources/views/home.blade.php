@@ -1,24 +1,22 @@
+
 @extends('layouts.app')
 
+@section('css')
+
+@endsection
+
 @section('content')
-<div class="">
-    <div class="">
-        <div class="">
-            <div class="">
-                <div class="">{{ __('Dashboard') }}</div>
+<a href="{{route('informes.index')}}" class="nav-link active">
+    <p>Informes</p>
+</a>
+<table id="institucion" class="table table-sriped table-bordered">
+    <thead align="center">
+        <tr>
+            <th>Nombre</th>
+        </tr>
+    </thead>
 
-                <div class="">
+    <tbody align="center">
 
-                    {{ __('Estas logeado!') }}
-                </div>
-            </div>
-            <div class="card-body">
-              <a href="{{route('informes.index')}}" class="nav-link active">
-              <p>Informes</p>
-              </a>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection
