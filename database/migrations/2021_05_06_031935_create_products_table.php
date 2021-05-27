@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('nombre');
             $table->integer('puntaje');
             $table->string('foto');
-            $table->string('estado');
+            $table->string('estado')->default('habilitado');
         });
     }
 

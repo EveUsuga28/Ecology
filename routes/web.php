@@ -3,7 +3,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PuntajeMaterialController;
-
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PuntajeProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,7 +74,7 @@ Route::resource('/users',UserController::class);
 
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
 
-
+Route::PUT('/producto/{id}/Deshabilitar', [App\Http\Controllers\ProductoController::class, 'Deshabilitar'])->name('producto.Deshabilitar');
 
 //Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
 //Route::resource('noticias',NoticiasController::class);
@@ -97,13 +98,17 @@ Route::get('/reciclajeGrupo/enviarEditarDetalleMaterial/{id}',[\App\Http\Control
 
 Route::post('/reciclajeGrupo/ActualizarDetalleMaterial',[\App\Http\Controllers\reciclajeGrupoController::class,'ActualizarDetalleMaterial'])->name('reciclajeGrupo.ActualizarDetalleMaterial');
 
+Route::resource('/producto',ProductoController::class);
 Route::get('/reciclajeGrupo/CrearDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'CrearDetalle'])->name('reciclajeGrupo.Crear');
 
 Route::get('/reciclajeGrupo/EditarDetalle/{id}',[\App\Http\Controllers\reciclajeGrupoController::class,'EditarDetalle'])->name('reciclajeGrupo.Editar');
 
 Route::resource('/reciclajeGrupo',\App\Http\Controllers\reciclajeGrupoController::class)->names('reciclajeGrupo');
 
+Route::GET('/puntajeProducto/Crear/{id}', [App\Http\Controllers\PuntajeProductoController::class, 'Crear'])->name('puntajeProducto.Crear');
+Route::resource('puntajeProducto',PuntajeProductoController::class);
 
+Route::PUT('/puntajeProducto/{id}/Deshabilitar', [App\Http\Controllers\puntajeProductoController::class, 'Deshabilitar'])->name('puntajeProducto.Deshabilitar');
 //Route::POST('/', [InformesController::class, 'all']);
 Route::post('/informes/all',[\App\Http\Controllers\InformesController::class,'all'])->name('informes.all');
 //Route::post('/informes','App\Http\Controllers\InformesController@all');
