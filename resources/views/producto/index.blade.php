@@ -14,9 +14,16 @@
     <!--Encabezado-->
     <x-datos datos="Productos"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
+    <br>
+    <div class="container">
     <div>
+        @can('producto.create')
         <a href="{{ route('producto.create')}}" class="btn btn-light">Nuevo</a>
+        @endcan
+
+        @can('puntajeproductobtn')
         <a href="{{ route('puntajeProducto.index')}}" class="btn btn-light">Puntajes</a>
+        @endcan
     </div>
     <div class="card">
         <div class="card-body">
@@ -55,9 +62,15 @@
 
                             @csrf
                             @method('PUT')
+                            @can('estado/crearpuntaje')
+                                
+                            
                             <button type="submit" class="btn btn-success boton">habilitar</button>
                             <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Puntaje Puntaje</a>
+                            @endcan
+                            @can('producto.edit')
                             <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
+                            @endcan
                             <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
                         </form>
                     </td>
@@ -67,9 +80,14 @@
 
                             @csrf
                             @method('PUT')
+                            @can('estado/crearpuntaje')
                             <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                            <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Nuevo Puntaje</a>
+                            <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Nuevo Puntaje</a>                            
+                            @endcan
+
+                            @can('producto.edit')
                             <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
+                            @endcan
                             <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
                         </form>
                     </td>
@@ -80,6 +98,7 @@
             </table>
         </div>
     </div>
+</div>
 @endsection
 
 @section('js')
@@ -130,6 +149,53 @@
 
         });
         </script>
+
+@if(session('producto') == 'true')
+<script>
+    Command: toastr["success"]("¡Creado Exitosamente!", "Producto")
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@endif
+@if(session('editar') == 'true')
+<script>
+    Command: toastr["info"]("Editado Exitosamente", "Producto")
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@endif
 @endsection
 
 

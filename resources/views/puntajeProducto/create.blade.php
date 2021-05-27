@@ -28,7 +28,7 @@
     
             <div class="div">
      <label form="idproducto" >IdProducto</label>
-     <input type=""  class="form-control"value="{{$id}}"  name="idproducto" id="idproducto" disabled>
+     <input type=""  class="form-control"value="{{$id}}"  name="idproducto" id="idproducto">
     </div>
     
     <div class="div">

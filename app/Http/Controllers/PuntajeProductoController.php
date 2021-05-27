@@ -18,6 +18,7 @@ class PuntajeProductoController extends Controller
      */
     public function index(Request $request)
     {
+        
         $texto=trim($request->get('texto'));
         $puntajeProductos=DB::table('puntaje_products')  
                 ->select('id','idproducto','fechaInicio','fechaFin','puntaje', 'estado')
@@ -32,8 +33,10 @@ class PuntajeProductoController extends Controller
 
     public function Crear($id)
     {
-
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
         return view('puntajeProducto.create',compact('id'));
+        }
 
     }
 
@@ -66,7 +69,7 @@ class PuntajeProductoController extends Controller
       
         $producto->save();
         
-        return response()->json($datosPuntajeProducto);
+        return redirect('puntajeProducto')->with('puntajeProducto','true');
     }
 
     /**

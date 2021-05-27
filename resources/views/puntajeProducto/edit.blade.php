@@ -25,10 +25,10 @@
 
 <form action="{{url('/puntajeProducto/'.$puntajeProducto->idPuntajeProducto)}}" method="post">
    @csrf
-   {{method_field('PATCH')}}
+   
 <div class="div">
    <label form="idproducto" >IdProducto</label>
-   <input type=""  class="form-control"value="{{isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' }}"  name="idproducto" id="idproducto" disabled>
+   <input type=""  class="form-control"value="{{isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' }}"  name="idproducto" id="idproducto">
 </div>
 <div class="div">
    <label form="fechaInicio">Fecha_Inicio</label>

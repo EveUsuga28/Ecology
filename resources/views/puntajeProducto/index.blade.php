@@ -3,11 +3,6 @@
 @section('css')
 
 @endsection
-
-<div>
-    <h1 align="center">Puntaje Producto</h1>
-</div>
-
 @section('content')
     <style>
         table thead {
@@ -15,7 +10,11 @@
             color: white;
         }
     </style>
-    
+    <!--Encabezado-->
+    <x-datos datos="Puntaje Productos"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+    <br>
+    <div class="container">
     <div class="card">
         <div class="card-body">
             <table id="productosPuntaje" class="table table-striped" style="width:100%">
@@ -27,7 +26,10 @@
                         <td>Fecha Fin</td>
                         <td>Puntaje</td>
                         <td>Estado</td>
-                        <td>Acciones</td>
+                        @can('puntajeproductobtn')
+                        <td>Acciones</td>   
+                        @endcan
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -78,6 +80,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 @endsection
 
@@ -133,4 +136,27 @@
         });
         </script>
 
+@if(session('puntajeProducto') == 'true')
+<script>
+    Command: toastr["success"]("¡Creado Exitosamente!", "puntajeProducto")
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@endif
 @endsection

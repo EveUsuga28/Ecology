@@ -16,14 +16,23 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
+        $rol = auth()->user()->getRoleNames();
+
+        if($rol[0]=='admin'){
+        
         $texto=trim($request->get('texto'));
         $productos=DB::table('products')  
                 ->select('id','nombre','puntaje', 'foto', 'estado')
                 ->where('id','LIKE','%'.$texto.'%')
                 ->orWhere('nombre','LIKE','%'.$texto.'%')
                 ->orderBy('id', 'asc')
-                ->paginate(10);
+                ->paginate();
         return view('producto.index', compact('productos','texto'));
+        }else{
+            $productos = Producto::all();
+            return view('producto.director', compact('productos'));
+        }
+        
     }
 
     /**
@@ -33,7 +42,11 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        $rol = auth()->user()->getRoleNames();
+
+        if($rol[0]=='admin'){
         return view('producto.create');
+        }
     }
 
     /**
@@ -54,7 +67,7 @@ class ProductoController extends Controller
         Producto::insert($datosProducto);
 
         //return response()->json($datosMaterial);
-        return redirect('producto')->with('mensaje','Producto Creado Exitosamente');
+        return redirect('producto')->with('producto','true');
     }
 
     /**
@@ -76,9 +89,13 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
+     
         $producto =Producto::findOrFail($id);
 
         return view('producto.edit',compact('producto'));
+        }
     }
 
     /**
@@ -102,7 +119,7 @@ class ProductoController extends Controller
 
         $producto =Producto::findOrFail($id);
         //return view('producto.edit',compact('producto'));
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('editar','true');
     }
 
     /**
@@ -118,6 +135,8 @@ class ProductoController extends Controller
 
     public function Deshabilitar($id)
     {
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
 
         $producto = Producto::find($id);
 
@@ -132,5 +151,6 @@ class ProductoController extends Controller
         $producto->save();
 
         return redirect()->route('producto.index')->with('eliminar' , 'true');
+        }
     }
 }
