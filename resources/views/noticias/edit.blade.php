@@ -17,13 +17,11 @@
     <label for="fecha">Fecha</label>
     <input type="date"  value="{{$noticias->Fecha}}"name="fecha" id="titulo">
     <br>
-    <label for="estado">Estado</label>
-    <input type="text" value="{{$noticias->estado}}"name="estado" id="titulo">
-    <br>
     <label for="Foto">Foto</label>
     {{$noticias->Foto}}
     <input type="file" name="Foto" id="Foto">
     <br>
     <input type="submit" value="Guardar Datos">
-
+    <input type="text" value="{{$noticias->estado}}"name="estado" id="titulo" hidden>
+    <br>
     </form>

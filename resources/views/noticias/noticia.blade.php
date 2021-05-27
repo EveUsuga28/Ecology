@@ -8,57 +8,35 @@
 
     <title>Ecology</title>
     <link rel="shortcut icon" type="text/css" href="../img/logo.png">
+
+    <link rel="stylesheet" href="{{asset('css/VistaNoticia.css')}}">
   
-    <style>
-    @import 'https://fonts.googleapis.com/css?family=UnifrakturMaguntia';
-    body{
-      background-image: url("{{asset('img/wave.png')}}");
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-
-    .text-center{
-      border-bottom: 2px solid #54605E;
-      padding-bottom: 1%;
-    }
-
-    img{
-      border-radius: 8px;
-    }
-
-    </style>
 
 </head>
 <body><br>
+<img class="wave" src="{{asset('img/wave.png')}}">
 
 
 <div class="container">
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-1 "><a href="#" class="btn btn-info">atras</a></div>
-  </div>
   <br>
   <div class="row">
     <div class="container">
 
+
       <div class="row">
 
-        <div class="col-8 bg-secondary bg-gradient shadow p-3 mb-5 rounded">
-
+        <div class="col-8 fondo shadow p-3 mb-5 rounded ">
+          <h1 class="text-center">Eco<span>logy</span></h1>
           <br>
-          <h1 class="text-center">Ecology</h1>
-          <br><br>
 
           <div class="row"> 
-            <div class="col"><img src="{{asset('storage').'/'.$noticiaVista->foto}}" alt="" width="300" class=" shadow mb-5 rounded"/></div>
-            <div class="col-7"><h2>{{ $noticiaVista->titulo }}</h2><br><div>{{ $noticiaVista->introduccion }}</div></div>
+            <div class="col"><img src="{{asset('storage').'/'.$noticiaVista->foto}}" alt="" class=" rounded img"/></div>
+            <div class="col-7"><h2 class="titulo"><b>{{ $noticiaVista->titulo }}</b></h2><div class="texto">{{ $noticiaVista->introduccion }}</div></div>
           </div>
           
           <div class="row">
             <div class="col">
-              <div class="maximo">{{ $noticiaVista->contexto }}</div><br>
+              <div class="texto narracion2">{{ $noticiaVista->contexto }}</div><br>
             </div>
           </div>
 
@@ -67,7 +45,7 @@
         <!--  Espaciado blanco entre los dos "contenedores" :) ------>
         <div class="col "></div>
 
-        <div class="col-3 bg-success bg-gradient shadow p-3 mb-5 rounded">
+        <div class="col-3 fondo2 shadow p-3 mb-5 rounded">
           Column
         </div>
 

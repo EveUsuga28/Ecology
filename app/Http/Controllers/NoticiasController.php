@@ -16,9 +16,9 @@ class NoticiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $texto=trim($request->get('texto'));
+        /*$texto=trim($request->get('texto'));
         $noticias=DB::table('noticias')
                 ->select('id','titulo','contexto','Fecha', 'estado', 'Foto')
                 ->where('titulo','LIKE','%'.$texto.'%')
@@ -26,7 +26,9 @@ class NoticiasController extends Controller
                 ->orWhere('contexto','LIKE','%'.$texto.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(10);
-        return view('noticias.index', compact('noticias','texto'));
+        return view('noticias.index', compact('noticias','texto'));*/
+        $datos['noticias']=noticias::paginate();
+        return view('noticias.index',$datos);
     }
 
     /**

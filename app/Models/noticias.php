@@ -11,5 +11,6 @@ class noticias extends Model
     protected $primaryKey = "id";
     protected $fillable = ['titulo','introduccion','contexto','Fecha','estado','foto','id_user'];
 
+    public $timestamps = false;
 
 }

@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="item">
-                <a href="noticias">
+                <a href="{{route('noticias.index')}}">
                     <div class="icon"><i class="fas fa-newspaper fa-2x"></i></div>
                     <div class="title"><span><b>Noticias</b></span></div>
                 </a>

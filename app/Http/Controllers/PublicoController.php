@@ -19,7 +19,8 @@ class PublicoController extends Controller
             $noticias = noticias::all();
             Cache::put('noticias',$noticias);
         }
-        
+        //$datos['noticias']=noticias::paginate();
+        //return view('noticias.index',$datos);
         return view('./auth/index',compact('noticias'));
 
         //$datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
