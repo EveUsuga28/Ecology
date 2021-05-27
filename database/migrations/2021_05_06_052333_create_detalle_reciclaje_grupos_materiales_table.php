@@ -19,6 +19,7 @@ class CreateDetalleReciclajeGruposMaterialesTable extends Migration
             $table->unsignedBigInteger('id_materiales');
             $table->integer('kilos');
             $table->integer('puntaje');
+            $table->integer('estado')->default(1);
 
             $table->foreign("id_reciclaje_grupo")
                 ->references("id")

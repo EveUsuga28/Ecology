@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\material;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MaterialController extends Controller
 {
@@ -22,7 +24,7 @@ class MaterialController extends Controller
 
     public function index(Request $request)
     {
-         $datos['materials']=material::paginate(5);
+         $datos['materials']=material::paginate();
         return view('material.index',$datos);
     }
 
@@ -36,6 +38,7 @@ class MaterialController extends Controller
 
 
         return view('material.create');
+
     }
 
     /**
@@ -46,6 +49,13 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
+            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
        // $datosMaterial = request()->all();
         $datosMaterial = request()->except('_token');
 
@@ -56,7 +66,8 @@ class MaterialController extends Controller
         material::insert($datosMaterial);
 
         //return response()->json($datosMaterial);
-        return redirect('material')->with('mensaje','Material Creado Exitosamente');
+        return redirect('material')->with('material','true');
+
     }
 
     /**
@@ -92,6 +103,13 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'NomreMaterial'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'Kilos'=> 'regex:/^[0-90-9 \s]+$/',
+            'Foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
         $datosMaterial = request()->except(['_token','_method']);
 
         if($request->hasFile('Foto')){
@@ -103,7 +121,9 @@ class MaterialController extends Controller
         material::where('id','=',$id)->update($datosMaterial);
 
         $material =material::findOrFail($id);
-        return view('material.edit',compact('material'));
+
+        return redirect('material');
+        //return view('material.edit',compact('material'));
 
     }
 
@@ -123,6 +143,14 @@ class MaterialController extends Controller
 
         return redirect('material')->with('mensaje','Material Borrado');**/
     }
+    public function actualizarFechaPuntaje(){
 
-    
+        $now = Carbon::now();
+
+        $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
+            ->update(['Fecha_Fin'=>$now->format('Y-m-d')]);
+    }
+
+
 }
+

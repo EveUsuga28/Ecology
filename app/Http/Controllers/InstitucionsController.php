@@ -51,13 +51,13 @@ class InstitucionsController extends Controller
     {/*
         $datosInstitucion = request()->all();*/
         $datosInstitucion = request()->except('_token');
-        
+
         if($request->hasFile('foto')){
             $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
         }
 
         institucions::insert($datosInstitucion);
-        
+
         return redirect('institucion')->with('mensaje','Empleado agregado exitosamente');
         //return response()->json($datosInstitucion);
     }

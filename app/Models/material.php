@@ -9,8 +9,9 @@ class material extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Puntaje'];
+    protected $fillable = ['NomreMaterial','Kilos','Puntaje','Foto'];
 
 
     public $timestamps = false;
+
 }

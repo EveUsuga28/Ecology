@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\models\institucions;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function informeNombres($id)
+    {
+        $institucion =institucions::findOrFail($id);
+
+        return view('informes/index',compact('institucion'));
+    }
+
 }

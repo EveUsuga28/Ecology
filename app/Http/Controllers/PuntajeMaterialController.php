@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\puntajeMaterial;
-use CrearTablaPuntajeMaterials;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\puntajeMaterial;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\material;
 
 class PuntajeMaterialController extends Controller
@@ -20,9 +19,10 @@ class PuntajeMaterialController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(5);
+
+        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
         return view('puntajeMaterial.index',$datosPuntajeMaterial );
     }
 
@@ -47,7 +47,12 @@ class PuntajeMaterialController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'Puntaje'=>' regex:/^[0-90-9 \s]+$/',
+        ]);
        // $datosPuntajeMaterial = request()->all();
+       $this->actualizarFechaPuntaje();
        $datosPuntajeMaterial = request()->except('_token');
        puntajeMaterial::insert($datosPuntajeMaterial);
 
@@ -55,8 +60,10 @@ class PuntajeMaterialController extends Controller
 
         $material->fill(array('Puntaje' => $request->input('Puntaje')));
 
+
         $material->save();
-        return response()->json($datosPuntajeMaterial);
+        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+      //  return response()->json($datosPuntajeMaterial);
     }
 
     /**
@@ -98,7 +105,9 @@ class PuntajeMaterialController extends Controller
 
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
 
-        return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+        return redirect('puntajeMaterial');
+        //return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+
     }
 
     /**
@@ -109,8 +118,33 @@ class PuntajeMaterialController extends Controller
      */
     public function destroy($idPuntajeMaterail)
     {
-        puntajeMaterial::destroy($idPuntajeMaterail);
 
-        return redirect('puntajeMaterial');
+       // puntajeMaterial::destroy($idPuntajeMaterail);
+
+        //return redirect('puntajeMaterial');
     }
+    public function Deshabilitar($idPuntajeMaterail)
+    {
+
+            $puntajeMaterial = puntajeMaterial::find($idPuntajeMaterail);
+
+            if($puntajeMaterial->Estado == 'habilitado')
+            {
+                $puntajeMaterial->Estado = 'Deshabilitado';
+            }else
+            {
+                $puntajeMaterial->Estado = 'habilitado';
+            }
+
+            $puntajeMaterial->save();
+
+            return redirect()->route('puntajeMaterial.index')->with('eliminar' , 'true');
+        }
+        public function actualizarFechaPuntaje(){
+
+            $now = Carbon::now();
+
+            $puntaje = DB::table('puntajematerials')->where('Fecha_Fin','=',null)
+                ->update(['Fecha_Fin'=>$now->format('Y-m-d H:i:s')]);
+        }
 }

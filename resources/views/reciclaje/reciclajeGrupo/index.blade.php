@@ -95,6 +95,8 @@
 
     <script>
         $(document).ready(function() {
+
+
             $('#reciclajeGrupo').DataTable( {
                 responsive: true,
                 autoWidth: false,
