@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+
         .boton{
             width: 54%;
         }
-        
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,7 +40,7 @@
 @csrf
 
 {{ method_field('PATCH') }}
-<br>    
+<br>
 <div class="form-group">
 <label for="foto"><img src="{{ asset('storage').'/'.$institucion->Foto }}" alt="" width="100"> </label><br>
 <input type="file" name="foto" id="foto">

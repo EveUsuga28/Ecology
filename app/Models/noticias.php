@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class noticias extends Model
 {
     use HasFactory;
-    protected $primaryKey = "id_noticia";
+    protected $primaryKey = "id";
+    protected $fillable = ['titulo','introduccion','contexto','Fecha','estado','foto','id_user'];
+
+    public $timestamps = false;
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\noticias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,17 +16,19 @@ class NoticiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $texto=trim($request->get('texto'));
+        /*$texto=trim($request->get('texto'));
         $noticias=DB::table('noticias')
-                ->select('id_noticia','titulo','contexto','Fecha', 'estado', 'Foto')
+                ->select('id','titulo','contexto','Fecha', 'estado', 'Foto')
                 ->where('titulo','LIKE','%'.$texto.'%')
-                ->orWhere('id_noticia','LIKE','%'.$texto.'%')
+                ->orWhere('id','LIKE','%'.$texto.'%')
                 ->orWhere('contexto','LIKE','%'.$texto.'%')
-                ->orderBy('id_noticia', 'asc')
+                ->orderBy('id', 'asc')
                 ->paginate(10);
-        return view('noticias.index', compact('noticias','texto'));
+        return view('noticias.index', compact('noticias','texto'));*/
+        $datos['noticias']=noticias::paginate();
+        return view('noticias.index',$datos);
     }
 
     /**
@@ -52,6 +55,7 @@ class NoticiasController extends Controller
             $datosNoticias['Foto']=$request->file('Foto')->store('uploads','public');
         }
         noticias::insert($datosNoticias);
+        Cache::forget('noticias');
 
         return response()->json($datosNoticias);
     }
@@ -73,9 +77,9 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_noticia)
+    public function edit($id)
     {
-        $noticias =noticias::findOrFail($id_noticia);
+        $noticias =noticias::findOrFail($id);
 
         return view('noticias.edit',compact('noticias'));
     }
@@ -88,19 +92,19 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id_noticia)
+    public function update(Request $request,$id)
     {
         $datosNoticia = request()->except(['_token','_method']);
 
         if($request->hasFile('Foto')){
-            $noticias =noticias::findOrFail($id_noticia);
+            $noticias =noticias::findOrFail($id);
             storage::delete('public/'.$noticias->Foto);
             $datosNoticia['Foto']=$request->file('Foto')->store('uploads','public');
         }
 
-        noticias::where('id_noticia','=',$id_noticia)->update($datosNoticia);
+        noticias::where('id','=',$id)->update($datosNoticia);
 
-        $noticias =noticias::findOrFail($id_noticia);
+        $noticias =noticias::findOrFail($id);
         return view('noticias.edit',compact('noticias'));
 
     }
@@ -116,10 +120,10 @@ class NoticiasController extends Controller
         //
     }
 
-    public function Deshabilitar($id_noticia)
+    public function Deshabilitar($id)
     {
 
-        $Noticia = noticias::find($id_noticia);
+        $Noticia = noticias::find($id);
 
         if($Noticia->estado == 1)
         {
@@ -133,4 +137,5 @@ class NoticiasController extends Controller
 
         return redirect()->route('noticias.index')->with('eliminar' , 'true');
     }
+    
 }

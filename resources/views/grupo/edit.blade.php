@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+
         .boton{
             width: 54%;
         }
-        
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -36,7 +36,7 @@
             <h1>Editar Grupo</h1>
         </div>
 
-<form class="container" action="{{ url('/grupo/'.$grupo->id_grupo ) }} " method="post" enctype="multipart/form-data">
+<form class="container" action="{{ url('/grupo/'.$grupo->id ) }} " method="post" enctype="multipart/form-data">
 @csrf
 
 {{ method_field('PATCH') }}

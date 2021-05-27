@@ -11,17 +11,23 @@
             color: white;
         }
     </style>
-    <div>
-        <a href="{{ route('reciclaje.crear')}}" class="btn btn-light">Nuevo</a>
-    </div>
+    <!--Encabezado-->
+    <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+    <br>
+    <div class="container-fluid">
     <div class="card">
         <div class="card-body">
+            <div>
+                <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+            </div>
+            <hr>
             <table id="reciclaje" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <td>Id</td>
-                        <td>fecha Inicio</td>
-                        <td>Fecha fin</td>
+                        <td>Fecha Inicio</td>
+                        <td>Fecha Fin</td>
                         <td>Estado</td>
                         <td>Acciones</td>
                     </tr>
@@ -33,12 +39,13 @@
                         <td>{{$reciclaje->fechaInicio}}</td>
                         <td>{{$reciclaje->fechaFin}}</td>
                         <td>{{$reciclaje->estado}}</td>
-                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light">editar</a></td>
+                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light" >editar</a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 @endsection
 

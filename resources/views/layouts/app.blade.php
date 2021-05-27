@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="item">
-                <a href="noticias">
+                <a href="{{route('noticias.index')}}">
                     <div class="icon"><i class="fas fa-newspaper fa-2x"></i></div>
                     <div class="title"><span><b>Noticias</b></span></div>
                 </a>
@@ -122,14 +122,15 @@
         const btn = document.querySelector('#menu-btn');
         const menu = document.querySelector('#sidemenu');
         btn.addEventListener('click', e => {
-            menu.classList.toggle("menu-expanded");
             menu.classList.toggle("menu-collapsed");
+            menu.classList.toggle("menu-expanded");
+
 
             document.querySelector('body').classList.toggle('body-expanded');
         });
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
