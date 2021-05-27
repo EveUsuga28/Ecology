@@ -117,7 +117,7 @@ class InstitucionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 
         $instituciones=institucions::findOrFail($id);
 
         if(Storage::delete('public/'.$instituciones->Foto)){

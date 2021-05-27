@@ -39,6 +39,8 @@
                 Editar
             </a>
 
+             | 
+             
              |
 
             <form action="{{ url('/grupo/'.$grupos->id ) }}" class="d-inline" method="post">

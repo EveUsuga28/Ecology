@@ -26,7 +26,7 @@
                     Titulo
                 </th>
                 <th>
-                    Contexto
+                    Introducción
                 </th>
                 <th>
                    Fecha
@@ -52,7 +52,7 @@
                 <tr align="center">
                     <td>{{$noticia->id}}</td>
                     <td>{{$noticia->titulo}}</td>
-                    <td>{{$noticia->contexto}}</td>
+                    <td>{{$noticia->introduccion}}</td>
                     <td>{{$noticia->Fecha}}</td>
                     @if($noticia->estado == 1)
                      <td bgcolor="#81F79F">Habilitado</td>

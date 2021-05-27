@@ -1,22 +1,14 @@
-<form action="{{url('/noticias')}}" method="post" enctype="multipart/form-data">
 @extends('layouts.app')
+@section('css')
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+@endsection
+
 
 @section('content')
-
+<form action="{{url('/noticias')}}" method="post" enctype="multipart/form-data">
 @csrf
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Ecology</title>
-	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
 
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<!-------------------------------------------------------------------------------->
     <img class="wave" src="../img/wave.png">
 	<div class="contenedor">
 	<div >
@@ -29,6 +21,11 @@
   <div class="div">
         <label for="titulo">Titulo</label>
         <input type="text" name="titulo" id="titulo">
+  </div>
+
+  <div class="div">
+        <label for="introduccion">Introducción</label>
+        <textarea name="introduccion" id="introduccion" cols="30" rows="10"></textarea>
   </div>
 
   <div class="div">
@@ -50,6 +47,16 @@
         <label for="Foto">Foto</label>
         <input type="file" name="Foto" id="Foto">
   </div>
+
+  <div class="div"><!--MODIFICANDOOOOOOOOOOOOOOOOOOOOOOO-->
+        <label for="id_users">Autor: </label>
+        <label for="">{{Auth::user()->name}}</label>
+        <input type="text" name="id_users" id="id_users" value="{{ Auth::user()->id }}" hidden>
+  </div>
         <input type="submit" value="Guardar Datos">
 
 </form>
+@endsection
+
+@section('js')
+@endsection

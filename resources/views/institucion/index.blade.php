@@ -38,11 +38,14 @@
             </td>
             <td>{{ $instituciones->direccion }}</td>
             <td>
+            
 
             <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-warning">
                 Editar
             </a>
 
+             | 
+            
              |
 
             <form action="{{ url('/institucion/'.$instituciones->id ) }}" class="d-inline" method="post">
