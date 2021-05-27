@@ -22,11 +22,6 @@
                 <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
             </div>
             <hr>
-    <div>
-        <a href="{{ route('reciclaje.crear')}}" class="btn btn-light">NUEVO</a>
-    </div>
-    <div class="card">
-        <div class="card-body">
             <table id="reciclaje" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
