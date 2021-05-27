@@ -9,4 +9,9 @@ class grupos extends Model
 {
     use HasFactory;
     protected $primaryKey = "id";
+    protected $fillable = ['estado','grupo','id_institucion'];
+
+
+    public $timestamps = false;
+
 }

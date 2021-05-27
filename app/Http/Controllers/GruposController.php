@@ -38,8 +38,8 @@ class GruposController extends Controller
      */
     public function create()
     {
-        $datos['institucion']=institucions::all();
-        return view('grupo.create',$datos);
+        $datos=institucions::all();
+        return view('grupo.create',compact('datos'));
     }
 
     /**
