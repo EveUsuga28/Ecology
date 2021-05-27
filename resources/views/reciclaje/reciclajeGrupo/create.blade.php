@@ -61,8 +61,41 @@
                         </div>
                     </div>
                 </div>
-
+                <br>
+                <br>
+                <div class="text-center">
+                    <a href="{{ route('reciclaje.Editar', session('id_reciclaje'))}}" class="btn btn-info">Volver</a>
+                </div>
             </div>
+
+            <!--modal para editar datos Material-->
+
+            <!-- Modal -->
+            <div class="modal fade" id="detalle_material_edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Material Grupo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="editar_material_form">
+                            <div class="modal-body">
+                                @csrf
+                                <input name="id_edit" id="id_edit" type="hidden">
+                                <input name="id_material_edit" id="id_material_edit" type="hidden">
+                                <label for="exampleInputEmail1" class="form-label">kilos</label>
+                                <input type="number" class="form-control" id="kilos_edit" name="kilos_edit" required>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal cierra -->
             <!--Cierra-->
             <!--Abre-->
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -71,6 +104,11 @@
             <!--Cierra-->
         </div>
     </div>
+
+
+
+
+
 @endsection
 
 @section('js')
@@ -126,6 +164,7 @@
     </script>
 
     <script>
+        //CREAR DETALLE MATERIAL
         $('#detalle-material').submit(function(e){
             e.preventDefault();
             var material = $('#material').val();
@@ -172,17 +211,64 @@
     </script>
 
     <script>
+        //EDITAR DETALLE MATERIAL
+        function editarDetalleMaterial(id){
+            $.get('/reciclajeGrupo/enviarEditarDetalleMaterial/'+id, function(detalleReciclajeGrupo){
+                //asignar los datos recuperados a la ventana modal
+                $('#id_edit').val(detalleReciclajeGrupo[0].id);
+                $('#kilos_edit').val(detalleReciclajeGrupo[0].kilos);
+                $('#id_material_edit').val(detalleReciclajeGrupo[0].id_materiales);
+                $("input[name=_token]").val();
+                $('#detalle_material_edit_modal').modal('toggle');
+            })
+        }
+    </script>
 
+
+    <script>
+        //ACTUALIZAR DETALLE MATERIAL
+        $('#editar_material_form').submit(function(e){
+            e.preventDefault();
+            var id2 = $('#id_edit').val();
+            var kilos2 = $('#kilos_edit').val();
+            var id_material2 = $('#id_material_edit').val();
+            var id_grupo2 = $('#id_grupo').val();
+            var _token2 = $("input[name=_token]").val();
+
+            $.ajax({
+                url: "{{ route('reciclajeGrupo.ActualizarDetalleMaterial') }}",
+                type: "POST",
+                data:{
+                    id:id2,
+                    kilos:kilos2,
+                    id_material:id_material2,
+                    id_grupo:id_grupo2,
+                    _token:_token2
+                },
+                success:function(response){
+                    if(response){
+                        $('#detalle_material_edit_modal').modal('hide');
+                        toastr.info('El Material fue actualizado correctamente.', 'Actualizar Registro', {timeOut:10000});
+                        $('#table-materiales').DataTable().ajax.reload();
+                    }
+                }
+            })
+
+        });
+    </script>
+
+    <script>
+        //HABILITAR/DESHABILITAR DETALLE MATERIAL
         function deshabilitar_habilitar(id){
 
             var material_id = id;
 
             $.ajax({
                 url:"/reciclajeGrupo/deshabilitar/"+material_id,
-                success:function (data){
+                success:function (){
                     $('#table-materiales').DataTable().ajax.reload();
                     Swal.fire(
-                        '!EXITO!',
+                        '¡EXITO!',
                         'Estado cambiado',
                         'success'
                     )
@@ -194,7 +280,7 @@
 
        function AlertaDeshabilitar(id) {
            Swal.fire({
-               title: 'Estas seguro?',
+               title: '¿Está seguro?',
                text: "El puntaje y cantidad ya no contaran para el reciclaje grupo",
                icon: 'warning',
                showCancelButton: true,
@@ -211,7 +297,7 @@
 
         function AlertaHabilitar(id) {
             Swal.fire({
-                title: 'Estas seguro?',
+                title: '¿Está seguro?',
                 text: "Que desea habilitar material",
                 icon: 'warning',
                 showCancelButton: true,
@@ -226,8 +312,6 @@
             })
         }
     </script>
-
-
 
 @endsection
 

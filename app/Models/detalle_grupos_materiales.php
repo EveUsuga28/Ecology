@@ -15,4 +15,10 @@ class detalle_grupos_materiales extends Model
 
     public $timestamps = false;
 
+
+    public function Probando(){
+
+        return 'holi';
+    }
+
 }
