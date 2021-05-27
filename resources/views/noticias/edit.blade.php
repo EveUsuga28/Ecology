@@ -8,19 +8,20 @@
     <label for="titulo">Titulo</label>
     <input type="text" value="{{$noticias->titulo}}"name="titulo" id="titulo">
     <br>
+    <label for="introduccion">Introducción</label>
+    <textarea name="introduccion" id="introduccion" cols="30" rows="10" >{{$noticias->introduccion}}</textarea >
+    <br>
     <label for="contexto">Contexto</label>
     <textarea name="contexto" id="contexto" cols="30" rows="10" >{{$noticias->contexto}}</textarea >
     <br>
     <label for="fecha">Fecha</label>
     <input type="date"  value="{{$noticias->Fecha}}"name="fecha" id="titulo">
     <br>
-    <label for="estado">Estado</label>
-    <input type="text" value="{{$noticias->estado}}"name="estado" id="titulo">
-    <br>
     <label for="Foto">Foto</label>
     {{$noticias->Foto}}
     <input type="file" name="Foto" id="Foto">
     <br>
     <input type="submit" value="Guardar Datos">
-
+    <input type="text" value="{{$noticias->estado}}"name="estado" id="titulo" hidden>
+    <br>
     </form>

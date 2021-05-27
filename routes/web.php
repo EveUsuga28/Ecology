@@ -18,9 +18,16 @@ use App\Http\Controllers\PuntajeMaterialController;
 use App\Http\Controllers\InstitucionsController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NoticiasController;
+use App\Http\Controllers\PublicoController;
 
 
-Route::get('/', \App\Http\Controllers\publico::class);
+/*Route::get('/', function(){
+    return view('./auth/index');
+});*/
+
+Route::get('/', [PublicoController::class, 'index']);
+
+Route::get('/noticia/{id}',[PublicoController::class, 'vista'])->name('vista.noticia');
 
 Route::get('/login', function () {
     return view('./auth/login');
@@ -33,13 +40,20 @@ Route::get('/institucion', function () { return view('./institucion/index'); });
 Route::get('institucion/create',[InstitucionsController::class, 'create']);
 */
 
-
 /* Fin rutas institucion */
+
 
 /* Rutas grupo */
 Route::resource('grupo', GruposController::class);
 /* Fin rutas grupo */
 
+
+/* Rutas Noticias */
+Route::resource('noticias',NoticiasController::class);
+
+Route::PUT('/noticias/{id}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
+
+/* Fin Rutas Noticias */
 Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -58,6 +72,9 @@ Route::resource('/users',UserController::class);
 Route::PUT('/users/{id}/Deshabilitar', [App\Http\Controllers\UserController::class, 'Deshabilitar'])->name('users.Deshabilitar');
 
 
+
+//Route::get('/reciclaje',[\App\Http\Controllers\reciclajeIntitucionControlller::class,'index'])->name('reciclaje.index');
+//Route::resource('noticias',NoticiasController::class);
 Route::resource('noticias',NoticiasController::class);
 
 Route::PUT('/noticias/{id}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');

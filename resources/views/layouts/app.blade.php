@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="item">
-                <a href="noticias">
+                <a href="{{route('noticias.index')}}">
                     <div class="icon"><i class="fas fa-newspaper fa-2x"></i></div>
                     <div class="title"><span><b>Noticias</b></span></div>
                 </a>
@@ -122,8 +122,9 @@
         const btn = document.querySelector('#menu-btn');
         const menu = document.querySelector('#sidemenu');
         btn.addEventListener('click', e => {
-            menu.classList.toggle("menu-expanded");
             menu.classList.toggle("menu-collapsed");
+            menu.classList.toggle("menu-expanded");
+
 
             document.querySelector('body').classList.toggle('body-expanded');
         });
