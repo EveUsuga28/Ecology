@@ -10,6 +10,11 @@ use mysql_xdevapi\Table;
 
 class reciclajeIntitucionControlller extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
 
         $rol = auth()->user()->getRoleNames();
@@ -25,28 +30,28 @@ class reciclajeIntitucionControlller extends Controller
        return view('reciclaje.index',compact('reciclaje_institucion'));
     }
 
-    public function crear()
+    public function crear(Request $request)
     {
         $now = Carbon::now();
 
         $rol = auth()->user()->getRoleNames();
 
+            if($rol[0]=='admin'){
 
-        if($rol[0]=='admin'){
+                return redirect()->route('reciclaje.index')->with('institucion','true');
+            }else{
+                $reciclaje = reciclaje_institucion::create([
+                    'fechaInicio' => $now->format('Y-m-d'),
+                    'id_institucion' => auth()->user()->id_institucion
+                ]);
 
-            return redirect()->route('reciclaje.index')->with('institucion','true');
-        }else{
-            $reciclaje = reciclaje_institucion::create([
-                'fechaInicio' => $now->format('Y-m-d'),
-                'id_institucion' => auth()->user()->id_institucion
-            ]);
+            }
 
-        }
+            session(['id_reciclaje' => $reciclaje->id]);
+            session(['id_institucion'=> $reciclaje->id_institucion]);
 
-        session(['id_reciclaje' => $reciclaje->id]);
-        session(['id_institucion'=> $reciclaje->id_institucion]);
+            return redirect()->route('reciclajeGrupo.index')->with('creado','true');
 
-         return redirect()->route('reciclajeGrupo.index')->with('creado','true');
     }
 
     public function editarReciclaje($id){

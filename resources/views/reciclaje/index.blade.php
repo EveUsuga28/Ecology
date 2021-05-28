@@ -19,7 +19,7 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+                <a  href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo Reciclaje institución</a>
             </div>
             <hr>
             <table id="reciclaje" class="table table-striped" style="width:100%">
@@ -50,6 +50,8 @@
 @endsection
 
 @section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         $(document).ready(function() {
@@ -87,6 +89,8 @@
     @endif
 
 @endsection
+
+
 
 
 
