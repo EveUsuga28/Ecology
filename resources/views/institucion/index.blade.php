@@ -43,7 +43,7 @@
             <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-warning">
                 Editar
             </a>
-
+<!--
              | 
             
              |
@@ -56,7 +56,7 @@
 
                 <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
 
-            </form>
+            </form>-->
 
             </td>
         </tr>

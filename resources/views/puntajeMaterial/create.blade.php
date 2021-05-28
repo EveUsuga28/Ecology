@@ -29,7 +29,7 @@
 
             <div class="div">
      <label form="id_materials" >IdMaterial</label>
-     <input type=""  class="form-control"value="{{$id}}"  name="id_materials" id="id_materials" required >
+     <input type=""  class="form-control"value="{{$id}}"  name="id_materials" id="id_materials" required readonly>
     </div>
 
     <div class="div">

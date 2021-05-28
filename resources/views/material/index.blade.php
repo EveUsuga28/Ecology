@@ -11,8 +11,7 @@
             color: white;
         }
     </style>
-    <br>
-    <h1 align="center">Materiales</h1>
+    <x-datos datos="Materiales"/>
     <br>
          <a href="{{url('material/create') }}" class="btn btn-light " >NUEVO</a>
          <a href="{{url('puntajeMaterial') }}" class="btn btn-light " >PUNTAJES</a>

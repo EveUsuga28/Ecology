@@ -1,24 +1,20 @@
+@extends('layouts.app')
+
+@section('css')
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+@endsection
+
+@section('content')
+    
+<!--Encabezado-->
+<x-datos datos="Productos"/> <!--componentes laravel con envio de datos-->
+<!--Encabezado-->
+
 <form action="{{url('/material/'.$material->id)}}" method="post"  enctype="multipart/form-data">
-    @csrf
-    {{method_field('PATCH')}}
-
-
-    @extends('layouts.app')
-
-    @section('content')
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Ecology</title>
-        <link rel="shortcut icon" type="text/css" href="../img/logo.png">
-
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-        <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
+@csrf
+{{method_field('PATCH')}}
+    
         <img class="wave" src="/img/wave.png">
         <div class="contenedor">
             <div class="img">
