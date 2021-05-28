@@ -14,6 +14,11 @@ use function PHPUnit\Framework\returnArgument;
 
 class reciclajeGrupoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     public function index(){
 
         $reciclajeGrupo = reciclaje_grupo::join("grupos","grupos.id", "=", "reciclaje_grupos.id_grupo")

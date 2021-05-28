@@ -52,7 +52,7 @@
 
         <div class="card-body">
             <a href="javascript:void(0)" onclick="CrearReciclaje()" class="btn btn-success">
-                <b>Nuevo</b>
+                <b>Nuevo Reciclaje Grupo</b>
             </a>
             <hr>
                 <table id="reciclajeGrupo" class="table table-striped" style="width:100%">
