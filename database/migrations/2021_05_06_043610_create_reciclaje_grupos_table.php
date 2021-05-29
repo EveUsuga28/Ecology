@@ -17,11 +17,12 @@ class CreateReciclajeGruposTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_periodo_reciclaje');
             $table->unsignedBigInteger('id_grupo');
-            $table->integer('total_kilos_material_grupo');
-            $table->integer('total_puntaje_material_grupo');
-            $table->integer('total_cantidad_productos_grupo');
-            $table->integer('total_puntaje_productos_grupo');
-            $table->integer('total_puntaje_grupo');
+            $table->integer('total_kilos_material_grupo')->default(0);
+            $table->integer('total_puntaje_material_grupo')->default(0);
+            $table->integer('total_cantidad_productos_grupo')->default(0);
+            $table->integer('total_puntaje_productos_grupo')->default(0);
+            $table->integer('total_puntaje_grupo')->default(0);
+            $table->integer('estado')->default(1);
             $table->date('fecha');
 
             $table->foreign("id_periodo_reciclaje")
