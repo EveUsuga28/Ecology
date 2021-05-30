@@ -36,10 +36,6 @@ Route::get('/login', function () {
 
 /* Rutas institucion */
 Route::resource('institucion', InstitucionsController::class)->middleware('auth');/* el " ->middlware('auth');  " es de cuestion de seguridad para protejer rutas a aquellas personas que no estan logueadas*/
-/*
-Route::get('/institucion', function () { return view('./institucion/index'); });
-Route::get('institucion/create',[InstitucionsController::class, 'create']);
-*/
 
 /* Fin rutas institucion */
 
@@ -53,13 +49,11 @@ Route::resource('grupo', GruposController::class);
 Route::resource('noticias',NoticiasController::class);
 
 Route::PUT('/noticias/{id}/Deshabilitar', [App\Http\Controllers\NoticiasController::class, 'Deshabilitar'])->name('noticias.Deshabilitar');
-
 /* Fin Rutas Noticias */
+
 Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 
 Route::resource('/material',MaterialController::class);
 

@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div>
                     <a href="{{ route('users.create')}}" class="btn btn-success">Nuevo</a>
-                    </div>
+                </div>
                 <hr>
                 <table id="reciclaje" class="table table-striped" style="width:100%">
                     <thead>
