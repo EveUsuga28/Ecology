@@ -70,6 +70,7 @@
             } );
         } );
     </script>
+    
     @if(session('institucion') == 'true')
         <script>
             Command: toastr["warning"]("Necesita tener una institución asociada para generar reciclaje", "Error")
