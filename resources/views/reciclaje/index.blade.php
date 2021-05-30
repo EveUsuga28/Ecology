@@ -5,48 +5,56 @@
 @endsection
 
 @section('content')
+
+    <!--Estilos del DataTable-->
     <style>
         table thead {
             background-color:#39A131 ;
             color: white;
         }
     </style>
+    <!--Estilos del DataTable-->
+
     <!--Encabezado-->
     <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
+    
+    <!--Cuerpo de Pagina (Body)-->
     <br>
     <div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-            <div>
-                <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+                </div>
+                <hr>
+                <table id="reciclaje" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fecha Inicio</th>
+                            <td>Fecha Fin</hd>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($reciclaje_institucion as $reciclaje)
+                        <tr>
+                            <td>{{$reciclaje->id}}</td>
+                            <td>{{$reciclaje->fechaInicio}}</td>
+                            <td>{{$reciclaje->fechaFin}}</td>
+                            <td>{{$reciclaje->estado}}</td>
+                            <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light" >editar</a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-            <hr>
-            <table id="reciclaje" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Fecha Inicio</td>
-                        <td>Fecha Fin</td>
-                        <td>Estado</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($reciclaje_institucion as $reciclaje)
-                    <tr>
-                        <td>{{$reciclaje->id}}</td>
-                        <td>{{$reciclaje->fechaInicio}}</td>
-                        <td>{{$reciclaje->fechaFin}}</td>
-                        <td>{{$reciclaje->estado}}</td>
-                        <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light" >editar</a></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
-    </div>
+    <!--Cuerpo de Pagina (Body)-->
+
 @endsection
 
 @section('js')

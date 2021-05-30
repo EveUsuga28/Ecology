@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
+        /*$texto=trim($request->get('texto'));
         $users=DB::table('users')
                 ->select('id','name','tipo_doc','nro_documento', 'email','Estado')
                 ->where('nro_documento','LIKE','%'.$texto.'%')
@@ -29,6 +29,9 @@ class UserController extends Controller
                 ->orderBy('id', 'asc')
                 ->paginate(10);
         return view('users.index', compact('users','texto'));
+        */
+        $datos['users']=user::paginate();
+        return view('users.index',$datos);
 
     }
 
