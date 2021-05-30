@@ -161,7 +161,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Editar Material Grupo</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Producto Grupo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id="editar_producto_form">
@@ -169,7 +169,7 @@
                                 @csrf
                                 <input name="id_edit_producto" id="id_edit_producto" type="hidden">
                                 <input name="id_producto_edit" id="id_producto_edit" type="hidden">
-                                <label for="exampleInputEmail1" class="form-label">kilos</label>
+                                <label for="exampleInputEmail1" class="form-label">Cantidad</label>
                                 <input type="number" class="form-control" id="cantidad_edit" name="cantidad_edit" required>
                                 <br>
                             </div>

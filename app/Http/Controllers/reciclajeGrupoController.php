@@ -299,7 +299,7 @@ class reciclajeGrupoController extends Controller
 
         DB::table('detalle_reciclaje_grupos_productos')
             ->where('id', '=',$request->id)
-            ->update(['cantidad' => $request->cantidad,'puntaje' => $this->calcularPuntajeMaterial($request->id_producto,$request->cantidad)]);
+            ->update(['cantidad' => $request->cantidad,'puntaje' => $this->calcularPuntajeProducto($request->id_producto,$request->cantidad)]);
 
         $this->calcularDetalleGrupoProducto($request->id_grupo);
 
