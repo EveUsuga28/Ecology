@@ -18,7 +18,7 @@
     <!--Encabezado-->
     <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
-    
+
     <!--Cuerpo de Pagina (Body)-->
     <br>
     <div class="container-fluid">
@@ -33,7 +33,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Fecha Inicio</th>
-                            <td>Fecha Fin</hd>
+                            <th>Fecha Fin</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -58,6 +58,8 @@
 @endsection
 
 @section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         $(document).ready(function() {
@@ -96,6 +98,8 @@
     @endif
 
 @endsection
+
+
 
 
 

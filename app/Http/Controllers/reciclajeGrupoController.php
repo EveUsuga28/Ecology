@@ -3,24 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\detalle_grupos_materiales;
+use App\Models\detalle_grupos_productos;
 use App\Models\grupos;
 use App\Models\material;
+use App\Models\Producto;
 use App\Models\reciclaje_grupo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-use function PHPUnit\Framework\returnArgument;
 
 class reciclajeGrupoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     public function index(){
 
         $reciclajeGrupo = reciclaje_grupo::join("grupos","grupos.id", "=", "reciclaje_grupos.id_grupo")
             ->select("reciclaje_grupos.*","grupos.grupo as grupo")->where('id_periodo_reciclaje',"=",session('id_reciclaje'))
             ->get();
         $grupos = grupos::join("institucions","institucions.id", "=", "grupos.id_institucion")
-            ->where('id_institucion','=',session('id_institucion'))->select("grupos.*")->get();
+            ->where('id_institucion','=',session('id_institucion'))
+            //->where('estado','<>','0') Pendiente de definir
+            ->select("grupos.*")->get();
 
         return view('reciclaje/reciclajeGrupo.index',compact('reciclajeGrupo','grupos'));
     }
@@ -40,11 +48,6 @@ class reciclajeGrupoController extends Controller
                $reciclajeGrupo = reciclaje_grupo::create([
                    'id_periodo_reciclaje' => session('id_reciclaje'),
                    'id_grupo' => $grupo,
-                   'total_kilos_material_grupo' => 0,
-                   'total_puntaje_material_grupo' => 0,
-                   'total_cantidad_productos_grupo' => 0,
-                   'total_puntaje_productos_grupo' => 0,
-                   'total_puntaje_grupo' => 0,
                    'fecha' => $now->format('Y-m-d'),
 
                ]);
@@ -57,19 +60,32 @@ class reciclajeGrupoController extends Controller
 
     }
 
-    public function EditarDetalle($id, Request $request){
+    public function EditarDetalle($id){
 
         $materiales = material::all();
+        $productos = Producto::all();
 
-        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id','productos'));
     }
 
     public function CrearDetalle($id){
 
         $materiales = material::all();
+        $productos = Producto::all()->where('estado','=','habilitado');
 
-        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id'));
+        return view('reciclaje/reciclajeGrupo.create',compact('materiales','id','productos'));
     }
+
+    public function PuntajeTotalDetalle($id){
+        DB::table("reciclaje_grupos")
+            ->where("id", "=", $id)
+            ->update([
+                "total_puntaje_grupo" => DB::raw("(select ifnull(total_puntaje_material_grupo,0)+ifnull(total_puntaje_productos_grupo,0) from reciclaje_grupos where id=".$id.")")
+            ]);
+    }
+
+
+    //-------------------------------------------------------------------- MATERIALES -------------------------------------------------------------------------------------//
 
 
     public function indexMaterialesDetalle($id,Request $request){
@@ -103,7 +119,7 @@ class reciclajeGrupoController extends Controller
     public function crearDetalleMateriales(Request $request)
     {
 
-       if(DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo',$request->idGrupo)
+      if(DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo',$request->idGrupo)
         ->where('id_materiales',$request->material)->exists()){
             return 1;
         }else{
@@ -142,13 +158,6 @@ class reciclajeGrupoController extends Controller
             $this->PuntajeTotalDetalle($id);
     }
 
-    public function PuntajeTotalDetalle($id){
-        DB::table("reciclaje_grupos")
-            ->where("id", "=", $id)
-            ->update([
-                "total_puntaje_grupo" => DB::raw("(select ifnull(total_puntaje_material_grupo,0)+ifnull(total_puntaje_productos_grupo,0) from reciclaje_grupos where id=".$id.")")
-            ]);
-    }
 
     public function deshabilitar_habilitar($id){
 
@@ -185,5 +194,117 @@ class reciclajeGrupoController extends Controller
 
         return  back();
     }
+
+
+
+    //-------------------------------------------------------------------- PRODUCTOS -------------------------------------------------------------------------------------//
+
+
+    public function indexProductoDetalle($id,Request $request){
+
+        if($request->ajax()){
+            $productos =  DB::table('detalle_reciclaje_grupos_productos')->where('id_reciclaje_grupo','=',$id)
+                ->join("products","products.id", "=", "detalle_reciclaje_grupos_productos.id_producto")
+                ->select("detalle_reciclaje_grupos_productos.cantidad as cantidad"
+                    ,"detalle_reciclaje_grupos_productos.puntaje as puntaje"
+                    ,"products.nombre as nombre"
+                    ,"detalle_reciclaje_grupos_productos.id as id"
+                    ,"detalle_reciclaje_grupos_productos.estado as estado")
+                ->get();
+            return DataTables::of($productos)
+                ->addColumn('action', function($productos){
+                    $acciones ='';
+                    if($productos->estado == '1') {
+                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class=""><i class="fas fa-edit"></i></a>';
+                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger">Deshabilitar</button>';
+                    }else{
+                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-secondary">habilitar</button>';
+                    }
+                    return $acciones;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+
+    }
+
+    public function crearDetalleProductos(Request $request)
+    {
+
+        if(DB::table('detalle_reciclaje_grupos_productos')->where('id_reciclaje_grupo',$request->idGrupo2)
+            ->where('id_producto',$request->producto)->exists()){
+            return 1;
+        }else{
+            DB::table('detalle_reciclaje_grupos_productos')->insert([
+                'id_reciclaje_grupo' => $request->idGrupo2,
+                'id_producto' => $request->producto,
+                'cantidad' =>  $request->cantidad,
+                'puntaje' => $this->calcularPuntajeProducto($request->producto, $request->cantidad)
+            ]);
+            $this->calcularDetalleGrupoProducto($request->idGrupo2);
+
+            return 2;
+        }
+
+    }
+
+    public function calcularPuntajeProducto($id,$cantidad){
+
+        $producto = Producto::find($id);
+
+        $resultado = $producto->puntaje*$cantidad;
+
+        return $resultado;
+    }
+
+
+    public function calcularDetalleGrupoProducto($id){
+
+        DB::table("reciclaje_grupos")
+            ->where("id", "=", $id)
+            ->update([
+                "total_cantidad_productos_grupo"     => DB::raw("(select ifnull(sum(cantidad),0) from detalle_reciclaje_grupos_productos where id_reciclaje_grupo=".$id." and estado=1)"),
+                "total_puntaje_productos_grupo" => DB::raw("(select ifnull(sum(puntaje),0) from detalle_reciclaje_grupos_productos where id_reciclaje_grupo=".$id." and estado=1)"),
+            ]);
+
+        $this->PuntajeTotalDetalle($id);
+    }
+
+    public function deshabilitar_habilitar_producto($id){
+
+        $detalleReciclajeGrupo = detalle_grupos_productos::find($id);
+
+        if($detalleReciclajeGrupo->estado == 1){
+            $detalleReciclajeGrupo->estado = 0;
+        }else{
+            $detalleReciclajeGrupo->estado = 1;
+        }
+
+        $detalleReciclajeGrupo->save();
+
+        $this->calcularDetalleGrupoProducto($detalleReciclajeGrupo->id_reciclaje_grupo);
+
+        return back();
+    }
+
+    public function enviarEditarDetalleProducto($id){
+
+        $detalleReciclajeGrupo = DB::table('detalle_reciclaje_grupos_productos')->where('id','=',$id)->get();
+
+        return response()->json($detalleReciclajeGrupo);
+    }
+
+    public function ActualizarDetalleProducto(Request $request){
+
+        DB::table('detalle_reciclaje_grupos_productos')
+            ->where('id', '=',$request->id)
+            ->update(['cantidad' => $request->cantidad,'puntaje' => $this->calcularPuntajeMaterial($request->id_producto,$request->cantidad)]);
+
+        $this->calcularDetalleGrupoProducto($request->id_grupo);
+
+        return  back();
+    }
+
 
 }
