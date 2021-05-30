@@ -106,7 +106,7 @@ Route::get('/reciclajeGrupo/enviarEditarDetalleProducto/{id}',[App\Http\Controll
 
 Route::post('/reciclajeGrupo/ActualizarDetalleMaterial',[App\Http\Controllers\reciclajeGrupoController::class,'ActualizarDetalleMaterial'])->name('reciclajeGrupo.ActualizarDetalleMaterial');
 
-Route::post('/reciclajeGrupo/ActualizarDetalleProducto',[App\Http\Controllers\reciclajeGrupoController::class,'ActualizarDetalleProducto'])->name('reciclajeGrupo.ActualizarDetalleMaterial');
+Route::post('/reciclajeGrupo/ActualizarDetalleProducto',[App\Http\Controllers\reciclajeGrupoController::class,'ActualizarDetalleProducto'])->name('reciclajeGrupo.ActualizarDetalleProducto');
 
 Route::resource('/producto',ProductoController::class);
 

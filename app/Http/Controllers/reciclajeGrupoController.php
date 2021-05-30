@@ -119,7 +119,7 @@ class reciclajeGrupoController extends Controller
     public function crearDetalleMateriales(Request $request)
     {
 
-       if(DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo',$request->idGrupo)
+      if(DB::table('detalle_reciclaje_grupos_materiales')->where('id_reciclaje_grupo',$request->idGrupo)
         ->where('id_materiales',$request->material)->exists()){
             return 1;
         }else{

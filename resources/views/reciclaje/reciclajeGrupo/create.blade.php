@@ -27,7 +27,7 @@
                 <br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <form id="detalle-material">
                                 @csrf
                                 <input type="hidden" value="{{$id}}" id="id_grupo" name="id_grupo">
@@ -48,7 +48,7 @@
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-8">
                             <div class="card">
                                 <div class="card-body">
                                     <table id="table-materiales" class="table table-hover">
@@ -111,7 +111,7 @@
                     <br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl-4">
                                 <form id="detalle-producto">
                                     @csrf
                                     <input type="hidden" value="{{$id}}" id="id_grupo2" name="id_grupo2">
@@ -132,7 +132,7 @@
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </form>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-body">
                                         <table id="table-productos" class="table table-hover">
@@ -473,7 +473,7 @@
     </script>
 
     <script>
-        //HABILITAR/DESHABILITAR DETALLE MATERIAL
+        //HABILITAR/DESHABILITAR DETALLE PRODUCTO
         function deshabilitar_habilitar_Producto(id){
 
             var producto_id = id;
@@ -554,7 +554,7 @@
             var _token2 = $("input[name=_token]").val();
 
             $.ajax({
-                url: "{{ route('reciclajeGrupo.ActualizarDetalleMaterial') }}",
+                url: "{{ route('reciclajeGrupo.ActualizarDetalleProducto') }}",
                 type: "POST",
                 data:{
                     id:id2,
