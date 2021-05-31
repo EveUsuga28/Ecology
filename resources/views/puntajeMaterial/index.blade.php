@@ -28,7 +28,7 @@
                     <a href="{{url('material') }}" class="btn btn-light " >Materiales</a>
                 </div>
                 <hr>
-                <table id="materiales" class="table table-striped" style="width:100%">
+                <table id="puntajes" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>IdPuntajeMaterial</th>
@@ -142,5 +142,52 @@
         } );
     } );
 </script>
+@if(session('puntaje'))
+<script>
+    Command: toastr["success"]("¡Puntaje Creado Exitosamente!", "Material")
+
+    toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-left",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+    }
+
+</script>
+@endif
+@if(session('EditPuntaje') == 'true')
+<script>
+    Command: toastr["info"]("Editado Exitosamente", "Puntaje")
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@endif
 
 @endsection

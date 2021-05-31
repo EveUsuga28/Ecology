@@ -40,10 +40,12 @@
                   </div>
 
                   <div class="div">
-                    <input type="text" <div class="input-div one">
-                                                      <div class="i">
-                                                            <i class="fas fa-user"></i> Primer Párrafo
-                                                      </div>name="nombre"  value="" id="nombre" required>
+                    <div class="  alert-danger" role="alert">
+                          @error('nombre')
+                          <small>*{{$message}}</small>    
+                          @enderror
+                    </div>
+                    <input type="text"  class="form-control"name="nombre"  value="" id="nombre" required>
                   </div>
                 </div>
 
@@ -53,6 +55,11 @@
                   </div>
 
                   <div class="div">
+                    <div class="  alert-danger" role="alert">
+                      @error('puntaje')
+                      <small>*{{$message}}</small>    
+                      @enderror
+                    </div>
                     <input type="number" class="form-control"name="puntaje"  value="" id="puntaje" required>
                   </div>
                 </div>
@@ -64,6 +71,9 @@
 
                   <div class="div">
                     <input type="file" class="form-control" name="foto" value="" id="foto" required>
+                      @error('Foto')
+                      <small>*{{$message}}</small>
+                      @enderror
                   </div>
                 </div><br>
 

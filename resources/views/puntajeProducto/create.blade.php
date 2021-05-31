@@ -76,6 +76,11 @@
                                     </div>
                 
                                     <div class="div">
+                                        @error('puntaje')
+                                            <div class=" alert-danger">
+                                                <small>*{{$message}}</small>
+                                            </div>
+                                        @enderror
                                         <input type="number" class="form-control"value="" name="puntaje" id="puntaje" >
                                     </div>
                                 </div><br>

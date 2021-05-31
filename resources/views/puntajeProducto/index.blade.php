@@ -25,10 +25,10 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="{{url('material/create') }}" class="btn btn-success " >Productos (Falta programar dirección)</a>
+                    <a href="{{url('producto') }}" class="btn btn-success " >Productos </a>
                 </div>
                 <hr>
-                <table id="materiales" class="table table-striped" style="width:100%">
+                <table id="productosPuntaje" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <td>Id</td>

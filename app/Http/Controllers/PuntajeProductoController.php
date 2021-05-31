@@ -58,6 +58,9 @@ class PuntajeProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'puntaje'=>' regex:/^[0-90-9 \s]+$/',
+        ]);
         // $datosPuntajeMaterial = request()->all();
        $datosPuntajeProducto = request()->except('_token');
        puntajeProducto::insert($datosPuntajeProducto);
