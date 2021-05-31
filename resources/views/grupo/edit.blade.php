@@ -1,41 +1,89 @@
 @extends('layouts.app')
-@section('css')
 
+@section('css')
+    <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
+
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
 @endsection
 
 @section('content')
 
+        <!--Encabezado-->
+        <x-datos datos="Grupo"/> <!--componentes laravel con envio de datos-->
+        <!--Encabezado-->
 
-<div class="container mt-4">
-    <div class="card border-info" >
-    <div class="card-header bg-success text-white" >
-            <h1>Editar Grupo</h1>
-        </div>
+        <!--Cuerpo de Pagina (Body)-->
+        <br>
+        <div class="container">
+                <div class="card">
+                        <div class="encabezado-formularios">
+                                <h1 class="text-white bg-success text-center padding"> Editar Grupo </h1>
+                        </div>
+                        <div class="card-body">
+                                <div class="row">
+                                        <div class="col-8">
+                                                <div class="container">
+                                                        <form class="container" action="{{ url('/grupo/'.$grupo->id ) }} " method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        {{ method_field('PATCH') }}
 
-<form class="container" action="{{ url('/grupo/'.$grupo->id ) }} " method="post" enctype="multipart/form-data">
-@csrf
+                                                                <div class="input-div one">
+                                                                        <div class="i">
+                                                                                <i class="fas fa-user"></i> Institución
+                                                                        </div>
 
-{{ method_field('PATCH') }}
+                                                                        <div class="div">
+                                                                                <input type="text" name="Grupo" class="form-control" id="Grupo" value="{{$grupo->grupo}}" required maxLength="4">
+                                                                        </div>
+                                                                </div><br>
+                                                                
+                                                                <div class="input-div one">
+                                                                        <div class="i">
+                                                                                <i class="fas fa-user"></i> Institución
+                                                                        </div>
 
-<div class="form-group">
-<label for="Grupo">Grupo</label><br>
-<input type="text" name="Grupo" id="Grupo" value="{{$grupo->grupo}}" required maxLength="4"><br>
-</div>
-<div class="form-group">
-<label for="id">Institución</label><br>
-<input type="text" name="id" id="id" value="{{$grupo->id}}" readonly><br>
-</div>
-<div class="form-group">
-<label for="Estado">Estado</label><br>
-<select name="Estado" id="Estado">
-        <option value="1">habilitado</option>
-        <option value="0">deshabilitado</option>
-</select><br>
-</div>
-<input class="btn btn-success" type="submit" value="Actualizar">
+                                                                        <div class="div">
+                                                                                <input type="text" name="id" class="form-control" id="id" value="{{$grupo->id}}" readonly >
+                                                                        </div>
+                                                                </div><br>
 
-</form>
+                                                                <div class="input-div one">
+                                                                        <div class="i">
+                                                                                <i class="fas fa-user"></i> Institución
+                                                                        </div>
 
+                                                                        <div class="div">
+                                                                                <select name="Estado" class="form-control" id="Estado">
+                                                                                        <option value="1">habilitado</option>
+                                                                                        <option value="0">deshabilitado</option>
+                                                                                </select>
+                                                                        </div>
+                                                                </div><br>
+
+                                                                <input class="btn btn-success" type="submit" value="Actualizar">
+                                                        </form>
+                                                </div>
+                                        </div>
+                                        <div class="col-4">
+                                                <div class="container">
+                                                        <br>
+                                                        <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div><br><br><br>
 @endsection
+
 @section('js')
+
 @endsection

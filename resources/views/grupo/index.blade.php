@@ -5,62 +5,57 @@
 @endsection
 
 @section('content')
+
+    <!--Estilos del DataTable-->
     <style>
         table thead {
             background-color:#39A131 ;
             color: white;
         }
     </style>
-<a href="{{ route('grupo.create') }}" class="btn btn-light">NUEVO</a>
+    <!--Estilos del DataTable-->
 
-</div>
+    <!--Encabezado-->
+    <x-datos datos="Grupos"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-<table id="grupos" class="table table-sriped table-bordered">
-    <thead align="center">
-        <tr>
-            <th>#</th>
-            <th>Grupo</th>
-            <th>id</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
+                </div>
+                <hr>
+                <table id="grupos" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Grupo</th>
+                            <th>id</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-    <tbody align="center">
-        @foreach( $grupo as $grupos )
-        <tr>
-            <td>{{ $grupos->id }}</td>
-            <td>{{ $grupos->Grupo }}</td>
-            <td>{{ $grupos->id }}</td>
-            <td>{{ $grupos->Estado }}</td>
-            <td>
-
-            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-warning">
-                Editar
-            </a>
-<!--
-             | 
-             
-             |
-
-            <form action="{{ url('/grupo/'.$grupos->id ) }}" class="d-inline" method="post">
-
-            @csrf
-
-            {{ method_field('DELETE') }}
-
-                <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-
-            </form>-->
-
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
-</div>
-</body>
+                    <tbody align="center">
+                        @foreach( $grupo as $grupos )
+                            <tr>
+                                <td>{{ $grupos->id }}</td>
+                                <td>{{ $grupos->Grupo }}</td>
+                                <td>{{ $grupos->id }}</td>
+                                <td>{{ $grupos->Estado }}</td>
+                                <td>
+                                    <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
