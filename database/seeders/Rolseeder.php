@@ -21,6 +21,10 @@ class Rolseeder extends Seeder
         Permission::create(['name'=>'usuarios'])->syncRoles([$role1]);
         Permission::create(['name'=>'material/create'])->syncRoles([$role1]);
         Permission::create(['name'=>'material/edit'])->syncRoles([$role1]);
+        Permission::create(['name'=>'crearNuevoPuntaje'])->syncRoles([$role1]);
+        Permission::create(['name'=>'puntajeMaterial/create'])->syncRoles([$role1]);
+        Permission::create(['name'=>'puntajeMaterial'])->syncRoles([$role1]);
+
 
         Permission::create(['name'=>'editar'])->syncRoles([$role1]);
 
@@ -33,6 +37,7 @@ class Rolseeder extends Seeder
         Permission::create(['name'=>'producto.edit'])->syncRoles([$role1]);
         Permission::create(['name'=>'estado/crearpuntaje'])->syncRoles([$role1]);
         Permission::create(['name'=>'puntajeproductobtn'])->syncRoles([$role1]);
-        
+
+
     }
 }

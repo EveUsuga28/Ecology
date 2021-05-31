@@ -24,8 +24,16 @@ class MaterialController extends Controller
 
     public function index(Request $request)
     {
+        $rol = auth()->user()->getRoleNames();
+
+        if($rol[0]=='admin'){
          $datos['materials']=material::paginate();
         return view('material.index',$datos);
+
+        }else{
+            $material = material::all();
+            return view('material.director', compact('material'));
+        }
     }
 
     /**
@@ -35,9 +43,12 @@ class MaterialController extends Controller
      */
     public function create()
     {
+        $rol = auth()->user()->getRoleNames();
 
+        if($rol[0]=='admin'){
 
         return view('material.create');
+        }
 
     }
 
@@ -89,9 +100,13 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
+
         $material =material::findOrFail($id);
 
         return view('material.edit',compact('material'));
+        }
     }
 
     /**
@@ -122,7 +137,7 @@ class MaterialController extends Controller
 
         $material =material::findOrFail($id);
 
-        return redirect('material');
+        return redirect('material')->with('EditPuntaje','true');
         //return view('material.edit',compact('material'));
 
     }

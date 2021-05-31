@@ -25,8 +25,13 @@
         <div class="card">
             <div class="card-body">
                 <div>
+                    @can('material/create')
                     <a href="{{url('material/create') }}" class="btn btn-success " >Nuevo</a>
-                    <a href="{{url('puntajeMaterial') }}" class="btn btn-light " >Puntajes</a>
+                    @endcan
+                     @can('puntajeMaterial')
+                     <a href="{{url('puntajeMaterial') }}" class="btn btn-light " >Puntajes</a>
+                     @endcan
+
                 </div>
                 <hr>
                 <table id="materiales" class="table table-striped" style="width:100%">
@@ -51,11 +56,16 @@
                                     <img src="{{asset('storage').'/'.$material->Foto}}" width="100"alt="">
                                 </td>
                                 <td>
+                                    @can('material/edit')
                                     <a  class="btn btn-outline-info" href="{{url('/material/'.$material->id.'/edit')}}" title="
                                         Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @endcan
+                                    @can('crearNuevoPuntaje')
                                     <a class="btn btn-outline-secondary formulario-registro" href="{{Route('puntajeMaterial.Crear',$material->id) }}"   >Crear Nuevo Puntaje<a>
+                                    @endcan
+
                                 <br>
                             </tr>
                         @endforeach
@@ -102,6 +112,29 @@
         }
 
     </script>
+@endif
+@if(session('EditPuntaje') == 'true')
+<script>
+    Command: toastr["info"]("Editado Exitosamente", "Material")
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
 @endif
 
 @endsection

@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    
+
     <!--Encabezado-->
     <x-datos datos="Puntaje Materiales"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
@@ -46,7 +46,7 @@
                         </div><br>
 
                         <div class="input-div pass">
-                           <div class="i"> 
+                           <div class="i">
                                  <i class="fas fa-id-card"></i> Fecha de Inicio
                            </div>
 
@@ -56,17 +56,17 @@
                         </div>  <br>
 
                         <div class="input-div pass">
-                           <div class="i"> 
+                           <div class="i">
                                  <i class="fas fa-id-card"></i> Fecha de Finalización
                            </div>
 
                            <div class="div">
-                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin"  required>
+                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin" >
                            </div>
                         </div><br>
 
                         <div class="input-div pass">
-                           <div class="i"> 
+                           <div class="i">
                                  <i class="fas fa-id-card"></i> Puntaje
                            </div>
 

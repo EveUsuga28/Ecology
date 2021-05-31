@@ -33,9 +33,10 @@ class PuntajeMaterialController extends Controller
      */
     public function Crear($id)
     {
-
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
         return view('puntajeMaterial.create',compact('id'));
-
+        }
     }
 
 
@@ -62,7 +63,7 @@ class PuntajeMaterialController extends Controller
 
 
         $material->save();
-        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+        return redirect('puntajeMaterial')->with('puntaje','true');
       //  return response()->json($datosPuntajeMaterial);
     }
 
@@ -105,9 +106,8 @@ class PuntajeMaterialController extends Controller
 
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
 
-        return redirect('puntajeMaterial');
+        return redirect('puntajeMaterial')->with('EditPuntaje', 'true');
         //return view('puntajeMaterial.edit',compact('puntajeMaterial'));
-
     }
 
     /**
