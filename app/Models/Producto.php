@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class grupos extends Model
+class Producto extends Model
 {
     use HasFactory;
-    protected $primaryKey = "id";
-    protected $fillable = ['estado','grupo','id_institucion'];
 
+    protected $fillable = ['puntaje'];
+    protected $table = 'products';
 
     public $timestamps = false;
-
 }

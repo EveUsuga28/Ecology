@@ -17,7 +17,7 @@
 @section('content')
 
     <!--Encabezado-->
-    <x-datos datos="Puntaje Material"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Puntaje Producto"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->
@@ -25,77 +25,77 @@
     <div class="container">
         <div class="card">
             <div class="encabezado-formularios">
-                <h1 class="text-white bg-success text-center padding"> Registrar Puntaje Material </h1>
+                <h1 class="text-white bg-success text-center padding"> Registrar Puntaje Producto </h1>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{url('/puntajeMaterial')}}" method="POST">
+                            <form action="{{url('/puntajeProducto')}}" method="POST">
                             @csrf
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Nombre Material
+                                        <i class="fas fa-user"></i> Nro Producto
                                     </div>
 
                                     <div class="div">
-                                        <input type=""  class="form-control" value="{{$id}}"  name="id_materials" id="id_materials" required readonly>
+                                        <input type=""  class="form-control"value="{{$id}}"  name="idproducto" id="idproducto" hidden>
+                                        <div class="form-control"><?= $id ?></div>
                                     </div>
                                 </div><br>
 
-                                <div class="input-div pass">
-                                    <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Fecha de inicio
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-user"></i> Fecha de inicio
                                     </div>
 
                                     <div class="div">
                                         <?php
                                             date_default_timezone_set('America/Bogota');
-                                            $Fecha_Inicio =date("Y-m-d H:i:s");
+                                            $fechaInicio =date("Y-m-d H:i:s");
                                         ?>
-                                        <input type="datetime"  class="form-control" value="<?= $Fecha_Inicio ?>" name="Fecha_Inicio" id="Fecha_Inicio" required hidden>
-                                        <div class="form-control"> <?= $Fecha_Inicio ?></div>
+                                        <input type="datetime"  class="form-control" value="<?= $fechaInicio ?>" name="fechaInicio" id="fechaInicio" hidden>
+                                        <div class="form-control"><?= $fechaInicio ?></div>
                                     </div>
                                 </div><br>
 
-                                <div class="input-div pass">
-                                    <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Fecha de Finalización
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-user"></i> Fecha de Finalizaión
                                     </div>
-
+                
                                     <div class="div">
-                                        <input type="datetime" class="form-control" value="" name="Fecha_Fin" id="Fecha_Fin" disabled=»disabled>
+                                        <input type="datetime" class="form-control" value="" name="fechaFin" id="fechaFin" >
                                     </div>
                                 </div><br>
 
-                                <div class="input-div pass">
-                                    <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Puntaje del material
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-user"></i> Puntaje
                                     </div>
-
+                
                                     <div class="div">
-                                        @error('Puntaje')
+                                        @error('puntaje')
                                             <div class=" alert-danger">
                                                 <small>*{{$message}}</small>
                                             </div>
                                         @enderror
-                                        <input type="number" class="form-control"value="{{old('Puntaje')}}" name="Puntaje" id="Puntaje" required >
+                                        <input type="number" class="form-control"value="" name="puntaje" id="puntaje" >
                                     </div>
                                 </div><br>
-        
+
                                 <input type="submit" class="btn btn-success" value="Guardar Datos">
-                                <a href="{{url('puntajeMaterial/')}}" class="btn btn-primary">Atrás</a>
-                                <input type="hidden" name="Estado" value="habilitado" />
+                                <a href="{{url('puntajeProducto/') }}" class="btn btn-primary">Atrás</a>
                             </form>
                         </div>
                     </div>
                     <div class="col-4">
-						<div class="container">
-							<br>
-							<img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
-						</div>
-					</div>
+                        <div class="container">
+                            <br>
+                            <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

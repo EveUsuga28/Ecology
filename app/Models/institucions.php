@@ -11,5 +11,8 @@ class institucions extends Model
 
     protected $primaryKey = "id";
 
+    protected $fillable = ['nombre','telefono','fechaRegistro','foto','direccion'];
+
+
     public $timestamps = false;
 }
