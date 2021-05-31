@@ -1,62 +1,126 @@
 @extends('layouts.app')
+
 @section('css')
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
+
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
 @endsection
 
-
 @section('content')
-<form action="{{url('/noticias')}}" method="post" enctype="multipart/form-data">
-@csrf
 
-<!-------------------------------------------------------------------------------->
-    <img class="wave" src="../img/wave.png">
-	<div class="contenedor">
-	<div >
-	</div>
-        <div class="login-content">
-      <div  class="form-group">
-        <h3 class="title">Registrar Noticia</h3>
+      <!--Encabezado-->
+      <x-datos datos="Noticias"/> <!--componentes laravel con envio de datos-->
+      <!--Encabezado-->
 
+      <!--Cuerpo de Pagina (Body)-->
+      <br>
+      <div class="container">
+            <div class="card">
+                  <div class="encabezado-formularios">
+                        <h1 class="text-white bg-success text-center padding"> Registrar Noticia </h1>
+                  </div>
+                  <div class="card-body">
+                        <div class="row">
+                              <div class="col-8">
+                                    <div class="container">
+                                          <form action="{{url('/noticias')}}" method="post" enctype="multipart/form-data">
+                                          @csrf
 
-  <div class="div">
-        <label for="titulo">Titulo</label>
-        <input type="text" name="titulo" id="titulo">
-  </div>
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Autor
+                                                      </div>
 
-  <div class="div">
-        <label for="introduccion">Introducción</label>
-        <textarea name="introduccion" id="introduccion" cols="30" rows="10"></textarea>
-  </div>
+                                                      <div class="div">
+                                                            <div class="form-control">{{Auth::user()->name}}</div>
+                                                            <input type="text" name="id_users" id="id_users" value="{{ Auth::user()->id }}" hidden>
+                                                      </div>
+                                                </div><br>
 
-  <div class="div">
-        <label for="contexto">Contexto</label>
-        <textarea name="contexto" id="contexto" cols="30" rows="10"></textarea>
-  </div>
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Titulo
+                                                      </div>
 
-  <div class="div">
-        <label for="fecha">Fecha</label>
-        <input type="date" name="fecha" id="titulo">
-  </div>
+                                                      <div class="div">
+                                                            <input type="text" class="form-control" name="titulo" id="titulo" required>
+                                                      </div>
+                                                </div><br>
 
-  <div class="div">
-        <label for="estado">Estado</label>
-        <input type="text" name="estado" id="titulo">
-  </div>
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Primer Párrafo
+                                                      </div>
 
-  <div class="div">
-        <label for="Foto">Foto</label>
-        <input type="file" name="Foto" id="Foto">
-  </div>
+                                                      <div class="div">
+                                                            <textarea name="introduccion" id="introduccion"  class="form-control" placeholder="Se ingresa el primer párrafo de la noticia a publicar"></textarea>
+                                                      </div>
+                                                </div><br>
 
-  <div class="div"><!--MODIFICANDOOOOOOOOOOOOOOOOOOOOOOO-->
-        <label for="id_users">Autor: </label>
-        <label for="">{{Auth::user()->name}}</label>
-        <input type="text" name="id_users" id="id_users" value="{{ Auth::user()->id }}" hidden>
-  </div>
-        <input type="submit" value="Guardar Datos">
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Texto complementario
+                                                      </div>
 
-</form>
+                                                      <div class="div">
+                                                            <textarea name="contexto" id="contexto"  class="form-control" placeholder="Se ingresa el resto de la noticia"></textarea>
+                                                      </div>
+                                                </div><br>
+
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Fecha de Publicación
+                                                      </div>
+
+                                                      <div class="div">
+                                                            <input type="date" class="form-control" name="fecha" id="titulo">
+                                                      </div>
+                                                </div><br>
+
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Estado
+                                                      </div>
+
+                                                      <div class="div">
+                                                            <input type="text" class="form-control" name="estado" id="titulo">
+                                                      </div>
+                                                </div><br>
+
+                                                <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Imagen
+                                                      </div>
+
+                                                      <div class="div">
+                                                            <input type="file" class="form-control" name="Foto" id="Foto">
+                                                      </div>
+                                                </div><br>
+  
+                                                <input type="submit" class="btn btn-success" value="Guardar Datos">
+                                          </form>
+                                    </div>
+                              </div>
+                              <div class="col-4">
+                                    <div class="container">
+                                          <br>
+                                          <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div><br><br><br>
 @endsection
 
 @section('js')
+
 @endsection

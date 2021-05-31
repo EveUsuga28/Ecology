@@ -40,7 +40,10 @@
                   </div>
 
                   <div class="div">
-                    <input type="text"  class="form-control"name="nombre"  value="" id="nombre" required>
+                    <input type="text" <div class="input-div one">
+                                                      <div class="i">
+                                                            <i class="fas fa-user"></i> Primer Párrafo
+                                                      </div>name="nombre"  value="" id="nombre" required>
                   </div>
                 </div>
 
