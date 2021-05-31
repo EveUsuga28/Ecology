@@ -1,49 +1,94 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
+
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
+@endsection
+
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Ecology</title>
-	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
+    
+    <!--Encabezado-->
+    <x-datos datos="Puntaje Producto"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <img class="wave" src="/img/wave.png">
-	<div class="contenedor">
-		<div class="img">
-			<img src="/img/planet-earth.svg">
-		</div>
-        <div class="login-content">
-      <div  class="form-group">
-        <h5 class="title">Editar Producto </h5>
+    <!--Cuerpo de Pagina (Body)-->
+	<br>
+	<div class="container">
+		<div class="card">
+			<div class="encabezado-formularios">
+				<h1 class="text-white bg-success text-center padding"> Editar Puntaje Producto </h1>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-8">
+						<div class="container">
+                     <form action="{{url('/puntajeProducto/'.$puntajeProducto->idPuntajeProducto)}}" method="post">
+                     @csrf
 
-<form action="{{url('/puntajeProducto/'.$puntajeProducto->idPuntajeProducto)}}" method="post">
-   @csrf
-   
-<div class="div">
-   <label form="idproducto" >IdProducto</label>
-   <input type=""  class="form-control"value="{{isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' }}"  name="idproducto" id="idproducto">
-</div>
-<div class="div">
-   <label form="fechaInicio">Fecha_Inicio</label>
-   <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:''}}" name="fechaInicio" id="fechaInicio" >
-   <br>
-</div>
-<div class="div">
-   <label form="fechaInicio">Fecha_Fin</label>
-   <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" >
-</div>
-<div>
-   <label form="puntaje">Puntaje</label>
-   <input type="number"  class="form-control"value="{{isset($puntajeProducto->puntaje)?$puntajeProducto->puntaje:''}}" name="puntaje" id="puntaje" >
-</div>
-<br>
-   <input type="submit" class="form-control"  value="Guardar Datos " >
+                        <div class="input-div one">
+                           <div class="i">
+                                 <i class="fas fa-user"></i> Nro Producto
+                           </div>
 
-</form>
+                           <div class="div">
+                              <input type=""  class="form-control"value="{{isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' }}"  name="idproducto" id="idproducto" hidden>
+                              <div class="form-control"><?= isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' ?></div>
+                           </div>
+                        </div><br>
+
+                        <div class="input-div one">
+                           <div class="i">
+                                 <i class="fas fa-user"></i>Fecha de Inicio 
+                           </div>
+
+                           <div class="div">
+                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:''}}" name="fechaInicio" id="fechaInicio" hidden>
+                              <div class="form-control"><?= isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:'' ?></div>
+                           </div>
+                        </div><br>
+
+                        <div class="input-div one">
+                           <div class="i">
+                                 <i class="fas fa-user"></i> Fecha de Finalización
+                           </div>
+
+                           <div class="div">
+                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" >
+                           </div>
+                        </div><br>
+
+                        <div class="input-div one">
+                           <div class="i">
+                                 <i class="fas fa-user"></i> Puntaje
+                           </div>
+
+                           <div class="div">
+                              <input type="number"  class="form-control"value="{{isset($puntajeProducto->puntaje)?$puntajeProducto->puntaje:''}}" name="puntaje" id="puntaje" hidden>
+                              <div class="form-control"><?= isset($puntajeProducto->puntaje)?$puntajeProducto->puntaje:'' ?></div>
+                           </div>
+                        </div><br>
+                        
+                        <input type="submit" class="btn btn-success"  value="Guardar Datos" >
+                     </form>
+                  </div>
+               </div>
+               <div class="col-4">
+                  <div class="container">
+                     <br>
+                     <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                  </div>
+				   </div>
+            </div>
+         </div>
+      </div>
+   </div>
+@endsection

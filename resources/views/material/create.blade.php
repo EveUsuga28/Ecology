@@ -40,16 +40,11 @@
                   </div>
 
                   <div class="div">
-                    <!--label For="NomreMaterial" >Nombre Material
                     <div class="  alert-danger" role="alert">
-
                           @error('NomreMaterial')
-                          <br>
                           <small>*{{$message}}</small>
-                          <br>
                           @enderror
                       </div>
-                    </label-->
                     <input type="text"  class="form-control" name="NomreMaterial"  value="{{old('NomreMaterial')}}" id="NomreMaterial"  required >
                   </div>
                 </div><br>
@@ -60,15 +55,11 @@
                   </div>
 
                   <div class="div">
-                    <!--label For="Puntaje" >Puntaje
                       <div class=" alert-danger">
                           @error('Puntaje')
-                          <br>
                           <small>*{{$message}}</small>
-                          <br>
                           @enderror
                       </div>
-                    </label-->
                     <input type="number" class="form-control"name="Puntaje" value="{{old('Puntaje')}}" id="Puntaje" required>
                   </div>
                 </div><br>
@@ -79,15 +70,11 @@
                   </div>
 
                   <div class="div">
-                    <!--label For="Kilos" >Kilos
                       <div class=" alert-danger">
                           @error('Kilos')
-                          <br>
                           <small>*{{$message}}</small>
-                          <br>
                           @enderror
                       </div>
-                    </label-->
                     <input type="number" class="form-control"name="Kilos" value="{{old('Kilos')}}" id="Kilos" required>
                   </div>
                 </div><br>
@@ -99,18 +86,9 @@
 
                   <div class="div">
                     <input type="file" name="Foto" value="{{old('Foto')}}" id="Foto"  class="form-control" required>
-
-                    <!--@if(isset($material->Foto))
-                      label For="Foto" >Foto</label>
-                      <img src="{{asset('storage').'/'.$material->Foto}}"  width="100" alt="">
-                    @endif
-                    <label for='Kilos'>Foto
                       @error('Foto')
-                      <br>
                         <small>*{{$message}}</small>
-                      <br>
                       @enderror
-                    </label-->
                   </div>
                 </div><br>
 
@@ -128,5 +106,4 @@
       </div>
     </div>
   </div>
-  
 @endsection

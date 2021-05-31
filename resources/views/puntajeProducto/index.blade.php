@@ -3,84 +3,84 @@
 @section('css')
 
 @endsection
+
 @section('content')
+
+    <!--Estilos del DataTable-->
     <style>
         table thead {
             background-color:#39A131 ;
             color: white;
         }
     </style>
+    <!--Estilos del DataTable-->
+
     <!--Encabezado-->
-    <x-datos datos="Puntaje Productos"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Puntaje Producto"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
+
+    <!--Cuerpo de Pagina (Body)-->
     <br>
-    <div class="container">
-    <div class="card">
-        <div class="card-body">
-            <table id="productosPuntaje" class="table table-striped" style="width:100%">
-                <thead align="center">
-                    <tr>
-                        <td>Id</td>
-                        <td>Id Producto</td>
-                        <td>Fecha Inicio</td>
-                        <td>Fecha Fin</td>
-                        <td>Puntaje</td>
-                        <td>Estado</td>
-                        @can('puntajeproductobtn')
-                        <td>Acciones</td>   
-                        @endcan
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($puntajeProductos as $puntajeProducto)
-                <tr>
-                    <td>{{$puntajeProducto->id}}</td>
-                    <td>{{$puntajeProducto->idproducto}}</td>
-                    <td>{{$puntajeProducto->fechaInicio}}</td>
-                    <td>{{$puntajeProducto->fechaFin}}</td>
-                    <td>{{$puntajeProducto->puntaje}}</td>
-                    @if($puntajeProducto->estado == 'habilitado')
-                     <td bgcolor="#81F79F">{{ $puntajeProducto->estado}}</td>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <a href="{{url('material/create') }}" class="btn btn-success " >Productos (Falta programar dirección)</a>
+                </div>
+                <hr>
+                <table id="materiales" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Id Producto</td>
+                            <td>Fecha Inicio</td>
+                            <td>Fecha Fin</td>
+                            <td>Puntaje</td>
+                            <td>Estado</td>
+                            @can('puntajeproductobtn')
+                                <td>Acciones</td>   
+                            @endcan
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($puntajeProductos as $puntajeProducto)
+                            <tr>
+                                <td>{{$puntajeProducto->id}}</td>
+                                <td>{{$puntajeProducto->idproducto}}</td>
+                                <td>{{$puntajeProducto->fechaInicio}}</td>
+                                <td>{{$puntajeProducto->fechaFin}}</td>
+                                <td>{{$puntajeProducto->puntaje}}</td>
+                                @if($puntajeProducto->estado == 'habilitado')
+                                    <td bgcolor="#81F79F">{{ $puntajeProducto->estado}}</td>
+                                @else
+                                    <td bgcolor="#FA5858">{{ $puntajeProducto->estado}}</td>
+                                @endif
 
-                    @else
-                    <td bgcolor="#FA5858">{{ $puntajeProducto->estado}}</td>
-                    @endif
-
-                    @if ($puntajeProducto->estado == 'Deshabilitado')
-                    <td>
-                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
-                            
-
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success boton">habilitar</button>
-                            
-                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}" >Editar</a>
-                        </form>
-                    </td>
-                    @else
-                    <td>
-                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
-
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                            
-                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}">Editar</a>
-                        </form>
-                    </td>
-                    @endif
-                    
-         
-                    
-                 </tr>
-                @endforeach
-                
-                </tbody>
-            </table>
+                                @if ($puntajeProducto->estado == 'Deshabilitado')
+                                    <td>
+                                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
+                                        @csrf
+                                        @method('PUT')
+                                            <button type="submit" class="btn btn-success boton">habilitar</button>
+                                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}" >Editar</a>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('puntajeProducto.Deshabilitar', $puntajeProducto->id)}}" method="POST" class="formulario-eliminar">
+                                        @csrf
+                                        @method('PUT')
+                                            <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                            <a  class="btn btn-outline-success" href="{{url('/puntajeProducto/'.$puntajeProducto->id.'/edit')}}">Editar</a>
+                                        </form>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 @endsection
 

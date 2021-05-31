@@ -58,6 +58,12 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         // $datosMaterial = request()->all();
+        $request->validate([
+            'nombre'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
         $datosProducto = request()->except('_token');
 
         if($request->hasFile('foto')){
@@ -107,6 +113,12 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'puntaje'=>' regex:/^[0-90-9 \s]+$/',
+            'foto'=> 'max:10000|mimes:jpg,png,jpeg'
+        ]);
+
         $datosProducto = request()->except(['_token','_method']);
 
         if($request->hasFile('foto')){
