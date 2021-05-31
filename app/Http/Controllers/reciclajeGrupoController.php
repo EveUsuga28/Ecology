@@ -63,7 +63,7 @@ class reciclajeGrupoController extends Controller
     public function EditarDetalle($id){
 
         $materiales = material::all();
-        $productos = Producto::all();
+        $productos = Producto::all()->where('estado','=','habilitado');
 
         return view('reciclaje/reciclajeGrupo.create',compact('materiales','id','productos'));
     }
@@ -85,6 +85,38 @@ class reciclajeGrupoController extends Controller
     }
 
 
+    public function detalleReciclajeGrupo($id){
+
+
+        $reciclajeGrupoMateriales = DB::select("(select reciclaje.kilos as kilos,reciclaje.puntaje as puntaje,reciclaje.estado as estado,M.NomreMaterial as nombre
+                                                        from detalle_reciclaje_grupos_materiales as reciclaje
+                                                        join materials as M on reciclaje.id_materiales=M.id
+                                                        where reciclaje.id_reciclaje_grupo=?)",[$id]);
+
+        $reciclajeGrupoProductos = DB::select("(select reciclaje.cantidad as cantidad,reciclaje.puntaje,reciclaje.estado,P.nombre as nombre
+                                                    from detalle_reciclaje_grupos_productos as reciclaje
+                                                    join products as P on reciclaje.id_producto=P.id
+                                                    where reciclaje.id_reciclaje_grupo=?)",[$id]);
+
+        return view('reciclaje/reciclajeGrupo.detalleReciclajeGrupo',compact('reciclajeGrupoMateriales','reciclajeGrupoProductos'));
+    }
+
+    public function deshabilitar_habilitarGrupo($id){
+
+        $detalleReciclajeGrupo = reciclaje_grupo::find($id);
+
+        if($detalleReciclajeGrupo->estado == 1){
+            $detalleReciclajeGrupo->estado = 0;
+        }else{
+            $detalleReciclajeGrupo->estado = 1;
+        }
+
+        $detalleReciclajeGrupo->save();
+
+        return back()->with('deshabilitado_habilitado','true');
+    }
+
+
     //-------------------------------------------------------------------- MATERIALES -------------------------------------------------------------------------------------//
 
 
@@ -100,13 +132,23 @@ class reciclajeGrupoController extends Controller
                     ,"detalle_reciclaje_grupos_materiales.estado as estado")
                 ->get();
             return DataTables::of($materiales)
+                ->addColumn('estado', function($materiales){
+                    $estado ='';
+                    if($materiales->estado == 1) {
+                        $estado = 'Habilitado';
+                    }else{
+                        $estado = 'Deshabilitado';
+                    }
+                    return $estado;
+                })
+                ->rawColumns(['estado'])
                 ->addColumn('action', function($materiales){
                         $acciones ='';
                     if($materiales->estado == 1) {
-                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class=""><i class="fas fa-edit"></i></a>';
-                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger">Deshabilitar</button>';
+                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar</a>';
+                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button>';
                     }else{
-                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitar('.$materiales->id.')" id="'.$materiales->id.'"  class="btn btn-secondary">habilitar</button>';
+                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitar('.$materiales->id.')" id="'.$materiales->id.'"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
                     }
                     return $acciones;
                 })
@@ -159,23 +201,6 @@ class reciclajeGrupoController extends Controller
     }
 
 
-    public function deshabilitar_habilitar($id){
-
-        $detalleReciclajeGrupo = detalle_grupos_materiales::find($id);
-
-       if($detalleReciclajeGrupo->estado == 1){
-           $detalleReciclajeGrupo->estado = 0;
-       }else{
-           $detalleReciclajeGrupo->estado = 1;
-       }
-
-       $detalleReciclajeGrupo->save();
-
-       $this->calcularDetalleGrupoMaterial($detalleReciclajeGrupo->id_reciclaje_grupo);
-
-       return back();
-    }
-
 
    public function enviarEditarDetalleMaterial($id){
 
@@ -212,13 +237,23 @@ class reciclajeGrupoController extends Controller
                     ,"detalle_reciclaje_grupos_productos.estado as estado")
                 ->get();
             return DataTables::of($productos)
+                ->addColumn('estado', function($productos){
+                    $estado ='';
+                    if($productos->estado == 1) {
+                        $estado = 'Habilitado';
+                    }else{
+                        $estado = 'Deshabilitado';
+                    }
+                    return $estado;
+                })
+                ->rawColumns(['estado'])
                 ->addColumn('action', function($productos){
                     $acciones ='';
                     if($productos->estado == '1') {
-                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class=""><i class="fas fa-edit"></i></a>';
-                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger">Deshabilitar</button>';
+                        $acciones = '<div class="btn-group"><a type="button" href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar</a>';
+                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button></div>';
                     }else{
-                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-secondary">habilitar</button>';
+                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
                     }
                     return $acciones;
                 })
@@ -299,7 +334,7 @@ class reciclajeGrupoController extends Controller
 
         DB::table('detalle_reciclaje_grupos_productos')
             ->where('id', '=',$request->id)
-            ->update(['cantidad' => $request->cantidad,'puntaje' => $this->calcularPuntajeMaterial($request->id_producto,$request->cantidad)]);
+            ->update(['cantidad' => $request->cantidad,'puntaje' => $this->calcularPuntajeProducto($request->id_producto,$request->cantidad)]);
 
         $this->calcularDetalleGrupoProducto($request->id_grupo);
 

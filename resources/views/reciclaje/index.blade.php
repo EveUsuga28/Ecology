@@ -25,7 +25,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo</a>
+                    <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo Periodo reciclaje</a>
                 </div>
                 <hr>
                 <table id="reciclaje" class="table table-striped" style="width:100%">
@@ -40,12 +40,25 @@
                     </thead>
                     <tbody>
                     @foreach($reciclaje_institucion as $reciclaje)
-                        <tr>
+                        <div>
                             <td>{{$reciclaje->id}}</td>
                             <td>{{$reciclaje->fechaInicio}}</td>
                             <td>{{$reciclaje->fechaFin}}</td>
                             <td>{{$reciclaje->estado}}</td>
-                            <td><a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-light" >editar</a></td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                @if($reciclaje->estado <> 'EN PROCESO')
+                                    <a href="{{route('reciclaje.detalleReciclaje',$reciclaje->id)}}" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
+                                @endif
+                                @if($reciclaje->estado == 'EN PROCESO')
+                                        <a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar&nbsp;</a>&nbsp;
+                                    <form class="EnviarReciclajeInstitucion" action="{{ route('reciclaje.cambiarEstado', $reciclaje->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                    <button  type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                    </form>
+                                @endif
+                                </td>
+                            </div>
                         </tr>
                     @endforeach
                     </tbody>
@@ -53,7 +66,7 @@
             </div>
         </div>
     </div>
-    <!--Cuerpo de Pagina (Body)-->
+    <!--Cuerpo de Pagina   <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i> &nbsp;editar</a> &nbsp; &nbsp; (Body)-->
 
 @endsection
 
@@ -93,6 +106,39 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+        </script>
+    @endif
+
+    <script>
+        $('.EnviarReciclajeInstitucion').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro Qué desea enviar?',
+                text: "Ya no se podra modificar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    @if(session('Enviado') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Reciclaje Enviado',
+                'success'
+            )
         </script>
     @endif
 

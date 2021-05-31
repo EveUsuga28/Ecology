@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\reciclaje_grupo;
 use App\Models\reciclaje_institucion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class reciclajeIntitucionControlller extends Controller
 
             session(['id_reciclaje' => $reciclaje->id]);
             session(['id_institucion'=> $reciclaje->id_institucion]);
+            session(['estado'=> $reciclaje->estado]);
 
             return redirect()->route('reciclajeGrupo.index')->with('creado','true');
 
@@ -60,6 +62,7 @@ class reciclajeIntitucionControlller extends Controller
 
         session(['id_reciclaje' => $reciclaje->id]);
         session(['id_institucion'=> $reciclaje->id_institucion]);
+        session(['estado'=> $reciclaje->estado]);
 
         return redirect()->route('reciclajeGrupo.index');
     }
@@ -71,6 +74,19 @@ class reciclajeIntitucionControlller extends Controller
         $reciclaje = DB::table('periodos_reciclaje')->where('fechaFin','=',null)
             ->update(['fechaFin'=>$now->format('Y-m-d')]);
     }
+
+
+    public function detalle_reciclaje($id){
+
+        $reciclaje = reciclaje_institucion::find($id);
+
+        session(['id_reciclaje' => $reciclaje->id]);
+        session(['id_institucion'=> $reciclaje->id_institucion]);
+        session(['estado'=> $reciclaje->estado]);
+
+        return redirect()->route('reciclajeGrupo.index');
+    }
+
 
     public function calcularReciclajeInstitucion($reciclajeInstitucion){
 
@@ -88,5 +104,17 @@ class reciclajeIntitucionControlller extends Controller
 
         return $result;
     }
+
+    public function EnviarReciclajeInstitucion($id){
+
+        $ReciclajeEstado = reciclaje_institucion::find($id);
+
+        $ReciclajeEstado->estado = 'ENVIADO';
+
+        $ReciclajeEstado->save();
+
+        return back()->with('Enviado','true');
+    }
+
 
 }

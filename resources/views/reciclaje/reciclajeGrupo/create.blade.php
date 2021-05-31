@@ -53,10 +53,11 @@
                                 <div class="card-body">
                                     <table id="table-materiales" class="table table-hover">
                                         <thead>
-                                        <td>Material</td>
-                                        <td>Kilos</td>
-                                        <td>Puntaje</td>
-                                        <td>Acciones</td>
+                                        <th>Material</th>
+                                        <th>Kilos</th>
+                                        <th>Puntaje</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
                                         </thead>
                                     </table>
                                 </div>
@@ -137,10 +138,11 @@
                                     <div class="card-body">
                                         <table id="table-productos" class="table table-hover">
                                             <thead>
-                                            <td>Producto</td>
-                                            <td>cantidad</td>
-                                            <td>Puntaje</td>
-                                            <td>Acciones</td>
+                                            <th>Producto</th>
+                                            <th>cantidad</th>
+                                            <th>Puntaje</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
                                             </thead>
                                         </table>
                                     </div>
@@ -244,6 +246,7 @@
                     {data: 'nombre'},
                     {data: 'kilos'},
                     {data: 'puntaje'},
+                    {data: 'estado', orderable: false},
                     {data: 'action', orderable: false}
                 ]
             });
@@ -419,6 +422,7 @@
                     {data: 'nombre'},
                     {data: 'cantidad'},
                     {data: 'puntaje'},
+                    {data: 'estado', orderable: false},
                     {data: 'action', orderable: false}
                 ]
             });

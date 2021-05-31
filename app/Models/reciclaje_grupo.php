@@ -21,6 +21,7 @@ class reciclaje_grupo extends Model
         'total_cantidad_productos_grupo',
         'total_puntaje_productos_grupo',
         'total_puntaje_grupo',
+        'estado',
         'fecha'
     ];
 
