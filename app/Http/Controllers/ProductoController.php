@@ -57,6 +57,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+
         // $datosMaterial = request()->all();
         $datosProducto = request()->except('_token');
 
@@ -107,6 +108,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $datosProducto = request()->except(['_token','_method']);
 
         if($request->hasFile('foto')){
