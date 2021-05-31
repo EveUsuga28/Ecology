@@ -41,15 +41,11 @@
                                     </div>
 
                                     <div class="div">
-                                        <!--label For="NomreMaterial" >
                                             <div class=" alert-danger">
                                                 @error('NomreMaterial')
-                                                <br>
-                                                    <small>*{{$message}}</small>
-                                                <br>
+                                                <small>*{{$message}}</small>
                                                 @enderror
                                             </div>
-                                        </label-->
                                         <input type="text"  class="form-control"name="NomreMaterial"   value="{{old('NomreMaterial',$material->NomreMaterial)}}"  id="NomreMaterial" required  >
                                     </div>
                                 </div><br>
@@ -60,15 +56,11 @@
                                     </div>
 
                                     <div class="div">
-                                        <!--label For="Puntaje" >
-                                            <div class=" alert-danger">
-                                                @error('Puntaje')
-                                                <br>
-                                                    <small>*{{$message}}</small>
-                                                <br>
-                                                @enderror
-                                            </div>
-                                        </label-->
+                                        <div class=" alert-danger">
+                                            @error('Puntaje')
+                                            <small>*{{$message}}</small>
+                                            @enderror
+                                        </div>
                                         <input type="number" class="form-control"name="Puntaje"  value="{{ old( 'Puntaje' ,$material->Puntaje) }}" id="Puntaje" required disabled=»disabled>
                                     </div>
                                 </div><br>
@@ -79,15 +71,11 @@
                                     </div>
 
                                     <div class="div">
-                                        <!--label For="Kilos" >
-                                            <div class=" alert-danger">
-                                                @error('Kilos')
-                                                <br>
-                                                <small>*{{$message}}</small>
-                                                <br>
-                                                @enderror
-                                            </div>
-                                        </label-->
+                                        <div class=" alert-danger">
+                                            @error('Kilos')
+                                            <small>*{{$message}}</small>
+                                            @enderror
+                                        </div>
                                         <input type="number" class="form-control"name="Kilos" value="{{ old( 'Kilos' ,$material->Kilos)}}" id="Kilos" required>
                                     </div>
                                 </div><br>

@@ -41,6 +41,11 @@
                   </div>
 
                   <div class="div">
+                    <div class=" alert-danger">
+                      @error('nombre')
+                      <small>*{{$message}}</small>
+                      @enderror
+                  </div>
                     <input type="text"  class="form-control" name="nombre"  value="{{ isset($producto->nombre)?$producto->nombre:'' }}" id="nombre">
                   </div>
                 </div><br>
@@ -51,6 +56,11 @@
                   </div>
 
                   <div class="div">
+                    <div class=" alert-danger">
+                      @error('puntaje')
+                      <small>*{{$message}}</small>
+                      @enderror
+                  </div>
                     <input type="number" class="form-control" name="puntaje"  value="{{ isset($producto->puntaje)?$producto->puntaje:'' }}" id="puntaje" disabled>
                   </div>
                 </div><br>
