@@ -81,7 +81,12 @@
                                                       </div>
 
                                                       <div class="div">
-                                                            <input type="date" class="form-control" name="fecha" id="titulo">
+                                                            <?php
+                                                                  date_default_timezone_set('America/Bogota');
+                                                                  $fechaInicio =date("Y-m-d H:i:s");
+                                                            ?>
+                                                            <input type="datetime"  class="form-control" value="<?= $fechaInicio ?>" name="fecha" id="fecha" hidden>
+                                                            <div class="form-control"><?= $fechaInicio ?></div>
                                                       </div>
                                                 </div><br>
 

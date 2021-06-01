@@ -37,7 +37,7 @@
                 
                 <div class="input-div one">
                   <div class="i">
-                      <i class="fas fa-user"></i> Nombre Producto
+                    <i class="fas fa-box"></i> Nombre Producto
                   </div>
 
                   <div class="div">
@@ -52,7 +52,7 @@
 
                 <div class="input-div one">
                   <div class="i">
-                      <i class="fas fa-user"></i> Puntaje
+                    <i class="fas fa-star-half-alt"></i> Puntaje
                   </div>
 
                   <div class="div">
@@ -67,7 +67,7 @@
                 
                 <div class="input-div one">
                   <div class="i">
-                      <i class="fas fa-user"></i> Foto
+                    <i class="fas fa-photo-video"></i> Foto
                   </div>
 
                   <div class="div">
@@ -82,7 +82,7 @@
           <div class="col-4">
             <div class="container">
               <br>
-              <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+              <img src="https://static.thenounproject.com/png/2034632-200.png" class="img-fluid" alt="">
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Nombre Material
+                                        <i class="fas fa-wine-bottle"></i> Nombre Material
                                     </div>
 
                                     <div class="div">
@@ -46,7 +46,7 @@
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Fecha de inicio
+                                        <i class="far fa-calendar-alt"></i> Fecha de inicio
                                     </div>
 
                                     <div class="div">
@@ -61,7 +61,7 @@
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Fecha de Finalización
+                                        <i class="far fa-calendar-alt"></i> Fecha de Finalización
                                     </div>
 
                                     <div class="div">
@@ -71,7 +71,7 @@
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Puntaje del material
+                                        <i class="fas fa-star-half-alt"></i> Puntaje del material
                                     </div>
 
                                     <div class="div">
@@ -93,7 +93,7 @@
                     <div class="col-4">
 						<div class="container">
 							<br>
-							<img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+							<img src="https://img.icons8.com/ios/452/recycle-sign.png" class="img-fluid" alt="">
 						</div>
 					</div>
                 </div>
