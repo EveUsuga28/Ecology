@@ -133,7 +133,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#PuntajesM').DataTable( {
+        $('#puntajes').DataTable( {
             responsive: true,
             autoWidth: false,
             language: {
