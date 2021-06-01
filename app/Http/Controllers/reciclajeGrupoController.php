@@ -220,6 +220,23 @@ class reciclajeGrupoController extends Controller
         return  back();
     }
 
+    public function deshabilitar_habilitar_Material($id){
+
+        $detalleReciclajeGrupo = detalle_grupos_materiales::find($id);
+
+        if($detalleReciclajeGrupo->estado == 1){
+            $detalleReciclajeGrupo->estado = 0;
+        }else{
+            $detalleReciclajeGrupo->estado = 1;
+        }
+
+        $detalleReciclajeGrupo->save();
+
+        $this->calcularDetalleGrupoMaterial($detalleReciclajeGrupo->id_reciclaje_grupo);
+
+        return back();
+    }
+
 
 
     //-------------------------------------------------------------------- PRODUCTOS -------------------------------------------------------------------------------------//

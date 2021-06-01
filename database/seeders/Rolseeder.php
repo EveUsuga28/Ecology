@@ -26,6 +26,8 @@ class Rolseeder extends Seeder
 
         Permission::create(['name'=>'crear'])->syncRoles([$role1]);
 
+        Permission::create(['name'=>'confirmarRechazar'])->syncRoles([$role1]);
+
         Permission::create(['name'=>'producto/create'])->syncRoles([$role1]);
         Permission::create(['name'=>'producto/edit'])->syncRoles([$role1]);
         Permission::create(['name'=>'producto/index'])->syncRoles([$role1]);
@@ -33,6 +35,6 @@ class Rolseeder extends Seeder
         Permission::create(['name'=>'producto.edit'])->syncRoles([$role1]);
         Permission::create(['name'=>'estado/crearpuntaje'])->syncRoles([$role1]);
         Permission::create(['name'=>'puntajeproductobtn'])->syncRoles([$role1]);
-        
+
     }
 }
