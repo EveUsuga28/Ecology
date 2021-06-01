@@ -84,6 +84,8 @@ Route::get('/reciclaje/detalleReciclaje/{id}',[App\Http\Controllers\reciclajeInt
 
 Route::Put('/reciclaje/EnviarReciclajeInstitucion/{id}',[App\Http\Controllers\reciclajeIntitucionControlller::class,'EnviarReciclajeInstitucion'])->name('reciclaje.cambiarEstado');
 
+Route::Put('/reciclaje/ConfirmarRechazarReciclaje',[App\Http\Controllers\reciclajeIntitucionControlller::class,'confirmarRechazarReciclaje'])->name('reciclaje.confirmarRechazarReciclaje');
+
 Route::resource('/reciclaje',App\Http\Controllers\reciclajeIntitucionControlller::class)->names('reciclaje');
 
 Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');
@@ -95,6 +97,8 @@ Route::post('/reciclajeGrupo/crearDetalle',[App\Http\Controllers\reciclajeGrupoC
 Route::post('/reciclajeGrupo/crearDetalleProductos',[App\Http\Controllers\reciclajeGrupoController::class,'crearDetalleProductos'])->name('reciclajeGrupo.crearDetalleProductos');
 
 Route::get('/reciclajeGrupo/deshabilitarProducto/{id}',[App\Http\Controllers\reciclajeGrupoController::class,'deshabilitar_habilitar_producto'])->name('reciclajeGrupo.deshabilitarDetalleProducto');
+
+Route::get('/reciclajeGrupo/deshabilitar/{id}',[App\Http\Controllers\reciclajeGrupoController::class,'deshabilitar_habilitar_Material'])->name('reciclajeGrupo.deshabilitarDetalleMaterial');
 
 Route::get('/reciclajeGrupo/enviarEditarDetalleMaterial/{id}',[App\Http\Controllers\reciclajeGrupoController::class,'enviarEditarDetalleMaterial'])->name('reciclajeGrupo.enviarEditarDetalleMaterial');
 
