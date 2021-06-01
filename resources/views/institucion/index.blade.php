@@ -53,7 +53,7 @@
                                 </td>
                                 <td>{{ $instituciones->direccion }}</td>
                                 <td>
-                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-warning">Editar</a>
+                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>
                             </tr>
                         @endforeach

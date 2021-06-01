@@ -47,7 +47,7 @@
                                 <td>{{ $grupos->id }}</td>
                                 <td>{{ $grupos->Estado }}</td>
                                 <td>
-                                    <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-warning">Editar</a>
+                                    <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -16,7 +16,7 @@
     <!--Estilos del DataTable-->
 
     <!--Encabezado-->
-    <x-datos datos="Productos"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Noticias"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->

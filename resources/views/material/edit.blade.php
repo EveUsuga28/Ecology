@@ -82,7 +82,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-photo-video"></i></i> Imagen del material
+                                        <i class="fas fa-photo-video"></i> Imagen del material
                                     </div>
 
                                     <div class="div">

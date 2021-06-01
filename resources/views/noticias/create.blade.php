@@ -57,7 +57,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-user"></i> Primer Párrafo
+                                                            <i class="fas fa-align-left"></i> Primer Párrafo
                                                       </div>
 
                                                       <div class="div">
@@ -67,7 +67,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-user"></i> Texto complementario
+                                                            <i class="fas fa-align-left"></i> Texto complementario
                                                       </div>
 
                                                       <div class="div">
@@ -109,7 +109,7 @@
                               <div class="col-4">
                                     <div class="container">
                                           <br>
-                                          <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                                          <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-vector-newspaper-icon-png-image_1577280.jpg" class="img-fluid" alt="">
                                     </div>
                               </div>
                         </div>

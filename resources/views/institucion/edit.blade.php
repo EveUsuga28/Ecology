@@ -37,7 +37,7 @@
 
                                     <div class="input-div one">
                                         <div class="i">
-                                            <i class="fas fa-user"></i> Institución
+                                            <i class="fas fa-school"></i> Nombre de la Institución
                                         </div>
 
                                         <div class="div">
@@ -47,7 +47,7 @@
 
                                     <div class="input-div one">
                                         <div class="i">
-                                            <i class="fas fa-user"></i> Télefono
+                                            <i class="fas fa-phone"></i> Teléfono
                                         </div>
 
                                         <div class="div">
@@ -57,7 +57,7 @@
 
                                     <div class="input-div one">
                                         <div class="i">
-                                            <i class="fas fa-user"></i> Fecha de Registro
+                                            <i class="far fa-calendar-alt"></i> Fecha de registo
                                         </div>
 
                                         <div class="div">
@@ -67,7 +67,7 @@
 
                                     <div class="input-div one">
                                         <div class="i">
-                                            <i class="fas fa-user"></i> Fecha de Registro
+                                            <i class="fas fa-route"></i> Dirección
                                         </div>
 
                                         <div class="div">
@@ -77,7 +77,7 @@
 
                                     <div class="input-div one">
                                         <div class="i">
-                                            <i class="fas fa-user"></i> Foto
+                                            <i class="fas fa-photo-video"></i> Escudo
                                         </div>
 
                                         <div class="div">
@@ -92,7 +92,7 @@
                         <div class="col-4">
                             <div class="container">
                                 <br>
-                                <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                                <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-school-icon-png-image_1606554.jpg" class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>

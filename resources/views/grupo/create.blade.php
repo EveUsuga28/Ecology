@@ -35,7 +35,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Grupo
+                                        <i class="fas fa-graduation-cap"></i> Grupo
                                     </div>
 
                                     <div class="div">
@@ -45,7 +45,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Instituciones
+                                        <i class="fas fa-school"></i> Institucion
                                     </div>
 
                                     <div class="div">
@@ -60,14 +60,12 @@
         
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Estado
+                                        <i class="far fa-bell-slash"></i> Estado
                                     </div>
                                     
                                     <div class="div">
-                                        <select name="Estado" class="form-control" id="Estado">
-                                            <option value="1">habilitado</option>
-                                            <option value="0">deshabilitado</option>
-                                        </select>
+                                        <input type="number" value="1" name="Estado" class="form-control" id="Estado" hidden>
+                                        <div class="form-control">Habilitado</div>
                                     </div>
                                 </div><br>
                                     
@@ -78,7 +76,7 @@
                     <div class="col-4">
                         <div class="container">
                             <br>
-                            <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                            <img src="https://image.flaticon.com/icons/png/512/43/43289.png" class="img-fluid" alt="">
                         </div>
                     </div>
                 </div>
