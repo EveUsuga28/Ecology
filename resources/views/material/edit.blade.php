@@ -37,7 +37,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-user"></i> Nombre Material
+                                        <i class="fas fa-wine-bottle"></i> Nombre Material
                                     </div>
 
                                     <div class="div">
@@ -52,7 +52,7 @@
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="fas fa-id-card"></i> Puntaje
+                                    <i class="fas fa-star-half-alt"></i> Puntaje
                                     </div>
 
                                     <div class="div">
@@ -67,7 +67,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-hashtag"></i> Kilos 
+                                        <i class="fas fa-balance-scale"></i></i> Kilos 
                                     </div>
 
                                     <div class="div">
@@ -82,7 +82,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fa fa-envelope-square"></i> Cambiar Foto
+                                        <i class="fas fa-photo-video"></i></i> Imagen del material
                                     </div>
 
                                     <div class="div">
@@ -97,7 +97,7 @@
                     <div class="col-4">
 						<div class="container">
 							<br>
-							<img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+							<img src="https://img.icons8.com/ios/452/recycle-sign.png" class="img-fluid" alt="">
 						</div>
 					</div>
                 </div>
