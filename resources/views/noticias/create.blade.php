@@ -47,7 +47,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-user"></i> Titulo
+                                                            <i class="far fa-address-book"></i> Titulo
                                                       </div>
 
                                                       <div class="div">
@@ -77,7 +77,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-user"></i> Fecha de Publicación
+                                                            <i class="far fa-calendar-alt"></i> Fecha de Publicación
                                                       </div>
 
                                                       <div class="div">
@@ -90,19 +90,11 @@
                                                       </div>
                                                 </div><br>
 
-                                                <div class="input-div one">
-                                                      <div class="i">
-                                                            <i class="fas fa-user"></i> Estado
-                                                      </div>
-
-                                                      <div class="div">
-                                                            <input type="text" class="form-control" name="estado" id="titulo">
-                                                      </div>
-                                                </div><br>
+                                                <input type="text" class="form-control" name="estado" id="estado" value="1" hidden>
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-user"></i> Imagen
+                                                            <i class="fas fa-photo-video"></i> Imagen
                                                       </div>
 
                                                       <div class="div">
