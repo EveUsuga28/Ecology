@@ -116,5 +116,17 @@ class reciclajeIntitucionControlller extends Controller
         return back()->with('Enviado','true');
     }
 
+    public function confirmarRechazarReciclaje(Request $request){
+
+        $ReciclajeEstado = reciclaje_institucion::find($request->id);
+
+        if($request->estado == 'Confirmar'){
+            $ReciclajeEstado->estado='CONFIRMADO';
+            $ReciclajeEstado->save();
+            return back()->with('confirmado','true');
+        }
+
+    }
+
 
 }

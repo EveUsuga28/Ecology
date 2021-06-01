@@ -57,6 +57,23 @@
                                     <button  type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
                                     </form>
                                 @endif
+                                @can('confirmarRechazar')
+                                    @if($reciclaje->estado == 'ENVIADO')
+                                            <form class="confirmar" action="{{ route('reciclaje.confirmarRechazarReciclaje')}}" method="POST">&nbsp;
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="Confirmar" name="estado">
+                                                <input type="hidden" value="{{$reciclaje->id}}" name="id">
+                                                <button  type="submit" class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Confirmar&nbsp;</button>&nbsp;&nbsp;
+                                            </form>
+                                            <form class="rechazar" action="{{ route('reciclaje.confirmarRechazarReciclaje', $reciclaje->id)}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button  type="submit" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Rechazar&nbsp;</button>&nbsp;
+                                            </form>
+                                    @elseif($reciclaje->estado == 'CONFIRMADO')
+                                    @endif
+                                @endcan
                                 </td>
                             </div>
                         </tr>
@@ -66,7 +83,7 @@
             </div>
         </div>
     </div>
-    <!--Cuerpo de Pagina   <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i> &nbsp;editar</a> &nbsp; &nbsp; (Body)-->
+    <!--Cuerpo de Pagina (Body)-->
 
 @endsection
 
@@ -138,6 +155,39 @@
             Swal.fire(
                 'Exito!',
                 'Reciclaje Enviado',
+                'success'
+            )
+        </script>
+    @endif
+
+    <script>
+        $('.confirmar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro Qué desea confirmar?',
+                text: "Ya no se podra modificar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    @if(session('confirmado') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Reciclaje Confirmado!',
                 'success'
             )
         </script>
