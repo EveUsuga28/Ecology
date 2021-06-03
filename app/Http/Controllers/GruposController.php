@@ -101,7 +101,8 @@ class GruposController extends Controller
 
         grupos::where('id','=',$id)->update($datosgrupo);
         $grupo = grupos::findOrFail($id);
-        return view('grupo.edit',compact('grupo'));
+
+        return redirect('grupo')->with('EditGrupo','true');
     }
 
     /**

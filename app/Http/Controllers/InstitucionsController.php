@@ -18,17 +18,27 @@ class InstitucionsController extends Controller
      */
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
-        $institucion=DB::table('institucions')
-                ->select('id','Nombre','Telefono', 'fechaRegistro','Foto','direccion')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('Nombre','LIKE','%'.$texto.'%')
-                ->orWhere('Telefono','LIKE','%'.$texto.'%')
-                ->orWhere('fechaRegistro','LIKE','%'.$texto.'%')
-                ->orWhere('direccion','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('institucion.index', compact('institucion','texto'));
+        $rol = auth()->user()->getRoleNames();
+
+
+        if($rol[0]=='admin'){
+            $texto=trim($request->get('texto'));
+            $institucion=DB::table('institucions')
+                    ->select('id','Nombre','Telefono', 'fechaRegistro','Foto','direccion')
+                    ->where('id','LIKE','%'.$texto.'%')
+                    ->orWhere('Nombre','LIKE','%'.$texto.'%')
+                    ->orWhere('Telefono','LIKE','%'.$texto.'%')
+                    ->orWhere('fechaRegistro','LIKE','%'.$texto.'%')
+                    ->orWhere('direccion','LIKE','%'.$texto.'%')
+                    ->orderBy('id', 'asc')
+                    ->paginate();
+            return view('institucion.index', compact('institucion','texto'));
+        }else{
+            $institucion = institucions::find(auth()->user()->id_institucion);
+            return view('institucion.director', compact('institucion'));
+        }
+
+        
     }
 
     /**
@@ -106,7 +116,8 @@ class InstitucionsController extends Controller
 
         institucions::where('id','=',$id)->update($datosInstitucion);
         $institucion = institucions::findOrFail($id);
-        return view('institucion.edit',compact('institucion'));
+
+        return redirect('institucion')->with('EditInstitucion','true');
     }
 
     /**

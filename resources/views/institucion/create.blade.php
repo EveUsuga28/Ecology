@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="div">
-                                        <input type="text" class="form-control" name="telefono" id="telefono" required>
+                                        <input type="text" class="form-control" name="telefono" id="telefono" maxLength="9" required>
                                     </div>
                                 </div><br>
 
