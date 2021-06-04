@@ -23,7 +23,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $rol = auth()->user()->getRoleNames();
+
+        $idInstitucion = auth()->user()->id_institucion;
+
+        if ($rol[0]=='admin') {
+            return view('home');
+
+        }else{
+
+            if ($idInstitucion == Null) {
+                return view('institucion.create');
+            }else{
+                return view('home');
+            }
+
+            
+        }
+
+        
     }
     public function informeNombres($id)
     {

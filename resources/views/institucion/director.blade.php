@@ -16,7 +16,7 @@
     <!--Estilos del DataTable-->
 
     <!--Encabezado-->
-    <x-datos datos="Instituciones"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Institución"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->
@@ -24,23 +24,60 @@
     <div class="container">
         <div class="card">
             <div class="encabezado-formularios">
-                <h1 class="text-white bg-success text-center padding">nombre de la institucion que le pertenece al usuario</h1>
+                <h1 class="text-white bg-success text-center padding">{{ $institucion-> nombre}}</h1>
             </div>
             <div class="car-body">
                 <div class="row">
-                    <div class="col-3">
-                        <img src="https://img.icons8.com/ios/452/kawaii-ice-cream.png" class="img-thumbnail" alt="">
-                    </div>
-                    <div class="col-9">
-                        <div class="input-div one">
-                            <div class="i">
-                                <i class="fas fa-school"></i> Nombre de la Institución
-                            </div>
+                    <div class="col-7">
+                        <div class="container">
+                            <div class="input-div one">
+                                <div class="i"><br>
+                                    <i class="fas fa-user"></i> Director Institucional
+                                </div>
 
-                            <div class="div">
-                                <input class="form-control" type="text" value="{{$institucion->nombre}}">
-                            </div>
-                        </div><br>
+                                <div class="div">
+                                    <div class="form-control">{{ Auth::user()->name }}</div>
+                                </div>
+                            </div><br>
+
+                            <div class="input-div one">
+                                <div class="i">
+                                    <i class="fas fa-phone"></i> Teléfono de la institución
+                                </div>
+
+                                <div class="div">
+                                    <div class="form-control">{{ $institucion-> telefono}}</div>
+                                </div>
+                            </div><br>
+
+                            <div class="input-div one">
+                                <div class="i">
+                                    <i class="fas fa-route"></i> Dirección de la institución
+                                </div>
+
+                                <div class="div">
+                                    <div class="form-control">{{ $institucion->direccion }}</div>
+                                </div>
+                            </div><br>
+
+                            <div class="input-div one">
+                                <div class="i">
+                                    <i class="far fa-calendar-alt"></i> Fecha de registo
+                                </div>
+
+                                <div class="div">
+                                    <div class="form-control">{{ $institucion->fechaRegistro }}</div>
+                                </div>
+                            </div><br>
+
+                            <a href="{{ url('/institucion/'.$institucion->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="container">
+                            <br>
+                            <img src="{{asset('storage').'/'.$institucion->foto}}"  class="img-thumbnail"  alt="">
+                        </div>
                     </div>
                 </div>
             </div>
