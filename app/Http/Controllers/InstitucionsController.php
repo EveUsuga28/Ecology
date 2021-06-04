@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\institucions;
+use App\Models\User;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,7 @@ class InstitucionsController extends Controller
             return view('institucion.director', compact('institucion'));
         }
 
-        
+
     }
 
     /**
@@ -66,7 +67,10 @@ class InstitucionsController extends Controller
             $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
         }
 
-        institucions::insert($datosInstitucion);
+        $institucion = institucions::create($datosInstitucion);
+
+
+        $this->asignarInstitucion($institucion->id);
 
         return redirect('institucion')->with('mensaje','Empleado agregado exitosamente');
         //return response()->json($datosInstitucion);
@@ -128,7 +132,7 @@ class InstitucionsController extends Controller
      */
     public function destroy($id)
     {
-        // 
+        //
         $instituciones=institucions::findOrFail($id);
 
         if(Storage::delete('public/'.$instituciones->Foto)){
@@ -136,5 +140,13 @@ class InstitucionsController extends Controller
         }
 
         return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');
+    }
+
+    public function asignarInstitucion($id){
+        $usuario = User::find( auth()->user()->id);
+
+        $usuario->id_institucion = $id;
+
+        $usuario->save();
     }
 }
