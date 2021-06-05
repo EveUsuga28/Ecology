@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\reciclaje_grupo;
 use App\models\institucions;
 use Illuminate\Http\Request;
+use app\Models\reciclaje_institucion;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 
@@ -11,32 +12,16 @@ class InformesController extends Controller
 {
 
      public function all(Request $request){
-        $sql=DB::table('reciclaje_grupos')
-   ->Join('grupos', 'reciclaje_grupos.id_grupo', '=', 'grupos.id')
-   ->Join('institucions','grupos.id_institucion', '=','institucions.id')
-   ->select('reciclaje_grupos.*',
-   'grupos.*','institucions.*')
-   ->orderBy('total_puntaje_grupo','DESC')
-   ->get();
-   return response(json_encode($sql),200)->header('Content-type','text/plain');
-      // $reciclaje_grupos = DB::table('reciclaje_grupos')
-        //->select('reciclaje_grupos.*')
+        $sql=DB::table('periodos_reciclaje')
+       ->join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
+        ->select("institucions.nombre",
+        DB::raw("(select ifnull(sum(total_puntaje_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
+                      ." and estado=1 "." and fechaFin=null )"."as totalPuntaje" ))
 
-        //->get();
-        //return response(json_encode($reciclaje_grupos),200)->header('Content-type','text/plain');
-        //return "hola";
-        //public function all(Request $request){
-          //  $reciclaje_grupos = DB::table('reciclaje_grupos ')
-            //->join("reciclaje_grupos","id_grupo", "=", "grupos.id")
-             //->select("reciclaje_grupos.total_puntaje_grupo"
-             //,"grupos.grupo")
-             //->get();
-             //SELECT A.total_puntaje_grupo,B.grupo
-             //from reciclaje_grupos A join grupos B on(A.id_grupo = B.id)
-             //return response(json_encode($reciclaje_grupos),200)->header('Content-type','text/plain');
-             //return "hola";
+        ->get();
+                   // return $reciclaje_institucion;
+    return response(json_encode($sql),200)->header('Content-type','text/plain');
 }
-
 
 
 
@@ -46,5 +31,17 @@ class InformesController extends Controller
     }
 
 
+//Mi consulta
 
+//$sql=DB::table('reciclaje_grupos')
+//->Join('grupos', 'reciclaje_grupos.id_grupo', '=', 'grupos.id')
+//->Join('institucions','grupos.id_institucion', '=','institucions.id')
+//->select('reciclaje_grupos.*',
+//'grupos.*','institucions.*')
+// DB::raw('SUM(total_puntaje_grupo')
+//->where("id" ,"=", "id_institucion")
+//->orderBy('total_puntaje_grupo','DESC')
+ //->groupBy('id_institucion')
+//->get();
+//return response(json_encode($sql),200)->header('Content-type','text/plain');
 }
