@@ -24,10 +24,13 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
+                @if(Auth()->user()->hasPermissionTo('institucionNull'))
+                @else
                 <div>
                     <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
                 </div>
                 <hr>
+                @endif
                 <table id="grupos" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
@@ -40,12 +43,20 @@
                     </thead>
 
                     <tbody align="center">
+                    <div hidden>{{$contador = 0 }}</div>
                         @foreach( $grupo as $grupos )
                             <tr>
-                                <td>{{ $grupos->id }}</td>
-                                <td>{{ $grupos->Grupo }}</td>
-                                <td>{{ $grupos->id }}</td>
-                                <td>{{ $grupos->Estado }}</td>
+                                
+                                <td>{{$contador += 1}}</td>
+                                <td>{{ $grupos->grupo }}</td>
+
+                                @foreach ($institucion as $nombreinstitucion)
+                                    @if($nombreinstitucion->id == $grupos->id_institucion)
+                                        <td>{{ $nombreinstitucion->nombre}}</td>
+                                    @endif
+                                @endforeach
+                                
+                                <td>{{ $grupos->estado }}</td>
                                 <td>
                                     <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>

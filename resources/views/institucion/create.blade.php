@@ -11,6 +11,12 @@
 		.encabezado-formularios{
 			border-bottom: 1px solid gray;
 		}
+
+        .alertaUsuario{
+            padding: 20px;
+            color: white;
+            border-radius: 10px;
+        }
 	</style>
 @endsection
 
@@ -28,6 +34,15 @@
                 <h1 class="text-white bg-success text-center padding"> Registrar Institución </h1>
             </div>
             <div class="card-body">
+                @if(Auth()->user()->id_institucion != null || Auth()->user()->hasPermissionTo('institucionNull'))
+                    <div></div>
+                @else
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="alertaUsuario bg-info">Para navegar en el sistema es necesario tener una institución registrada</p>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-8">
                         <div class="container">

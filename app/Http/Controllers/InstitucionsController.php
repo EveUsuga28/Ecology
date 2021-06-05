@@ -142,6 +142,9 @@ class InstitucionsController extends Controller
         return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');
     }
 
+
+    // Asignar Institución :) 
+
     public function asignarInstitucion($id){
         $usuario = User::find( auth()->user()->id);
 

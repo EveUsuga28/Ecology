@@ -24,10 +24,6 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div>
-                    <a href="{{ route('institucion.create') }}" class="btn btn-success">Nuevo</a>
-                </div>
-                <hr>
                 <table id="institucion" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>

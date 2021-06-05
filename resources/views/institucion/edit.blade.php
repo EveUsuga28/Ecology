@@ -55,15 +55,15 @@
                                         </div>
                                     </div><br>
 
-                                    <div class="input-div one">
+                                    <!--div class="input-div one">
                                         <div class="i">
                                             <i class="far fa-calendar-alt"></i> Fecha de registo
                                         </div>
 
-                                        <div class="div">
-                                            <input type="date" class="form-control" name="fechaRegistro" id="fechaRegistro" value="{{ $institucion->fechaRegistro }}" required>
-                                        </div>
-                                    </div><br>
+                                        <div class="div"-->
+                                            <input type="date" name="fechaRegistro" id="fechaRegistro" value="{{ $institucion->fechaRegistro }}" hidden>
+                                        <!--/div>
+                                    </div><br-->
 
                                     <div class="input-div one">
                                         <div class="i">
