@@ -37,13 +37,13 @@
             var arreglo = JSON.parse(res);
             console.log(arreglo);
             for(var x=0; x<arreglo.length; x++){
-              var todo='<tr><td>'+arreglo[x].total_puntaje_grupo+'</td>';
+              var todo='<tr><td>'+arreglo[x].totalPuntaje+'</td>';
                 todo+='<td>'+arreglo[x].nombre+'</td>';
               todo+='<td></td></tr>';
               console.log(todo);
               $('tbody').append(todo);
               grupos.push(arreglo[x].nombre);
-              valores.push(arreglo[x].total_puntaje_grupo);
+              valores.push(arreglo[x].totalPuntaje);
 
             }
             generarGrafica();
