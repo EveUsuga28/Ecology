@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\grupos;
+use App\Models\institucions;
 use App\Models\reciclaje_grupo;
 use App\Models\reciclaje_institucion;
 use Carbon\Carbon;
@@ -21,7 +23,7 @@ class reciclajeIntitucionControlller extends Controller
         $rol = auth()->user()->getRoleNames();
 
        if($rol[0]=='admin'){
-           $reciclaje_institucion = reciclaje_institucion::join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
+                $reciclaje_institucion = reciclaje_institucion::join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
                ->select("institucions.nombre","periodos_reciclaje.*",
                    DB::raw("(select ifnull(sum(total_kilos_material_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
                    ." and estado=1)"."as kilos"),
@@ -36,6 +38,8 @@ class reciclajeIntitucionControlller extends Controller
                    DB::raw("(select ifnull(sum(total_puntaje_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
                        ." and estado=1)"."as totalPuntaje")
                     )->get();
+
+
        }else{
            $reciclaje_institucion = DB::table('periodos_reciclaje')
                ->where('id_institucion', '=',auth()->user()->id_institucion)
