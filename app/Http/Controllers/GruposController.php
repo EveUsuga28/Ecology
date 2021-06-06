@@ -97,12 +97,11 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
         $datosgrupo = request()->except(['_token','_method']);
 
         grupos::where('id','=',$id)->update($datosgrupo);
-        $grupo = grupos::findOrFail($id);
 
         return redirect('grupo')->with('EditGrupo','true');
     }

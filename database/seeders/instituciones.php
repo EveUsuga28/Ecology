@@ -26,25 +26,5 @@ class instituciones extends Seeder
 
       $institucion->save();
 
-      $institucion2 = new institucions();
-
-      $institucion2->nombre = 'institucion educativa 2';
-      $institucion2->telefono = '1234567';
-      $institucion2->fechaRegistro = '2020-12-24 09:34:00';
-      $institucion2->foto = 'vacio XD';
-      $institucion2->direccion = 'calle random';
-
-      $institucion2->save();
-
-      $institucion3 = new institucions();
-
-      $institucion3->nombre = 'institucion educativa 3';
-      $institucion3->telefono = '1234567';
-      $institucion3->fechaRegistro = '2020-12-24 09:34:00';
-      $institucion3->foto = 'vacio XD';
-      $institucion3->direccion = 'calle random';
-
-      $institucion3->save();
-
     }
 }
