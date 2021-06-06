@@ -37,7 +37,7 @@
                             <td>Fecha</td>
                             <td>Estado</td>
                             <td>Foto</td>
-                            <td>Acción</td>
+                            <td>Acciones</td>
                         </tr>
                     </thead>
                     <tbody>

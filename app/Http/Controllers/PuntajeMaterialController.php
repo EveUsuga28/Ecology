@@ -35,7 +35,8 @@ class PuntajeMaterialController extends Controller
     {
         $rol = auth()->user()->getRoleNames();
         if($rol[0]=='admin'){
-        return view('puntajeMaterial.create',compact('id'));
+        $nombreMaterial = material::findOrFail($id);
+        return view('puntajeMaterial.create',compact('nombreMaterial'));
         }
     }
 

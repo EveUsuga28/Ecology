@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ecology</title>
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="text/css" href="{{asset('img/logo.png')}} ">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
@@ -24,8 +25,8 @@
                 </div>
                 <div class="enlaces" id="enlaces">
                         <a href="#" id="enlace-inicio" class="btn-header">Inicio</a>
-                        <a href="#" id="enlace-equipo" class="btn-header">Acerca De</a>
-                        <a href="#" id="enlace-servicio" class="btn-header">Servicios</a>
+                        <a href="#" id="enlace-equipo" class="btn-header">Equipo</a>
+                        <a href="#" id="enlace-servicio" class="btn-header">Nosotros</a>
                         <a href="#" id="enlace-contacto" class="btn-header">Contacto</a>
                         <a href="{{ route('login')}}"  class="btn-header">Iniciar Sesión</a>
                 </div>

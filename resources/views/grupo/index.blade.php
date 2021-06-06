@@ -21,15 +21,15 @@
 
     <!--Cuerpo de Pagina (Body)-->
     <br>
-    <div class="container">
+    <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 @if(Auth()->user()->hasPermissionTo('institucionNull'))
                 @else
-                <div>
-                    <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
-                </div>
-                <hr>
+                    <div>
+                        <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
+                    </div>
+                    <hr>
                 @endif
                 <table id="grupos" class="table table-striped" style="width:100%">
                     <thead>
@@ -63,9 +63,25 @@
                                         {{ __('Deshabilitado') }}
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
-                                </td>
+
+                                @if ($grupos->estado == 0)
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Habilitar</button>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Deshabilitar</button>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

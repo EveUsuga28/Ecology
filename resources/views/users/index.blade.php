@@ -31,13 +31,13 @@
                 <table id="reciclaje" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nombre</th>
                             <th>Tipo de Documento</th>
                             <th>Documento</th>
                             <th>Correo</th>
                             <th>Estado</th>
-                            <th>Acción</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,7 @@
                                                 <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}">Editar</a>
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-success boton">habilitar</button>
+                                                <button type="submit" class="btn btn-success boton">Habilitar</button>
                                             </form>
                                         </td>
                                     @else
