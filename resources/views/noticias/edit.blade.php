@@ -37,7 +37,7 @@
 
                                             <div class="input-div one">
                                                 <div class="i">
-                                                    <i class="fas fa-user"></i> Titulo
+                                                <i class="far fa-address-book"></i> Titulo
                                                 </div>
 
                                                 <div class="div">
@@ -47,7 +47,7 @@
 
                                             <div class="input-div one">
                                                 <div class="i">
-                                                    <i class="fas fa-user"></i> Primer Párrafo
+                                                    <i class="fas fa-align-left"></i> Primer Párrafo
                                                 </div>
 
                                                 <div class="div">
@@ -57,7 +57,7 @@
 
                                             <div class="input-div one">
                                                 <div class="i">
-                                                    <i class="fas fa-user"></i> Texto Complementario
+                                                    <i class="fas fa-align-left"></i> Texto Complementario
                                                 </div>
 
                                                 <div class="div">
@@ -67,17 +67,18 @@
 
                                             <div class="input-div one">
                                                 <div class="i">
-                                                    <i class="fas fa-user"></i> Publicado en:
+                                                    <i class="far fa-calendar-alt"></i> Publicado en:
                                                 </div>
 
                                                 <div class="div">
-                                                    <input type="date" class="form-control" value="{{$noticias->Fecha}}"name="fecha" id="titulo">
+                                                    <input type="date" class="form-control" value="{{$noticias->Fecha}}"name="fecha" id="titulo" hidden>
+                                                    <div class="form-control">{{$noticias->Fecha}}</div>
                                                 </div>
                                             </div><br>
                                             
                                             <div class="input-div one">
                                                 <div class="i">
-                                                    <i class="fas fa-user"></i> Imagen
+                                                    <i class="fas fa-photo-video"></i> Imagen
                                                 </div>
 
                                                 <div class="div">
@@ -93,7 +94,7 @@
                               <div class="col-4">
                                     <div class="container">
                                           <br>
-                                          <img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+                                          <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-vector-newspaper-icon-png-image_1577280.jpg" class="img-fluid" alt="">
                                     </div>
                               </div>
                         </div>

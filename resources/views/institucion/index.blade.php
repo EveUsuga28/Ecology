@@ -24,10 +24,6 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div>
-                    <a href="{{ route('institucion.create') }}" class="btn btn-success">Nuevo</a>
-                </div>
-                <hr>
                 <table id="institucion" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
@@ -53,7 +49,7 @@
                                 </td>
                                 <td>{{ $instituciones->direccion }}</td>
                                 <td>
-                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-warning">Editar</a>
+                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>
                             </tr>
                         @endforeach

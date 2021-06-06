@@ -48,7 +48,8 @@ class NoticiasController extends Controller
         noticias::insert($datosNoticias);
         Cache::forget('noticias');
 
-        return response()->json($datosNoticias);
+        //return response()->json($datosNoticias);
+        return redirect('noticias')->with('mensaje','Noticia publicada exitosamente');        //return view('noticias.index');
     }
 
     /**

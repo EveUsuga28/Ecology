@@ -40,7 +40,7 @@ class Rolseeder extends Seeder
         Permission::create(['name'=>'estado/crearpuntaje'])->syncRoles([$role1]);
         Permission::create(['name'=>'puntajeproductobtn'])->syncRoles([$role1]);
 
-
+        Permission::create(['name'=>'institucionNull'])->syncRoles([$role1]);
 
     }
 }

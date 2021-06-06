@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\institucions;
+use App\Models\User;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,17 +19,27 @@ class InstitucionsController extends Controller
      */
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
-        $institucion=DB::table('institucions')
-                ->select('id','Nombre','Telefono', 'fechaRegistro','Foto','direccion')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('Nombre','LIKE','%'.$texto.'%')
-                ->orWhere('Telefono','LIKE','%'.$texto.'%')
-                ->orWhere('fechaRegistro','LIKE','%'.$texto.'%')
-                ->orWhere('direccion','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('institucion.index', compact('institucion','texto'));
+        $rol = auth()->user()->getRoleNames();
+
+
+        if($rol[0]=='admin'){
+            $texto=trim($request->get('texto'));
+            $institucion=DB::table('institucions')
+                    ->select('id','Nombre','Telefono', 'fechaRegistro','Foto','direccion')
+                    ->where('id','LIKE','%'.$texto.'%')
+                    ->orWhere('Nombre','LIKE','%'.$texto.'%')
+                    ->orWhere('Telefono','LIKE','%'.$texto.'%')
+                    ->orWhere('fechaRegistro','LIKE','%'.$texto.'%')
+                    ->orWhere('direccion','LIKE','%'.$texto.'%')
+                    ->orderBy('id', 'asc')
+                    ->paginate();
+            return view('institucion.index', compact('institucion','texto'));
+        }else{
+            $institucion = institucions::find(auth()->user()->id_institucion);
+            return view('institucion.director', compact('institucion'));
+        }
+
+
     }
 
     /**
@@ -56,7 +67,10 @@ class InstitucionsController extends Controller
             $datosInstitucion['foto']=$request->file('foto')->store('uploads','public');
         }
 
-        institucions::insert($datosInstitucion);
+        $institucion = institucions::create($datosInstitucion);
+
+
+        $this->asignarInstitucion($institucion->id);
 
         return redirect('institucion')->with('mensaje','Empleado agregado exitosamente');
         //return response()->json($datosInstitucion);
@@ -106,7 +120,8 @@ class InstitucionsController extends Controller
 
         institucions::where('id','=',$id)->update($datosInstitucion);
         $institucion = institucions::findOrFail($id);
-        return view('institucion.edit',compact('institucion'));
+
+        return redirect('institucion')->with('EditInstitucion','true');
     }
 
     /**
@@ -117,7 +132,7 @@ class InstitucionsController extends Controller
      */
     public function destroy($id)
     {
-        // 
+        //
         $instituciones=institucions::findOrFail($id);
 
         if(Storage::delete('public/'.$instituciones->Foto)){
@@ -125,5 +140,16 @@ class InstitucionsController extends Controller
         }
 
         return redirect('institucion')->with('mensaje','Empleado eliminado exitosamente exitosamente');
+    }
+
+
+    // Asignar Institución :) 
+
+    public function asignarInstitucion($id){
+        $usuario = User::find( auth()->user()->id);
+
+        $usuario->id_institucion = $id;
+
+        $usuario->save();
     }
 }

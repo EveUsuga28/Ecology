@@ -20,7 +20,7 @@
                          <img src="{{asset('storage').'/'.$producto->foto}}" class="estilon">
                          <!-- {{$producto->foto}}-->
                     </figure>
-                    <div class="contenido" style="text-align:center">
+                    <div class="contenido">
                        <h3>Producto N° {{$producto->id}}</h3>
                        <h3>Nombre del Producto: {{$producto->nombre}}</h3> 
                        <h3>Puntaje: {{$producto->puntaje}} </h3>
