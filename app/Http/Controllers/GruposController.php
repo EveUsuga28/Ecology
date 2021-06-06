@@ -28,7 +28,7 @@ class GruposController extends Controller
             $id = auth()->user()->id_institucion;
             $institucion = institucions::all();
             $grupo = grupos::all()->where('id_institucion','=',$id);
-            return view('grupo.index',compact('grupo'));
+            return view('grupo.index',compact('grupo','institucion'));
         }
         
     }
@@ -97,12 +97,11 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
         $datosgrupo = request()->except(['_token','_method']);
 
         grupos::where('id','=',$id)->update($datosgrupo);
-        $grupo = grupos::findOrFail($id);
 
         return redirect('grupo')->with('EditGrupo','true');
     }

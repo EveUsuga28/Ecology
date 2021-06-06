@@ -21,7 +21,7 @@
 
     <!--Cuerpo de Pagina (Body)-->
     <br>
-    <div class="container-fluid">
+    <div class="container">
         <div class="card">
             <div class="card-body">
                 @if(Auth()->user()->hasPermissionTo('institucionNull'))
@@ -36,13 +36,13 @@
                         <tr>
                             <th>#</th>
                             <th>Grupo</th>
-                            <th>id</th>
+                            <th>Institución</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
 
-                    <tbody align="center">
+                    <tbody >
                     <div hidden>{{$contador = 0 }}</div>
                         @foreach( $grupo as $grupos )
                             <tr>
@@ -56,7 +56,13 @@
                                     @endif
                                 @endforeach
                                 
-                                <td>{{ $grupos->estado }}</td>
+                                <td>
+                                    @if($grupos->estado == 1)
+                                        {{ __('Habilitado') }}
+                                    @else
+                                        {{ __('Deshabilitado') }}
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>

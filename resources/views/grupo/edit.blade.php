@@ -51,7 +51,7 @@
                                                                         </div>
 
                                                                         <div class="div">
-                                                                                <input type="text" name="id" id="id" value="{{$institucion->id}}" hidden >
+                                                                                <input type="text" name="id_institucion" id="id_institucion" value="{{$institucion->id}}" hidden >
                                                                                 <div class="form-control">{{$institucion->nombre}}</div>
                                                                         </div>
                                                                 </div><br>
