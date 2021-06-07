@@ -32,7 +32,7 @@
                     <thead>
                         <tr>
                             <th>IdPuntajeMaterial</th>
-                            <th>IdMaterial</th>
+                            <th>Material</th>
                             <th>Fecha_Inicio</th>
                             <th>Fecha_Fin</th>
                             <th>Puntaje</th>

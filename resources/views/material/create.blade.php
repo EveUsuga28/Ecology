@@ -81,7 +81,7 @@
 
                 <div class="input-div one">
                   <div class="i">
-                    <i class="fas fa-photo-video"></i> Imagen del material
+                    <i class="fas fa-photo-video"></i> Imagen del Material
                   </div>
 
                   <div class="div">
@@ -92,7 +92,7 @@
                   </div>
                 </div><br>
 
-                <input type="submit" class="btn btn-success" value="Guardar Datos">
+                <input type="submit" class="btn btn-success" value="Registrar Material">
               </form>
             </div>
           </div>

@@ -37,12 +37,12 @@
                 <table id="materiales" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nombre Material</th>
                             <th>Puntaje</th>
                             <th>Kilos</th>
                             <th>Foto</th>
-                            <th>Acción</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
