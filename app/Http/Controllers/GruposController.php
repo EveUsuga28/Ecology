@@ -28,9 +28,9 @@ class GruposController extends Controller
             $id = auth()->user()->id_institucion;
             $institucion = institucions::all();
             $grupo = grupos::all()->where('id_institucion','=',$id);
-            return view('grupo.index',compact('grupo'));
+            return view('grupo.index',compact('grupo','institucion'));
         }
-        
+
     }
 
     /**
