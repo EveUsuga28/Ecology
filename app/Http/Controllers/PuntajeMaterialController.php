@@ -22,8 +22,14 @@ class PuntajeMaterialController extends Controller
     public function index(Request $request)
     {
 
-        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
-        return view('puntajeMaterial.index',$datosPuntajeMaterial );
+        $datosPuntajeMaterial = puntajeMaterial::all();
+
+        //$datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
+
+        $nombredelmaterial = material::all();
+
+        //return view('puntajeMaterial.index',$datosPuntajeMaterial,$nombredelmaterial);
+        return view('puntajeMaterial.index',compact('datosPuntajeMaterial','nombredelmaterial'));
     }
 
      /**

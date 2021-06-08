@@ -9,6 +9,14 @@
 
 @section('content')
 
+    <!--Estilos del DataTable-->
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
+
     <!--Encabezado-->
     <x-datos datos="Reciclaje Grupo"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
@@ -30,7 +38,7 @@
                     @csrf
                     <label>Grupo</label>
                     <select class="form-select" aria-label="Default select example" id="grupo" name="grupo" required>
-                        <option value="">Seleccione un grupo</option>
+                        <option value="">Seleccione un Grupo</option>
                         @foreach($grupos as $grupo)
                             <option value="{{$grupo->id}}">{{$grupo->grupo}}</option>
                         @endforeach
@@ -61,15 +69,15 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>grupo</th>
+                        <th>Grupo</th>
                         <th>Materiales</th>
                         <th>Puntaje Materiales</th>
                         <th>Productos</th>
                         <th>Puntaje Productos</th>
-                        <th>Fecha registro</th>
+                        <th>Fecha Registro</th>
                         <th>Total</th>
                         <th>Estado</th>
-                        <th>acciones</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +96,7 @@
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     @if(session('estado')!='ENVIADO' && session('estado')!='CONFIRMADO')
                                     @if($reciclaje->estado == 1)
-                                <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar</a> &nbsp;
+                                <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a> &nbsp;
                                     @endif&nbsp;
                                 <form action="{{ route('reciclajeGrupo.deshabilitar_habilitarGrupo', $reciclaje->id)}}" method="POST" class="formulario-deshabilitar_habilitar_grupo">
                                     @csrf

@@ -73,7 +73,7 @@
                                     <div class="div">
                                         <div class=" alert-danger">
                                             @error('Kilos')
-                                            <small>*{{$message}}</small>
+                                                <small>*{{$message}}</small>
                                             @enderror
                                         </div>
                                         <input type="number" class="form-control"name="Kilos" value="{{ old( 'Kilos' ,$material->Kilos)}}" id="Kilos" required>
@@ -82,7 +82,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-photo-video"></i> Imagen del material
+                                        <i class="fas fa-photo-video"></i> Imagen del Material
                                     </div>
 
                                     <div class="div">

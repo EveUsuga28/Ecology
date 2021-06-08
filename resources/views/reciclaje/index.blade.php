@@ -66,7 +66,7 @@
                                     <a href="{{route('reciclaje.detalleReciclaje',$reciclaje->id)}}" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
                                 @endif
                                 @if($reciclaje->estado == 'EN PROCESO' || $reciclaje->estado == 'RECHAZADO')
-                                        <a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar&nbsp;</a>&nbsp;
+                                        <a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
                                     <form class="EnviarReciclajeInstitucion" action="{{ route('reciclaje.cambiarEstado', $reciclaje->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')

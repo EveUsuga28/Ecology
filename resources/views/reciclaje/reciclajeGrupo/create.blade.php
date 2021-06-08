@@ -2,9 +2,15 @@
 
 @section('content')
 
-
+    <!--Estilos del DataTable-->
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
     <!--Encabezado-->
-    <x-datos datos="Materiales y Productos grupo"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Materiales y Productos Grupo"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
     <br>
     <div class="container-fluid">
@@ -41,7 +47,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">kilos</label>
+                                    <label for="exampleInputEmail1" class="form-label">Kilos</label>
                                     <input type="number" class="form-control" id="kilos" name="kilos" required>
                                 </div>
 
@@ -87,7 +93,7 @@
                                 @csrf
                                 <input name="id_edit" id="id_edit" type="hidden">
                                 <input name="id_material_edit" id="id_material_edit" type="hidden">
-                                <label for="exampleInputEmail1" class="form-label">kilos</label>
+                                <label for="exampleInputEmail1" class="form-label">Kilos</label>
                                 <input type="number" class="form-control" id="kilos_edit" name="kilos_edit" required>
                                 <br>
                             </div>
@@ -139,7 +145,7 @@
                                         <table id="table-productos" class="table table-hover">
                                             <thead>
                                             <th>Producto</th>
-                                            <th>cantidad</th>
+                                            <th>Cantidad</th>
                                             <th>Puntaje</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>

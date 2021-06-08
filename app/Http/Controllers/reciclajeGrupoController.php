@@ -145,7 +145,7 @@ class reciclajeGrupoController extends Controller
                 ->addColumn('action', function($materiales){
                         $acciones ='';
                     if($materiales->estado == 1) {
-                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar</a>';
+                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a>';
                         $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button>';
                     }else{
                         $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitar('.$materiales->id.')" id="'.$materiales->id.'"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
@@ -272,7 +272,7 @@ class reciclajeGrupoController extends Controller
                 ->addColumn('action', function($productos){
                     $acciones ='';
                     if($productos->estado == '1') {
-                        $acciones = '<div class="btn-group"><a type="button" href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;editar</a>';
+                        $acciones = '<div class="btn-group"><a type="button" href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a>';
                         $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button></div>';
                     }else{
                         $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
