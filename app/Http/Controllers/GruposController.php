@@ -119,4 +119,18 @@ class GruposController extends Controller
         grupos::destroy($id);
         return redirect('grupo')->with('mensaje','Grupo eliminado exitosamente exitosamente');
     }
+
+    public function Deshabilitar($id){
+        $grupo = grupos::find($id);
+
+        if($grupo->estado == 1){
+            $grupo->estado = 0;
+        }else{
+            $grupo->estado = 1;
+        }
+
+        $grupo->save();
+
+        return redirect()->route('grupo.index')->with('eliminar', 'true');
+    }
 }

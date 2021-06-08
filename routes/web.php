@@ -42,6 +42,7 @@ Route::resource('institucion', InstitucionsController::class)->middleware('auth'
 
 /* Rutas grupo */
 Route::resource('grupo', GruposController::class);
+Route::PUT('/grupo/{id}/Deshabilitar', [App\Http\Controllers\GruposController::class, 'Deshabilitar'])->name('grupos.Deshabilitar');
 /* Fin rutas grupo */
 
 

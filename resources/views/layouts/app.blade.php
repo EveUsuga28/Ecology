@@ -91,7 +91,7 @@
             <div class="item">
                 <a href="{{route('producto.index')}}">
                     <div class="icon"><i class="fa fa-box fa-2x"></i></div>
-                    <div class="title"><span>Productos</span></div>
+                    <div class="title"><span><b>Productos</b></span></div>
                 </a>
             </div>
 
@@ -99,12 +99,12 @@
             @if(Auth()->user()->id_institucion != null || Auth()->user()->hasPermissionTo('institucionNull'))
                 <a href="{{route('reciclaje.index')}}">
                     <div class="icon"><i class="fas fa-recycle fa-2x"></i></div>
-                    <div class="title"><span><b>Gestion reciclaje</b></span></div>
+                    <div class="title"><span><b>Gestión Reciclaje</b></span></div>
                 </a>
             @else
             <a href="#">
                     <div class="icon director"><i class="fas fa-recycle fa-2x"></i></div>
-                    <div class="title"><span><b>Gestion reciclaje</b></span></div>
+                    <div class="title"><span><b>Gestión Reciclaje</b></span></div>
                 </a>
             @endif
             </div>
@@ -153,10 +153,10 @@
 
             <div class="item salir">
                 <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
                     <div class="icon"><i class="fas fa-power-off fa-2x"></i></div>
-                    <div class="title"><span><b>{{ __('Cerrar Sesion') }}</b></span></div>
+                    <div class="title"><span><b>{{ __('Cerrar Sesión') }}</b></span></div>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
