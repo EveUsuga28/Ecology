@@ -165,6 +165,11 @@ class reciclajeGrupoController extends Controller
         ->where('id_materiales',$request->material)->exists()){
             return 1;
         }else{
+
+            $request->validate([
+                'kilos'=>'required|max:3'
+            ]);
+
             DB::table('detalle_reciclaje_grupos_materiales')->insert([
                 'id_reciclaje_grupo' => $request->idGrupo,
                 'id_materiales' => $request->material,

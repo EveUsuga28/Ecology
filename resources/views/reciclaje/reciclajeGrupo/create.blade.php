@@ -198,7 +198,7 @@
 @section('js')
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
 
     @if(session('registradoGrupo') == 'true')
@@ -254,6 +254,7 @@
     </script>
 
     <script>
+
         //CREAR DETALLE MATERIAL
         $('#detalle-material').submit(function(e){
             e.preventDefault();
@@ -269,8 +270,14 @@
                     kilos: kilos,
                     idGrupo: id_grupo,
                     _token:_token
+                },
+                success:function (msj){
+
+                },
+                error:function (msj){
+                    console.log(msj)
                 }
-            }).done(function (res){
+            /*}).done(function (res){
                 if(res == 1){
                     Command: toastr["info"]("Este material ya existe en este reciclaje", "Material ya creado")
 
@@ -295,7 +302,7 @@
                     $('#detalle-material')[0].reset();
                     toastr.success('Material creado exitosamente.', 'Nuevo Registro', {timeOut:10000});
                     $('#table-materiales').DataTable().ajax.reload();
-                }
+                }*/
             });
         });
     </script>
