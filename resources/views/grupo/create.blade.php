@@ -45,16 +45,19 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="fas fa-school"></i> Institucion
+                                        <i class="fas fa-school"></i> Institución
                                     </div>
 
                                     <div class="div">
-                                        <select name="id_institucion" class="form-control" id="id_institucion">
-                                            <option value="">Selecciona una opcion</option>
+                                        <select name="id_institucion" class="form-control" id="id_institucion" hidden>
                                             @foreach ($datos as $grupos)
-                                                <option value="{{ $grupos->id}}">{{ $grupos->nombre}}</option>
+                                                @if(Auth()->user()->id_institucion == $grupos->id)
+                                                    <option value="{{ $grupos->id}}">{{ $grupos->nombre}}</option>
+                                                    {{$nombreInstitucion = $grupos->nombre}}
+                                                @endif
                                             @endforeach
                                         </select>
+                                        <div class="form-control">{{$nombreInstitucion}}</div>
                                     </div>
                                 </div><br>
         

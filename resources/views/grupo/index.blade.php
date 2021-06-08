@@ -24,31 +24,64 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div>
-                    <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
-                </div>
-                <hr>
+                @if(Auth()->user()->hasPermissionTo('institucionNull'))
+                @else
+                    <div>
+                        <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
+                    </div>
+                    <hr>
+                @endif
                 <table id="grupos" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Grupo</th>
-                            <th>id</th>
+                            <th>Institución</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
 
-                    <tbody align="center">
+                    <tbody >
+                    <div hidden>{{$contador = 0 }}</div>
                         @foreach( $grupo as $grupos )
                             <tr>
-                                <td>{{ $grupos->id }}</td>
-                                <td>{{ $grupos->Grupo }}</td>
-                                <td>{{ $grupos->id }}</td>
-                                <td>{{ $grupos->Estado }}</td>
+                                
+                                <td>{{$contador += 1}}</td>
+                                <td>{{ $grupos->grupo }}</td>
+
+                                @foreach ($institucion as $nombreinstitucion)
+                                    @if($nombreinstitucion->id == $grupos->id_institucion)
+                                        <td>{{ $nombreinstitucion->nombre}}</td>
+                                    @endif
+                                @endforeach
+                                
                                 <td>
-                                    <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                    @if($grupos->estado == 1)
+                                        {{ __('Habilitado') }}
+                                    @else
+                                        {{ __('Deshabilitado') }}
+                                    @endif
                                 </td>
+
+                                @if ($grupos->estado == 0)
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Habilitar</button>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Deshabilitar</button>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

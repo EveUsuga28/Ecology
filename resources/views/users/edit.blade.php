@@ -45,31 +45,37 @@
 									</div>
 								</div><br>
 
-								<div class="input-div pass">
-									<div class="i"> 
-										<i class="fas fa-id-card"></i> Tipo Documento
-									</div>
-				
-									<div for="tipo_doc" class="div">
-										<Select class="form-control" name="tipo_doc" disabled=»disabled>
-											<option>{{$user->tipo_doc}}</option>
-											<option value='CC'>CC</option>
-											<option value='TI'>TI</option>
-											<option value='CE'>CE</option>
-										</select>
-									</div>
-								</div><br>
+								<div class="row">
+									<div class="col-5">
 
-								<div class="input-div one">
-									<div class="i">
-										<i class="fas fa-hashtag"></i> Numero Documento 
-									</div>
+										<div class="input-div pass">
+											<div class="i"> 
+												<i class="fas fa-id-card"></i> Tipo Documento
+											</div>
+						
+											<div for="tipo_doc" class="div">
+												<Select class="form-control" name="tipo_doc" disabled=»disabled>
+													<option value="{{$user->tipo_doc}}">{{$user->tipo_doc}}</option>
+												</select>
+											</div>
+										</div><br>
 
-									<div for="nro_documento" class="div">
-										<input id="nro_documento" type="number" class="form-control" name="nro_documento" value="{{$user->nro_documento}}">
 									</div>
-								</div><br>
+									<div class="col-7">
 
+										<div class="input-div one">
+											<div class="i">
+												<i class="fas fa-hashtag"></i> Número Documento 
+											</div>
+
+											<div for="nro_documento" class="div">
+												<input id="nro_documento" type="number" class="form-control" name="nro_documento" value="{{$user->nro_documento}}">
+											</div>
+										</div><br>
+
+									</div>
+								</div>
+								
 								<div class="input-div one">
 									<div class="i">
 										<i class="fa fa-envelope-square"></i> Correo

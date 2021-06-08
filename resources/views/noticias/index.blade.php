@@ -31,13 +31,13 @@
                 <table id="Noticias" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <td>Id</td>
+                            <td>#</td>
+                            <td>Foto</td>
                             <td>Titulo</td>
                             <td>Introducción</td>
                             <td>Fecha</td>
                             <td>Estado</td>
-                            <td>Foto</td>
-                            <td>Acción</td>
+                            <td>Acciones</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +49,9 @@
                             @foreach ($noticias as  $noticia)
                                 <tr>
                                     <td>{{$noticia->id}}</td>
+                                    <td>
+                                        <img src="{{asset('storage').'/'.$noticia->foto}}" width="100"alt="">
+                                    </td>
                                     <td>{{$noticia->titulo}}</td>
                                     <td>{{$noticia->introduccion}}</td>
                                     <td>{{$noticia->Fecha}}</td>
@@ -58,10 +61,6 @@
                                     @else
                                         <td bgcolor="#FA5858">Deshabilitar</td>
                                     @endif
-
-                                    <td>
-                                        <img src="{{asset('storage').'/'.$noticia->foto}}" width="100"alt="">
-                                    </td>
 
                                     @if ($noticia->estado == 0)
                                         <td>
@@ -73,12 +72,11 @@
                                         </td>
                                     @else
                                         <td>
-                                            <a class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">Editar</a>
-
                                             <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                                <a class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">Editar</a>
                                             </form>
                                         </td>
                                     @endif

@@ -49,40 +49,49 @@
                                     </div>
            		                </div><br>
 
-                                <div class="input-div pass">
-									<div class="i"> 
-										<i class="fas fa-id-card"></i> Tipo Documento
-									</div>
+                                <div class="row">
+                                    <div class="col-5">
 
-           		                    <div for="tipo_doc" class="div">
-					                    <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
-					                        <option>Tipo Documento</option>
-                                            <option value='CC'>CC</option>
-                                            <option value='TI'>TI</option>
-                                            <option value='CE'>CE</option>
-                                        </select>
-                                        @error('tipo_doc')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                        <div class="input-div pass">
+                                            <div class="i"> 
+                                                <i class="fas fa-id-card"></i> Tipo Documento
+                                            </div>
+
+                                            <div for="tipo_doc" class="div">
+                                                <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
+                                                    <option>Tipo Documento</option>
+                                                    <option value='CC'>CC</option>
+                                                    <option value='TI'>TI</option>
+                                                    <option value='CE'>CE</option>
+                                                </select>
+                                                @error('tipo_doc')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                     </div>
-            	                </div><br>
+                                    <div class="col-7">
 
-                                <div class="input-div one">
-									<div class="i">
-										<i class="fas fa-hashtag"></i> Numero Documento 
-									</div>
+                                        <div class="input-div one">
+                                            <div class="i">
+                                                <i class="fas fa-hashtag"></i> Número Documento 
+                                            </div>
 
-                                    <div for="nro_documento" class="div">
-                                        <input id="nro_documento" type="number" class="form-control @error('nro_documento') is-invalid @enderror" name="nro_documento" value="{{ old('nro_documento') }}" required autocomplete="nro_documento" autofocus placeholder="Número de documento">
-                                        @error('nro_documento')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                            <div for="nro_documento" class="div">
+                                                <input id="nro_documento" type="number" class="form-control @error('nro_documento') is-invalid @enderror" name="nro_documento" value="{{ old('nro_documento') }}" required autocomplete="nro_documento" autofocus placeholder="Número de documento">
+                                                @error('nro_documento')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><br>
+
                                     </div>
-           		                </div><br>
+                                </div>
                                 
                                 <div class="input-div one">
 									<div class="i">
@@ -99,35 +108,45 @@
                                     </div>
            		                </div><br>
 
-                                <div class="input-div one">
-									<div class="i">
-										<i class="fa fa-lock"></i> Contraseña
-									</div>
+                                <div class="row">
+                                    <div class="col-5">
 
-                                    <div for="password"class="div">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contraseña">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                        <div class="input-div one">
+                                            <div class="i">
+                                                <i class="fa fa-lock"></i> Contraseña
+                                            </div>
+
+                                            <div for="password"class="div">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contraseña">
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><br>
+
                                     </div>
-           		                </div><br>
+                                    <div class="col-7">
+                                    
+                                        <div class="input-div one">
+                                            <div class="i">
+                                                <i class="fa fa-lock"></i> Confirmar Contraseña
+                                            </div>
 
-                                <div class="input-div one">
-									<div class="i">
-										<i class="fa fa-lock"></i> Confirmar Contraseña
-									</div>
+                                            <div for="password-confirm" class="div">
+                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Contraseña">
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><br>
 
-                                    <div for="password-confirm" class="div">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Contraseña">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
                                     </div>
-           		                </div><br>
+                                </div>
+                                
 
                                 <div class="input-div pass">
                                     <div class="i">
@@ -136,7 +155,7 @@
 
                                     <div  for="tipo_doc" class="div">
                                         <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="rol" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
-                                            <option>rol</option>
+                                            <option>Rol</option>
                                             <option value='1'>administrador</option>
                                             <option value='2'>Director</option>
                                         </select>
@@ -149,8 +168,8 @@
                                     </div>
                                 </div><br>
 
-                                <input type="hidden" name="Estado" value="habilitado" />
-                                <button type="submit" class="btn btn-primary">
+                                <input type="hidden" name="Estado" value="Habilitado" />
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Registrarse') }}
                                 </button>
 
@@ -167,5 +186,4 @@
             </div>
         </div>
     </div>
-    <br><br><br><br>
 @endsection

@@ -31,28 +31,35 @@
                 <table id="puntajes" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>IdPuntajeMaterial</th>
-                            <th>IdMaterial</th>
+                            <th>#</th>
+                            <th>Material</th>
                             <th>Fecha_Inicio</th>
                             <th>Fecha_Fin</th>
                             <th>Puntaje</th>
                             <th>Estado</th>
-                            <th>Acción</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($puntajeMaterials)<=0)
+                        @if(count($datosPuntajeMaterial)<=0)
                             <tr>
                                 <td colspan="8">Material no encontrada</td>
                             </tr>
                         @else
-                            @foreach ( $puntajeMaterials as $puntajeMaterial )
+                            @foreach ( $datosPuntajeMaterial as $puntajeMaterial )
                                 <tr>
                                     <td>{{$puntajeMaterial->idPuntajeMaterail}}</td>
-                                    <td>{{$puntajeMaterial->id_materials}}</td>
+
+                                    @foreach($nombredelmaterial as $nombre)
+                                        @if($puntajeMaterial->id_materials == $nombre->id)
+                                            <td>{{$nombre->NomreMaterial}}</td>
+                                        @endif
+                                    @endforeach
+
                                     <td>{{$puntajeMaterial->Fecha_Inicio}}</td>
                                     <td>{{$puntajeMaterial->Fecha_Fin}}</td>
                                     <td>{{$puntajeMaterial->Puntaje}}</td>
+
                                     @if($puntajeMaterial->Estado == 'habilitado')
                                         <td>{{ $puntajeMaterial->Estado}}</td>
                                     @else
@@ -84,7 +91,6 @@
                         @endif
                     </tbody>
                 </table>
-                {{$puntajeMaterials->links()}}
             </div>
         </div>
     </div>
@@ -133,7 +139,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#PuntajesM').DataTable( {
+        $('#puntajes').DataTable( {
             responsive: true,
             autoWidth: false,
             language: {

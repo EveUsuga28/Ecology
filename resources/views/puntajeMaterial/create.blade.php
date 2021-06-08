@@ -40,13 +40,14 @@
                                     </div>
 
                                     <div class="div">
-                                        <input type=""  class="form-control" value="{{$id}}"  name="id_materials" id="id_materials" required readonly>
+                                        <input type=""  class="form-control" value="{{$nombreMaterial->id}}"  name="id_materials" id="id_materials" hidden>
+                                        <div class="form-control">{{$nombreMaterial->NomreMaterial}}</div>
                                     </div>
                                 </div><br>
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="far fa-calendar-alt"></i> Fecha de inicio
+                                        <i class="far fa-calendar-alt"></i> Fecha de Inicio
                                     </div>
 
                                     <div class="div">
@@ -71,7 +72,7 @@
 
                                 <div class="input-div pass">
                                     <div class="i"> 
-                                        <i class="fas fa-star-half-alt"></i> Puntaje del material
+                                        <i class="fas fa-star-half-alt"></i> Puntaje del Material
                                     </div>
 
                                     <div class="div">

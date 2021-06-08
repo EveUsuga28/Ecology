@@ -47,11 +47,12 @@
                                                                 
                                                                 <div class="input-div one">
                                                                         <div class="i">
-                                                                                <i class="fas fa-school"></i> Institucion
+                                                                                <i class="fas fa-school"></i> Institución
                                                                         </div>
 
                                                                         <div class="div">
-                                                                                <input type="text" name="id" class="form-control" id="id" value="{{$grupo->id}}" readonly >
+                                                                                <input type="text" name="id_institucion" id="id_institucion" value="{{$institucion->id}}" hidden >
+                                                                                <div class="form-control">{{$institucion->nombre}}</div>
                                                                         </div>
                                                                 </div><br>
 
