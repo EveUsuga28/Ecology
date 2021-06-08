@@ -38,10 +38,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nombre Material</th>
-                            <th>Puntaje</th>
-                            <th>Kilos</th>
                             <th>Foto</th>
+                            <th>Nombre Material</th>
+                            <th>Kilos</th>
+                            <th>Puntaje</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -49,12 +49,13 @@
                         @foreach($materials as $material)
                             <tr>
                                 <td>{{$material->id}}</td>
-                                <td>{{$material->NomreMaterial}}</td>
-                                <td>{{$material->Puntaje}}</td>
-                                <td>{{$material->Kilos}}</td>
                                 <td>
                                     <img src="{{asset('storage').'/'.$material->Foto}}" width="100"alt="">
                                 </td>
+                                <td><b>{{$material->NomreMaterial}}</b></td>
+                                <td>{{$material->Kilos}}</td>
+                                <td>{{$material->Puntaje}}</td>
+                                
                                 <td>
                                     @can('material/edit')
                                     <a  class="btn btn-outline-info" href="{{url('/material/'.$material->id.'/edit')}}" title="

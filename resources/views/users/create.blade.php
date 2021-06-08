@@ -148,8 +148,6 @@
                                 </div>
                                 
 
-                                
-
                                 <div class="input-div pass">
                                     <div class="i">
                                         <i class="fas fa-id-card"></i> Rol del Usuario

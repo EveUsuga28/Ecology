@@ -40,7 +40,8 @@
                                     </div>
 
                                     <div class="div">
-                                        <input type=""  class="form-control" value="{{$nombreMaterial->NomreMaterial}}"  name="id_materials" id="id_materials" required readonly>
+                                        <input type=""  class="form-control" value="{{$nombreMaterial->id}}"  name="id_materials" id="id_materials" hidden>
+                                        <div class="form-control">{{$nombreMaterial->NomreMaterial}}</div>
                                     </div>
                                 </div><br>
 
