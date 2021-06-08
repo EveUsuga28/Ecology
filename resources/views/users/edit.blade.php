@@ -65,7 +65,7 @@
 
 										<div class="input-div one">
 											<div class="i">
-												<i class="fas fa-hashtag"></i> Numero Documento 
+												<i class="fas fa-hashtag"></i> Número Documento 
 											</div>
 
 											<div for="nro_documento" class="div">

@@ -77,7 +77,7 @@
 
                                         <div class="input-div one">
                                             <div class="i">
-                                                <i class="fas fa-hashtag"></i> Numero Documento 
+                                                <i class="fas fa-hashtag"></i> Número Documento 
                                             </div>
 
                                             <div for="nro_documento" class="div">
@@ -155,7 +155,7 @@
 
                                     <div  for="tipo_doc" class="div">
                                         <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="rol" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
-                                            <option>rol</option>
+                                            <option>Rol</option>
                                             <option value='1'>administrador</option>
                                             <option value='2'>Director</option>
                                         </select>

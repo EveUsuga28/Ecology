@@ -2,9 +2,16 @@
 
 @section('content')
 
+    <!--Estilos del DataTable-->
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
 
     <!--Encabezado-->
-    <x-datos datos="Materiales y Productos grupo"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Materiales y Productos Grupo"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
     <br>
     <div>
@@ -19,7 +26,7 @@
         <tr>
         <thead>
             <th>Producto</th>
-            <th>cantidad</th>
+            <th>Cantidad</th>
             <th>Puntaje</th>
             <th>Estado</th>
         </thead>
@@ -57,7 +64,7 @@
                     <tr>
                     <thead>
                     <th>Materiales</th>
-                    <th>cantidad</th>
+                    <th>Cantidad</th>
                     <th>Puntaje</th>
                     <th>Estado</th>
                     </thead>
