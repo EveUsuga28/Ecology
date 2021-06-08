@@ -12,15 +12,22 @@ class InformesController extends Controller
 {
 
      public function all(Request $request){
-        $sql=DB::table('periodos_reciclaje')
-       ->join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
-        ->select("institucions.nombre",
-        DB::raw("(select ifnull(sum(total_puntaje_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
-                      ." and estado=1 "." and fechaFin=null )"."as totalPuntaje" ))
 
-        ->get();
+        $reciclaje = reciclaje_grupo::selectRaw('institucions.nombre,sum(reciclaje_grupos.total_puntaje_grupo) as totalPuntaje ')
+              ->join("grupos","grupos.id", "=", "reciclaje_grupos.id_grupo")
+              ->join("institucions","institucions.id", "=", "grupos.id_institucion")
+              ->orderBy('totalPuntaje','DESC')
+              ->groupBy('institucions.nombre')
+              ->get();
+      //  $sql=DB::table('periodos_reciclaje')
+       //->join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
+        //->select("institucions.nombre",
+        //DB::raw("(select ifnull(sum(total_puntaje_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
+                      //." and estado=1 )"."as totalPuntaje" ))
+
+        //->get();
                    // return $reciclaje_institucion;
-    return response(json_encode($sql),200)->header('Content-type','text/plain');
+    return response(json_encode($reciclaje),200)->header('Content-type','text/plain');
 }
 
 

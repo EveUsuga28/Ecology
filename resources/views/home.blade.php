@@ -8,7 +8,7 @@
 @section('content')
 
 <h1 align="center">Informes</h1>
-<div class="row col-6" >
+<div class="row col-5" >
     <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 
