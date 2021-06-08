@@ -28,11 +28,11 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Foto</th>
                             <th>Nombre</th>
                             <th>Teléfono</th>
-                            <th>Fecha Registro</th>
-                            <th>Foto</th>
                             <th>Dirección</th>
+                            <th>Fecha Registro</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -41,13 +41,13 @@
                         @foreach( $institucion as $instituciones )
                             <tr>
                                 <td>{{ $instituciones->id }}</td>
-                                <td>{{ $instituciones->Nombre }}</td>
-                                <td>{{ $instituciones->Telefono }}</td>
-                                <td>{{ $instituciones->fechaRegistro }}</td>
                                 <td>
                                     <img src="{{ asset('storage').'/'.$instituciones->Foto }}" alt="" width="100">
                                 </td>
+                                <td>{{ $instituciones->Nombre }}</td>
+                                <td>{{ $instituciones->Telefono }}</td>
                                 <td>{{ $instituciones->direccion }}</td>
+                                <td>{{ $instituciones->fechaRegistro }}</td>
                                 <td>
                                     <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                 </td>

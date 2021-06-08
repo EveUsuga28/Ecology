@@ -47,7 +47,7 @@
                                                                 
                                                                 <div class="input-div one">
                                                                         <div class="i">
-                                                                                <i class="fas fa-school"></i> Institucion
+                                                                                <i class="fas fa-school"></i> Institución
                                                                         </div>
 
                                                                         <div class="div">

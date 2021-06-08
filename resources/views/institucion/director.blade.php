@@ -42,7 +42,7 @@
 
                             <div class="input-div one">
                                 <div class="i">
-                                    <i class="fas fa-phone"></i> Teléfono de la institución
+                                    <i class="fas fa-phone"></i> Teléfono de la Institución
                                 </div>
 
                                 <div class="div">
@@ -52,7 +52,7 @@
 
                             <div class="input-div one">
                                 <div class="i">
-                                    <i class="fas fa-route"></i> Dirección de la institución
+                                    <i class="fas fa-route"></i> Dirección de la Institución
                                 </div>
 
                                 <div class="div">
@@ -62,7 +62,7 @@
 
                             <div class="input-div one">
                                 <div class="i">
-                                    <i class="far fa-calendar-alt"></i> Fecha de registo
+                                    <i class="far fa-calendar-alt"></i> Fecha de Registo
                                 </div>
 
                                 <div class="div">

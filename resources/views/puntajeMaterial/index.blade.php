@@ -37,7 +37,7 @@
                             <th>Fecha_Fin</th>
                             <th>Puntaje</th>
                             <th>Estado</th>
-                            <th>Acción</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +59,7 @@
                                     <td>{{$puntajeMaterial->Fecha_Inicio}}</td>
                                     <td>{{$puntajeMaterial->Fecha_Fin}}</td>
                                     <td>{{$puntajeMaterial->Puntaje}}</td>
+
                                     @if($puntajeMaterial->Estado == 'habilitado')
                                         <td>{{ $puntajeMaterial->Estado}}</td>
                                     @else
