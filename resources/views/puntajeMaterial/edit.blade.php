@@ -47,7 +47,7 @@
 
                         <div class="input-div pass">
                            <div class="i">
-                              <i class="far fa-calendar-alt"></i> Fecha de inicio
+                              <i class="far fa-calendar-alt"></i> Fecha de Inicio
                            </div>
 
                            <div class="div">
@@ -67,7 +67,7 @@
 
                         <div class="input-div pass">
                            <div class="i">
-                                 <i class="fas fa-star-half-alt"></i> Puntaje del material
+                                 <i class="fas fa-star-half-alt"></i> Puntaje del Material
                            </div>
 
                            <div class="div">
