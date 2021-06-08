@@ -23,7 +23,7 @@
 @section('content')
 
     <!--Encabezado-->
-    <x-datos datos="institución"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Institución"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->
@@ -71,7 +71,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="far fa-calendar-alt"></i> Fecha de Registo
+                                        <i class="far fa-calendar-alt"></i> Fecha de Registro
                                     </div>
 
                                     <div class="div">
