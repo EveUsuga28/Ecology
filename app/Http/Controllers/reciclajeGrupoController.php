@@ -166,9 +166,8 @@ class reciclajeGrupoController extends Controller
             return 1;
         }else{
 
-          $material = material::find($request->material);
 
-          if($request->kilos>=$material->Kilos){
+
               DB::table('detalle_reciclaje_grupos_materiales')->insert([
                   'id_reciclaje_grupo' => $request->idGrupo,
                   'id_materiales' => $request->material,
@@ -178,19 +177,19 @@ class reciclajeGrupoController extends Controller
               $this->calcularDetalleGrupoMaterial($request->idGrupo);
 
               return 2;
-          }else{
-              return 3;
           }
 
-        }
-
     }
+
+
 
     public function calcularPuntajeMaterial($id,$kilos){
 
         $material = material::find($id);
 
-        $resultado = floor($kilos/$material->Kilos)*$material->Puntaje;
+        $kilosTemp = $kilos/$material->Kilos;
+
+        $resultado = floor($kilosTemp*$material->Puntaje);
 
         return $resultado;
     }
@@ -219,9 +218,6 @@ class reciclajeGrupoController extends Controller
 
     public function ActualizarDetalleMaterial(Request $request){
 
-        $material = material::find($request->id_material);
-
-        if($request->kilos>=$material->Kilos){
             DB::table('detalle_reciclaje_grupos_materiales')
                 ->where('id', '=',$request->id)
                 ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
@@ -229,9 +225,6 @@ class reciclajeGrupoController extends Controller
             $this->calcularDetalleGrupoMaterial($request->id_grupo);
 
             return  back();
-        }else{
-
-        }
 
     }
 

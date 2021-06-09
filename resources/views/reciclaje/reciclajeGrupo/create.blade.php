@@ -302,26 +302,6 @@
                     $('#detalle-material')[0].reset();
                     toastr.success('Material creado exitosamente.', 'Nuevo Registro', {timeOut:10000});
                     $('#table-materiales').DataTable().ajax.reload();
-                }else if(res == 3){
-                    Command: toastr["info"]("Ingrese un peso mayor al solicitado del material", "peso invalidado")
-
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-bottom-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
                 }
             });
         });
@@ -367,8 +347,6 @@
                         $('#detalle_material_edit_modal').modal('hide');
                         toastr.info('El Material fue actualizado correctamente.', 'Actualizar Registro', {timeOut:10000});
                         $('#table-materiales').DataTable().ajax.reload();
-                    }else{
-                        Command: toastr["info"]("Ingrese un peso mayor al solicitado del material", "peso invalidado")
                     }
                 }
             })
