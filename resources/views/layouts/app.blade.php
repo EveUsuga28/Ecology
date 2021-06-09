@@ -161,6 +161,13 @@
                         @csrf
                     </form>
                 </a>
+            </div><br><br>
+
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="title"><span><b>Ayuda</b></span></div>
+                </a>
             </div>
 
         </div>

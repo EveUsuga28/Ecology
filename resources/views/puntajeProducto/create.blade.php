@@ -40,14 +40,14 @@
                                     </div>
 
                                     <div class="div">
-                                        <input type=""  class="form-control"value="{{$id}}"  name="idproducto" id="idproducto" hidden>
-                                        <div class="form-control"><?= $id ?></div>
+                                        <input type=""  class="form-control"value="{{$nombredeunproducto->id}}"  name="idproducto" id="idproducto" hidden>
+                                        <div class="form-control">{{$nombredeunproducto->nombre}}</div>
                                     </div>
                                 </div><br>
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="far fa-calendar-alt"></i> Fecha de inicio
+                                        <i class="far fa-calendar-alt"></i> Fecha de Inicio
                                     </div>
 
                                     <div class="div">

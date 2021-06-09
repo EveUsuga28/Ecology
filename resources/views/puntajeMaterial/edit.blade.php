@@ -41,7 +41,8 @@
                            </div>
 
                            <div class="div">
-                              <input type=""  class="form-control"value="{{isset($puntajeMaterial->id_materials)?$puntajeMaterial->id_materials:'' }}"  name="id_materials" id="id_materials" required disabled=»disabled>
+                              <input type=""  class="form-control"value="{{isset($puntajeMaterial->id_materials)?$puntajeMaterial->id_materials:'' }}"  name="id_materials" id="id_materials" hidden>
+                              <div class="form-control">{{$nombre->NomreMaterial}}</div>
                            </div>
                         </div><br>
 
@@ -61,7 +62,7 @@
                            </div>
 
                            <div class="div">
-                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin" >
+                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin" required>
                            </div>
                         </div><br>
 
