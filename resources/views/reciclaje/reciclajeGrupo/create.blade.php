@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Kilos</label>
-                                    <input type="number" class="form-control" id="kilos" name="kilos" required>
+                                    <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="kilos" name="kilos" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -94,7 +94,7 @@
                                 <input name="id_edit" id="id_edit" type="hidden">
                                 <input name="id_material_edit" id="id_material_edit" type="hidden">
                                 <label for="exampleInputEmail1" class="form-label">Kilos</label>
-                                <input type="number" class="form-control" id="kilos_edit" name="kilos_edit" required>
+                                <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="kilos_edit" name="kilos_edit" required>
                                 <br>
                             </div>
                             <div class="modal-footer">
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Cantidad</label>
-                                        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+                                        <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="cantidad" name="cantidad" required>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -178,7 +178,7 @@
                                 <input name="id_edit_producto" id="id_edit_producto" type="hidden">
                                 <input name="id_producto_edit" id="id_producto_edit" type="hidden">
                                 <label for="exampleInputEmail1" class="form-label">Cantidad</label>
-                                <input type="number" class="form-control" id="cantidad_edit" name="cantidad_edit" required>
+                                <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="cantidad_edit" name="cantidad_edit" required>
                                 <br>
                             </div>
                             <div class="modal-footer">
@@ -277,13 +277,7 @@
                     idGrupo: id_grupo,
                     _token:_token
                 },
-                success:function (msj){
-
-                },
-                error:function (msj){
-                    console.log(msj)
-                }
-            /*}).done(function (res){
+            }).done(function (res){
                 if(res == 1){
                     Command: toastr["info"]("Este material ya existe en este reciclaje", "Material ya creado")
 
@@ -304,11 +298,31 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                }else{
+                }else if(res == 2){
                     $('#detalle-material')[0].reset();
                     toastr.success('Material creado exitosamente.', 'Nuevo Registro', {timeOut:10000});
                     $('#table-materiales').DataTable().ajax.reload();
-                }*/
+                }else if(res == 3){
+                    Command: toastr["info"]("Ingrese un peso mayor al solicitado del material", "peso invalidado")
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
             });
         });
     </script>
@@ -353,6 +367,8 @@
                         $('#detalle_material_edit_modal').modal('hide');
                         toastr.info('El Material fue actualizado correctamente.', 'Actualizar Registro', {timeOut:10000});
                         $('#table-materiales').DataTable().ajax.reload();
+                    }else{
+                        Command: toastr["info"]("Ingrese un peso mayor al solicitado del material", "peso invalidado")
                     }
                 }
             })

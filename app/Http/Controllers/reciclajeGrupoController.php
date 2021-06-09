@@ -166,19 +166,22 @@ class reciclajeGrupoController extends Controller
             return 1;
         }else{
 
-            $request->validate([
-                'kilos'=>'required|max:3'
-            ]);
+          $material = material::find($request->material);
 
-            DB::table('detalle_reciclaje_grupos_materiales')->insert([
-                'id_reciclaje_grupo' => $request->idGrupo,
-                'id_materiales' => $request->material,
-                'kilos' =>  $request->kilos,
-                'puntaje' => $this->calcularPuntajeMaterial($request->material, $request->kilos)
-            ]);
-           $this->calcularDetalleGrupoMaterial($request->idGrupo);
+          if($request->kilos>=$material->Kilos){
+              DB::table('detalle_reciclaje_grupos_materiales')->insert([
+                  'id_reciclaje_grupo' => $request->idGrupo,
+                  'id_materiales' => $request->material,
+                  'kilos' =>  $request->kilos,
+                  'puntaje' => $this->calcularPuntajeMaterial($request->material, $request->kilos)
+              ]);
+              $this->calcularDetalleGrupoMaterial($request->idGrupo);
 
-           return 2;
+              return 2;
+          }else{
+              return 3;
+          }
+
         }
 
     }
@@ -216,13 +219,20 @@ class reciclajeGrupoController extends Controller
 
     public function ActualizarDetalleMaterial(Request $request){
 
-          DB::table('detalle_reciclaje_grupos_materiales')
-            ->where('id', '=',$request->id)
-              ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
+        $material = material::find($request->id_material);
 
-          $this->calcularDetalleGrupoMaterial($request->id_grupo);
+        if($request->kilos>=$material->Kilos){
+            DB::table('detalle_reciclaje_grupos_materiales')
+                ->where('id', '=',$request->id)
+                ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
 
-        return  back();
+            $this->calcularDetalleGrupoMaterial($request->id_grupo);
+
+            return  back();
+        }else{
+
+        }
+
     }
 
     public function deshabilitar_habilitar_Material($id){
