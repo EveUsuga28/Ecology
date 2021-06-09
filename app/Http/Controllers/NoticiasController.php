@@ -18,15 +18,6 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        /*$texto=trim($request->get('texto'));
-        $noticias=DB::table('noticias')
-                ->select('id','titulo','contexto','Fecha', 'estado', 'Foto')
-                ->where('titulo','LIKE','%'.$texto.'%')
-                ->orWhere('id','LIKE','%'.$texto.'%')
-                ->orWhere('contexto','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('noticias.index', compact('noticias','texto'));*/
         $datos['noticias']=noticias::paginate();
         return view('noticias.index',$datos);
     }
@@ -57,7 +48,8 @@ class NoticiasController extends Controller
         noticias::insert($datosNoticias);
         Cache::forget('noticias');
 
-        return response()->json($datosNoticias);
+        //return response()->json($datosNoticias);
+        return redirect('noticias')->with('mensaje','Noticia publicada exitosamente');        //return view('noticias.index');
     }
 
     /**

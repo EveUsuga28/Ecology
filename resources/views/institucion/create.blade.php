@@ -1,74 +1,125 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
+
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+
+        .alertaUsuario{
+            padding: 20px;
+            color: white;
+            border-radius: 10px;
+        }
+	</style>
+@endsection
+
 @section('content')
 
+    <!--Encabezado-->
+    <x-datos datos="Institución"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="encabezado-formularios">
+                <h1 class="text-white bg-success text-center padding"> Registrar Institución </h1>
+            </div>
+            <div class="card-body">
+                @if(Auth()->user()->id_institucion != null || Auth()->user()->hasPermissionTo('institucionNull'))
+                    <div></div>
+                @else
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="alertaUsuario bg-info">Para navegar en el sistema es necesario tener una institución registrada</p>
+                        </div>
+                    </div>
+                @endif
+                <div class="row">
+                    <div class="col-8">
+                        <div class="container">
+                            <form class="container" action="{{ url('institucion') }} " method="post" enctype="multipart/form-data">
+                            @csrf
 
-        .boton{
-            width: 54%;
-        }
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-school"></i> Nombre de la Institución
+                                    </div>
 
-    </style>
+                                    <div class="div">
+                                        <input type="text" class="form-control" name="nombre" id="nombre" required>
+                                    </div>
+                                </div><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-phone"></i> Teléfono
+                                    </div>
 
+                                    <div class="div">
+                                        <input type="text" class="form-control" name="telefono" id="telefono" maxLength="9" required>
+                                    </div>
+                                </div><br>
 
-</head>
-<body>
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="far fa-calendar-alt"></i> Fecha de Registro
+                                    </div>
 
+                                    <div class="div">
+                                        <?php
+                                            date_default_timezone_set('America/Bogota');
+                                            $fechaInicio =date("Y-m-d H:i:s");
+                                        ?>
+                                        <input type="datetime"  class="form-control" value="<?= $fechaInicio ?>" name="fechaRegistro" id="fechaRegistro" hidden>
+                                        <div class="form-control"><?= $fechaInicio ?></div>
+                                    </div>
+                                </div><br>
 
-<br>
-<br>
-<div class="container mt-4">
-    <div class="card border-info" >
-    <div class="card-header bg-success text-white" >
-            <h1>Crear Institución</h1>
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-route"></i> Dirección
+                                    </div>
+
+                                    <div class="div">
+                                        <input type="text" class="form-control" name="direccion" id="direccion" required>
+                                    </div>
+                                </div><br>
+
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-photo-video"></i> Escudo
+                                    </div>
+
+                                    <div class="div">
+                                        <input type="file" class="form-control" name="foto" id="foto">
+                                    </div>
+                                </div><br>
+
+                                <input class="btn btn-success" type="submit" value="Registrar" required>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <br>
+                            <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-school-icon-png-image_1606554.jpg" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div><br><br><br>
+@endsection
 
-<form class="container" action="{{ url('institucion') }} " method="post" enctype="multipart/form-data">
-@csrf
+@section('js')
 
-<div class="form-group">
-<label for="foto"> Foto</label><br>
-<input type="file" name="foto" id="foto"><br>
-</div>
-
-<div class="form-group">
-<label for="nombre">Nombre</label><br>
-<input type="text" name="nombre" id="nombre" required><br>
-</div>
-
-<div class="form-group">
-<label for="telefono">Teléfono</label><br>
-<input type="text" name="telefono" id="telefono" required><br>
-</div>
-
-<div class="form-group">
-<label for="fechaRegistro">Fecha Registro</label><br>
-<input type="date" name="fechaRegistro" id="fechaRegistro" required><br>
-</div>
-
-<div class="form-group">
-<label for="direccion">Dirección</label><br>
-<input type="text" name="direccion" id="direccion" required><br><br>
-</div>
-
-<input class="btn btn-success" type="submit" value="Enviar" required><br> <br>
-
-</form>
-
-</div>
-</div>
-</body>
 @endsection

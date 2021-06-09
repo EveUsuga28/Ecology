@@ -9,6 +9,14 @@
 
 @section('content')
 
+    <!--Estilos del DataTable-->
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
+
     <!--Encabezado-->
     <x-datos datos="Reciclaje Grupo"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
@@ -30,7 +38,7 @@
                     @csrf
                     <label>Grupo</label>
                     <select class="form-select" aria-label="Default select example" id="grupo" name="grupo" required>
-                        <option value="">Seleccione un grupo</option>
+                        <option value="">Seleccione un Grupo</option>
                         @foreach($grupos as $grupo)
                             <option value="{{$grupo->id}}">{{$grupo->grupo}}</option>
                         @endforeach
@@ -51,22 +59,25 @@
     <div class="card">
 
         <div class="card-body">
+            @if(session('estado')!='ENVIADO' && session('estado')!='CONFIRMADO')
             <a href="javascript:void(0)" onclick="CrearReciclaje()" class="btn btn-success">
-                <b>Nuevo</b>
+                <b>Nuevo Reciclaje Grupo</b>
             </a>
+            @endif
             <hr>
                 <table id="reciclajeGrupo" class="table table-striped" style="width:100%">
                     <thead>
                     <tr>
-                        <td>Id</td>
-                        <td>grupo</td>
-                        <td>Materiales</td>
-                        <td>Puntaje Materiales</td>
-                        <td>Productos</td>
-                        <td>Puntaje Productos</td>
-                        <td>Fecha registro</td>
-                        <td>Total</td>
-                        <td>acciones</td>
+                        <th>Id</th>
+                        <th>Grupo</th>
+                        <th>Materiales</th>
+                        <th>Puntaje Materiales</th>
+                        <th>Productos</th>
+                        <th>Puntaje Productos</th>
+                        <th>Fecha Registro</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -80,7 +91,26 @@
                             <td>{{$reciclaje->total_puntaje_productos_grupo}}</td>
                             <td>{{$reciclaje->fecha}}</td>
                             <td>{{$reciclaje->total_puntaje_grupo}}</td>
-                            <td><a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-light">editar</a></td>
+                            <td> @if($reciclaje->estado == 1)Habilitado @else Deshabilitado @endif</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @if(session('estado')!='ENVIADO' && session('estado')!='CONFIRMADO')
+                                    @if($reciclaje->estado == 1)
+                                <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a> &nbsp;
+                                    @endif&nbsp;
+                                <form action="{{ route('reciclajeGrupo.deshabilitar_habilitarGrupo', $reciclaje->id)}}" method="POST" class="formulario-deshabilitar_habilitar_grupo">
+                                    @csrf
+                                    @method('PUT')
+                                    @if($reciclaje->estado == 1)
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button>&nbsp;&nbsp;&nbsp;
+                                    @else
+                                        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>&nbsp;&nbsp;&nbsp;
+                                    @endif
+                                </form>
+                                    @endif
+                                        <a type="button" href="{{route('reciclajeGrupo.DetalleReciclajeGrupo',$reciclaje->id)}}" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -92,6 +122,8 @@
 @endsection
 
 @section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         $(document).ready(function() {
@@ -156,6 +188,39 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-deshabilitar_habilitar_grupo').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    @if(session('deshabilitado_habilitado') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Estado Cambiado',
+                'success'
+            )
         </script>
     @endif
 

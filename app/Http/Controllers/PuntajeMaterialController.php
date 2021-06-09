@@ -22,8 +22,14 @@ class PuntajeMaterialController extends Controller
     public function index(Request $request)
     {
 
-        $datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
-        return view('puntajeMaterial.index',$datosPuntajeMaterial );
+        $datosPuntajeMaterial = puntajeMaterial::all();
+
+        //$datosPuntajeMaterial['puntajeMaterials']=puntajeMaterial::paginate(6);
+
+        $nombredelmaterial = material::all();
+
+        //return view('puntajeMaterial.index',$datosPuntajeMaterial,$nombredelmaterial);
+        return view('puntajeMaterial.index',compact('datosPuntajeMaterial','nombredelmaterial'));
     }
 
      /**
@@ -33,9 +39,11 @@ class PuntajeMaterialController extends Controller
      */
     public function Crear($id)
     {
-
-        return view('puntajeMaterial.create',compact('id'));
-
+        $rol = auth()->user()->getRoleNames();
+        if($rol[0]=='admin'){
+        $nombreMaterial = material::findOrFail($id);
+        return view('puntajeMaterial.create',compact('nombreMaterial'));
+        }
     }
 
 
@@ -62,7 +70,7 @@ class PuntajeMaterialController extends Controller
 
 
         $material->save();
-        return redirect('puntajeMaterial')->with('mensaje','Material Creado Exitosamente');
+        return redirect('puntajeMaterial')->with('puntaje','true');
       //  return response()->json($datosPuntajeMaterial);
     }
 
@@ -86,8 +94,9 @@ class PuntajeMaterialController extends Controller
     public function edit($idPuntajeMaterail)
     {
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
+        $nombre = material::findOrFail($puntajeMaterial->id_materials);
 
-        return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+        return view('puntajeMaterial.edit',compact('puntajeMaterial','nombre'));
     }
 
     /**
@@ -105,9 +114,8 @@ class PuntajeMaterialController extends Controller
 
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
 
-        return redirect('puntajeMaterial');
+        return redirect('puntajeMaterial')->with('EditPuntaje', 'true');
         //return view('puntajeMaterial.edit',compact('puntajeMaterial'));
-
     }
 
     /**

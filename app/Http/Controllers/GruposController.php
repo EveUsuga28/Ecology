@@ -18,17 +18,19 @@ class GruposController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        $texto=trim($request->get('texto'));
-        $grupo=DB::table('grupos')
-                ->select('id','Grupo','id', 'Estado')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('Grupo','LIKE','%'.$texto.'%')
-                ->orWhere('id','LIKE','%'.$texto.'%')
-                ->orWhere('Estado','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('grupo.index', compact('grupo','texto'));
+        $rol = auth()->user()->getRoleNames();
+
+        if ($rol[0]=='admin') {
+            $grupo = grupos::all();
+            $institucion = institucions::all();
+            return view('grupo.index',compact('grupo','institucion'));
+        }else{
+            $id = auth()->user()->id_institucion;
+            $institucion = institucions::all();
+            $grupo = grupos::all()->where('id_institucion','=',$id);
+            return view('grupo.index',compact('grupo','institucion'));
+        }
+        
     }
 
     /**
@@ -38,8 +40,8 @@ class GruposController extends Controller
      */
     public function create()
     {
-        $datos['institucion']=institucions::all();
-        return view('grupo.create',$datos);
+        $datos=institucions::all();
+        return view('grupo.create',compact('datos'));
     }
 
     /**
@@ -77,14 +79,14 @@ class GruposController extends Controller
     public function edit( $id)
     {
 
-        $datos['institucion']=institucions::all();
+        //$datos['institucion']=institucions::all();
         //return view('grupo.create',$datos);
 //------------------------------------------
         $grupo = grupos::findOrFail($id);
-        $id = $grupo->id;
-        $institucion = institucions::findOrFail($id);
+        $idInstitucion = $grupo->id_institucion;
+        $institucion = institucions::findOrFail($idInstitucion);
 
-        $grupo = grupos::findOrFail($id);
+        //$grupo = grupos::findOrFail($id);
         return view('grupo.edit',compact('grupo', 'institucion'));
     }
 
@@ -95,13 +97,13 @@ class GruposController extends Controller
      * @param  \App\Models\grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
         $datosgrupo = request()->except(['_token','_method']);
 
         grupos::where('id','=',$id)->update($datosgrupo);
-        $grupo = grupos::findOrFail($id);
-        return view('grupo.edit',compact('grupo'));
+
+        return redirect('grupo')->with('EditGrupo','true');
     }
 
     /**
@@ -116,5 +118,19 @@ class GruposController extends Controller
 
         grupos::destroy($id);
         return redirect('grupo')->with('mensaje','Grupo eliminado exitosamente exitosamente');
+    }
+
+    public function Deshabilitar($id){
+        $grupo = grupos::find($id);
+
+        if($grupo->estado == 1){
+            $grupo->estado = 0;
+        }else{
+            $grupo->estado = 1;
+        }
+
+        $grupo->save();
+
+        return redirect()->route('grupo.index')->with('eliminar', 'true');
     }
 }

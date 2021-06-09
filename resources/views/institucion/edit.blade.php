@@ -1,77 +1,107 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
+
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
+@endsection
+
 @section('content')
 
+    <!--Encabezado-->
+    <x-datos datos="Institución"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="encabezado-formularios">
+                <h1 class="text-white bg-success text-center padding"> Editar Institución </h1>
+            </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="container">
+                                <form class="container" action="{{ url('/institucion/'.$institucion->id ) }} " method="post" enctype="multipart/form-data">
+                                @csrf
+                                {{ method_field('PATCH') }}
 
-        .boton{
-            width: 54%;
-        }
+                                    <div class="input-div one">
+                                        <div class="i">
+                                            <i class="fas fa-school"></i> Nombre de la Institución
+                                        </div>
 
-    </style>
+                                        <div class="div">
+                                            <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $institucion-> nombre}}" required>
+                                        </div>
+                                    </div><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+                                    <div class="input-div one">
+                                        <div class="i">
+                                            <i class="fas fa-phone"></i> Teléfono
+                                        </div>
 
+                                        <div class="div">
+                                            <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $institucion-> telefono}}" required>
+                                        </div>
+                                    </div><br>
 
-</head>
-<body>
+                                    <!--div class="input-div one">
+                                        <div class="i">
+                                            <i class="far fa-calendar-alt"></i> Fecha de registo
+                                        </div>
 
+                                        <div class="div"-->
+                                            <input type="date" name="fechaRegistro" id="fechaRegistro" value="{{ $institucion->fechaRegistro }}" hidden>
+                                        <!--/div>
+                                    </div><br-->
 
-<br>
-<br>
-<div class="container mt-4">
-    <div class="card border-info" >
-    <div class="card-header bg-success text-white" >
-            <h1>Editar Grupo</h1>
+                                    <div class="input-div one">
+                                        <div class="i">
+                                            <i class="fas fa-route"></i> Dirección
+                                        </div>
+
+                                        <div class="div">
+                                            <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $institucion->direccion }}" required>
+                                        </div>
+                                    </div><br>
+
+                                    <div class="input-div one">
+                                        <div class="i">
+                                            <i class="fas fa-photo-video"></i> Escudo
+                                        </div>
+
+                                        <div class="div">
+                                            <input type="file" class="form-control" name="foto" id="foto">
+                                        </div>
+                                    </div><br>
+
+                                    <input class="btn btn-success" type="submit" value="Actualizar">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="container">
+                                <br>
+                                <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-school-icon-png-image_1606554.jpg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div><br><br><br>
+@endsection
 
-<form class="container" action="{{ url('/institucion/'.$institucion->id ) }} " method="post" enctype="multipart/form-data">
-@csrf
+@section('js')
 
-{{ method_field('PATCH') }}
-<br>
-<div class="form-group">
-<label for="foto"><img src="{{ asset('storage').'/'.$institucion->Foto }}" alt="" width="100"> </label><br>
-<input type="file" name="foto" id="foto">
-
-</div>
-
-<div class="form-group">
-<label for="nombre">Nombre</label><br>
-<input type="text" name="nombre" id="nombre" value="{{ $institucion-> Nombre}}" required>
-</div>
-
-<div class="form-group">
-<label for="telefono">Teléfono</label><br>
-<input type="text" name="telefono" id="telefono" value="{{ $institucion-> Telefono}}" required>
-</div>
-
-<div class="form-group">
-<label for="fechaRegistro">Fecha Registro</label><br>
-<input type="date" name="fechaRegistro" id="fechaRegistro" value="{{ $institucion->fechaRegistro }}" required>
-</div>
-
-<div class="form-group">
-<label for="direccion">Dirección</label><br>
-<input type="text" name="direccion" id="direccion" value="{{ $institucion->direccion }}" required>
-</div>
-
-<input class="btn btn-success" type="submit" value="Actualizar"><br>
-
-</form>
-
-</div>
-</div>
-</body>
 @endsection

@@ -1,77 +1,93 @@
 @extends('layouts.app')
 
-@section('content')
-
-@if(Session::has('mensaje'))
-{{ Session::get('mensaje') }}
-
-@endif
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+@section('css')
     <style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
 
-        .boton{
-            width: 54%;
-        }
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
+@endsection
 
-    </style>
+@section('content')
+    <!--Encabezado-->
+    <x-datos datos="Grupos"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="encabezado-formularios">
+                <h1 class="text-white bg-success text-center padding"> Registrar Grupos </h1>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="container">
+                            <form class="container" action="{{ url('grupo') }} " method="post" enctype="multipart/form-data">
+                            @csrf
 
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-graduation-cap"></i> Grupo
+                                    </div>
 
-</head>
-<body>
+                                    <div class="div">
+                                        <input type="text" class="form-control" name="Grupo" id="Grupo" required maxLength="4">
+                                    </div>
+                                </div><br>
 
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="fas fa-school"></i> Institución
+                                    </div>
 
-<br>
-<br>
-<div class="container mt-4">
-    <div class="card border-info" >
-    <div class="card-header bg-success text-white" >
-        <h1>crear Grupo</h1>
-</div>
+                                    <div class="div">
+                                        <select name="id_institucion" class="form-control" id="id_institucion" hidden>
+                                            @foreach ($datos as $grupos)
+                                                @if(Auth()->user()->id_institucion == $grupos->id)
+                                                    <option value="{{ $grupos->id}}">{{ $grupos->nombre}}</option>
+                                                    {{$nombreInstitucion = $grupos->nombre}}
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        <div class="form-control">{{$nombreInstitucion}}</div>
+                                    </div>
+                                </div><br>
+        
+                                <div class="input-div one">
+                                    <div class="i">
+                                        <i class="far fa-bell-slash"></i> Estado
+                                    </div>
+                                    
+                                    <div class="div">
+                                        <input type="number" value="1" name="Estado" class="form-control" id="Estado" hidden>
+                                        <div class="form-control">Habilitado</div>
+                                    </div>
+                                </div><br>
+                                    
+                                <input class="btn btn-success" type="submit" value="Enviar"><br>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <br>
+                            <img src="https://image.flaticon.com/icons/png/512/43/43289.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br>
+@endsection
 
-<form class="container" action="{{ url('grupo') }} " method="post" enctype="multipart/form-data">
-@csrf
+@section('js')
 
-<div class="form-group">
-<label for="Grupo">Grupo</label><br>
-<input type="text" name="Grupo" id="Grupo" required maxLength="4"><br>
-</div>
-
-<div class="form-group">
-<label for="id">institución</label><br>
-
-<select name="id" id="id">
-    @foreach ( $institucion as $grupos)
-        <option value="{{ $grupos->id}}">{{ $grupos->Nombre}}</option>
-    @endforeach
-</select><br>
-</div>
-
-<div class="form-group">
-<label for="Estado">Estado</label><br>
-
-<select name="Estado" id="Estado">
-        <option value="1">habilitado</option>
-        <option value="0">deshabilitado</option>
-</select><br>
-</div>
-
-<input class="btn btn-success" type="submit" value="Enviar"><br><br>
-
-</form>
-
-</div>
-</div>
-</body>
 @endsection

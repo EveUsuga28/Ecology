@@ -1,89 +1,116 @@
 @extends('layouts.app')
 
-@section('content')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Ecology</title>
-	<link rel="shortcut icon" type="text/css" href="../img/logo.png">
+@section('css')
+	<style>
+		.padding{
+			padding: 20px;
+			border-top-left-radius: 100%;
+			border-bottom-right-radius: 100%;
+		}
 
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-	<img class="wave" src="../../img/wave.png">
-	<div class="contenedor">
-		<div class="img">
-			<img src="../../img/planet-earth.svg">
+		.encabezado-formularios{
+			border-bottom: 1px solid gray;
+		}
+	</style>
+@endsection
+
+@section('content')
+
+	<!--Encabezado-->
+    <x-datos datos="Usuario"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+
+    <!--Cuerpo de Pagina (Body)-->
+	<br>
+	<div class="container">
+		<div class="card">
+			<div class="encabezado-formularios">
+				<h1 class="text-white bg-success text-center padding"> Editar Usuario </h1>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-8">
+						<div class="container">
+							<form method="POST" action="{{ route('users.update',$user->id)}}">
+							@csrf
+							@method('PUT')
+								
+								<div class="input-div one">
+									<div class="i">
+										<i class="fas fa-user"></i> Nombre
+									</div>
+
+									<div class="div">
+										<input id="name" type="text" class="form-control" name="name" value="{{$user->name}}" >
+									</div>
+								</div><br>
+
+								<div class="row">
+									<div class="col-5">
+
+										<div class="input-div pass">
+											<div class="i"> 
+												<i class="fas fa-id-card"></i> Tipo Documento
+											</div>
+						
+											<div for="tipo_doc" class="div">
+												<Select class="form-control" name="tipo_doc" disabled=»disabled>
+													<option value="{{$user->tipo_doc}}">{{$user->tipo_doc}}</option>
+												</select>
+											</div>
+										</div><br>
+
+									</div>
+									<div class="col-7">
+
+										<div class="input-div one">
+											<div class="i">
+												<i class="fas fa-hashtag"></i> Número Documento 
+											</div>
+
+											<div for="nro_documento" class="div">
+												<input id="nro_documento" type="number" class="form-control" name="nro_documento" value="{{$user->nro_documento}}">
+											</div>
+										</div><br>
+
+									</div>
+								</div>
+								
+								<div class="input-div one">
+									<div class="i">
+										<i class="fa fa-envelope-square"></i> Correo
+									</div>
+
+									<div for="email"class="div">
+										<input id="email" type="email" class="form-control" name="email" value="{{$user->email}}">                              
+									</div>
+								</div><br>
+
+								<div class="input-div one">
+									<div class="i">
+										<i class="fa fa-lock"></i> Nueva Contraseña
+									</div>
+									<div for="password"class="div">
+										<input id="password" type="password" class="form-control" name="password" placeholder="Contraseña en caso de cambio">                              
+									</div>
+								</div>
+
+								<br>
+								<button type="submit" class="btn btn-success">
+									{{ __('Guardar') }}
+								</button>
+								<a class="btn btn-dark" href="{{route('users.index')}}">Atrás</a>
+							</form>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="container">
+							<br>
+							<img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User001_Edit-512.png" class="img-fluid" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-        <div class="login-content">
-			<form method="POST" action="{{ route('users.update',$user->id)}}">
-            @csrf
-            @method('PUT')
-				<!--<img src="./img/customer.png" height="200px" width="200px" >-->
-				<h5 class="title">Editar Usuario</h5>
-           		<div class="input-div one">
-           		   <div class="i">
-           		   		<i class="fas fa-user"></i>
-           		   </div>
-                  <div class="div">
-           		   		<h5></h5>
-                              <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}" >
-                      </div>
-           		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
-                      <i class="fas fa-id-card"></i>
-           		   </div>
-           		   <div  for="tipo_doc" class="div">
-					  <Select class="form-control" name="tipo_doc">
-					  <option>{{$user->tipo_doc}}</option>
-                            <option value='CC'>CC</option>
-                            <option value='TI'>TI</option>
-                            <option value='CE'>CE</option>
-                            </select>
-                                </div>
-            	   </div>
-                   <div class="input-div one">
-           		   <div class="i">
-                      <i class="fas fa-hashtag"></i>
-           		   </div>
-                  <div for="nro_documento" class="div">
-           		   		<h5></h5>
-                              <input id="nro_documento" type="number" class="form-control" name="nro_documento" value="{{$user->nro_documento}}">
-                      </div>
-           		</div>
-                   <div class="input-div one">
-           		   <div class="i">
-                      <i class="fa fa-envelope-square"></i>
-           		   </div>
-                  <div for="email"class="div">
-           		   		<h5></h5>
-                              <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}">                              
-                      </div>
-           		</div>
-                   <div class="input-div one">
-           		   <div class="i">
-                      <i class="fa fa-lock"></i>
-           		   </div>
-                  <div for="password"class="div">
-           		   		<h5></h5>
-                              <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña en caso de cambio">                              
-                      </div>
-           		</div>
-                   
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Guardar') }}
-                    </button>
-                    <a class="btn btn-dark" href="{{route('users.index')}}">Atrás</a>
-                        
-            </form>
-			
-        </div>
-    </div>
-</body>
-</html>    
+	</div>
 @endsection

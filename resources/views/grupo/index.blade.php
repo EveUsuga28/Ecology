@@ -5,62 +5,90 @@
 @endsection
 
 @section('content')
+
+    <!--Estilos del DataTable-->
     <style>
         table thead {
             background-color:#39A131 ;
             color: white;
         }
     </style>
-<a href="{{ route('grupo.create') }}" class="btn btn-light">NUEVO</a>
+    <!--Estilos del DataTable-->
 
-</div>
+    <!--Encabezado-->
+    <x-datos datos="Grupos"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
 
-<table id="grupos" class="table table-sriped table-bordered">
-    <thead align="center">
-        <tr>
-            <th>#</th>
-            <th>Grupo</th>
-            <th>id</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                @if(Auth()->user()->hasPermissionTo('institucionNull'))
+                @else
+                    <div>
+                        <a href="{{ route('grupo.create') }}" class="btn btn-success">Nuevo</a>
+                    </div>
+                    <hr>
+                @endif
+                <table id="grupos" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Grupo</th>
+                            <th>Institución</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-    <tbody align="center">
-        @foreach( $grupo as $grupos )
-        <tr>
-            <td>{{ $grupos->id }}</td>
-            <td>{{ $grupos->Grupo }}</td>
-            <td>{{ $grupos->id }}</td>
-            <td>{{ $grupos->Estado }}</td>
-            <td>
+                    <tbody >
+                    <div hidden>{{$contador = 0 }}</div>
+                        @foreach( $grupo as $grupos )
+                            <tr>
+                                
+                                <td>{{$contador += 1}}</td>
+                                <td>{{ $grupos->grupo }}</td>
 
-            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-warning">
-                Editar
-            </a>
+                                @foreach ($institucion as $nombreinstitucion)
+                                    @if($nombreinstitucion->id == $grupos->id_institucion)
+                                        <td>{{ $nombreinstitucion->nombre}}</td>
+                                    @endif
+                                @endforeach
+                                
+                                <td>
+                                    @if($grupos->estado == 1)
+                                        {{ __('Habilitado') }}
+                                    @else
+                                        {{ __('Deshabilitado') }}
+                                    @endif
+                                </td>
 
-             | 
-             
-             |
-
-            <form action="{{ url('/grupo/'.$grupos->id ) }}" class="d-inline" method="post">
-
-            @csrf
-
-            {{ method_field('DELETE') }}
-
-                <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-
-            </form>
-
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
-</div>
-</body>
+                                @if ($grupos->estado == 0)
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Habilitar</button>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
+                                            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success ">Deshabilitar</button>
+                                        </form>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')

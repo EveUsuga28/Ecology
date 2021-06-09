@@ -5,100 +5,106 @@
 @endsection
 
 @section('content')
+
+    <!--Estilos del DataTable-->
     <style>
         table thead {
             background-color:#39A131 ;
             color: white;
         }
     </style>
+    <!--Estilos del DataTable-->
+
     <!--Encabezado-->
     <x-datos datos="Productos"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
+
+    <!--Cuerpo de Pagina (Body)-->
     <br>
-    <div class="container">
-    <div>
-        @can('producto.create')
-        <a href="{{ route('producto.create')}}" class="btn btn-light">Nuevo</a>
-        @endcan
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    @can('producto.create')
+                        <a href="{{ route('producto.create')}}" class="btn btn-success">Nuevo</a>
+                    @endcan
 
-        @can('puntajeproductobtn')
-        <a href="{{ route('puntajeProducto.index')}}" class="btn btn-light">Puntajes</a>
-        @endcan
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <table id="productos" class="table table-striped" style="width:100%">
-                <thead align="center">
-                    <tr>
-                        <td>Id</td>
-                        <td>Nombre Producto</td>
-                        <td>Puntaje</td>
-                        <td>Foto</td>
-                        <td>Estado</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($productos as $producto)
-                <tr>
-                    <td>{{$producto->id}}</td>
-                    <td>{{$producto->nombre}}</td>
-                    <td>{{$producto->puntaje}}</td>
-                    <td>
-                    <img src="{{asset('storage').'/'.$producto->foto}}" width="100"alt="">
-                     <!-- {{$producto->foto}}-->
-                    </td>
-                    @if($producto->estado == 'habilitado')
-                     <td bgcolor="#81F79F">{{ $producto->estado}}</td>
+                    @can('puntajeproductobtn')
+                        <a href="{{ route('puntajeProducto.index')}}" class="btn btn-light">Puntajes</a>
+                    @endcan
+                </div>
+                <hr>
+                <table id="productos" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Nombre Producto</td>
+                            <td>Puntaje</td>
+                            <td>Foto</td>
+                            <td>Estado</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($productos as $producto)
+                            <tr>
+                                <td>{{$producto->id}}</td>
+                                <td>{{$producto->nombre}}</td>
+                                <td>{{$producto->puntaje}}</td>
+                                <td>
+                                    <img src="{{asset('storage').'/'.$producto->foto}}" width="100" alt="">
+                                </td>
 
-                    @else
-                    <td bgcolor="#FA5858">{{ $producto->estado}}</td>
-                    @endif
+                                @if($producto->estado == 'habilitado')
+                                    <td bgcolor="#81F79F">{{ $producto->estado}}</td>
+                                @else
+                                    <td bgcolor="#FA5858">{{ $producto->estado}}</td>
+                                @endif
 
-                    @if ($producto->estado == 'Deshabilitado')
-                    <td>
-                        <form action="{{ route('producto.Deshabilitar', $producto->id)}}" method="POST" class="formulario-eliminar">
-                            
+                                @if ($producto->estado == 'Deshabilitado')
+                                    <td>
+                                        <form action="{{ route('producto.Deshabilitar', $producto->id)}}" method="POST" class="formulario-eliminar">
+                                        @csrf
+                                        @method('PUT')
 
-                            @csrf
-                            @method('PUT')
-                            @can('estado/crearpuntaje')
-                                
-                            
-                            <button type="submit" class="btn btn-success boton">habilitar</button>
-                            <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Puntaje Puntaje</a>
-                            @endcan
-                            @can('producto.edit')
-                            <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
-                            @endcan
-                            <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
-                        </form>
-                    </td>
-                    @else
-                    <td>
-                        <form action="{{ route('producto.Deshabilitar', $producto->id)}}" method="POST" class="formulario-eliminar">
+                                            @can('estado/crearpuntaje')
+                                                <button type="submit" class="btn btn-success boton">habilitar</button>
+                                                <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Puntaje Puntaje</a>
+                                            @endcan
 
-                            @csrf
-                            @method('PUT')
-                            @can('estado/crearpuntaje')
-                            <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                            <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Nuevo Puntaje</a>                            
-                            @endcan
+                                            @can('producto.edit')
+                                                <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
+                                            @endcan
 
-                            @can('producto.edit')
-                            <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
-                            @endcan
-                            <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
-                        </form>
-                    </td>
-                    @endif  
-                 </tr>
-                @endforeach 
-                </tbody>
-            </table>
+                                            <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('producto.Deshabilitar', $producto->id)}}" method="POST" class="formulario-eliminar">
+                                        @csrf
+                                        @method('PUT')
+
+                                            @can('estado/crearpuntaje')
+                                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                                <a class="btn btn-outline-secondary" href="{{Route('puntajeProducto.Crear',$producto->id)}}">Crear Nuevo Puntaje</a>                            
+                                            @endcan
+
+                                            @can('producto.edit')
+                                                <a  class="btn btn-outline-info" href="{{url('/producto/'.$producto->id.'/edit') }}" title="Editar Producto"><i class="fa fa-edit"></i></a>
+                                            @endcan
+
+                                            <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i></button></a>
+                                        </form>
+                                    </td>
+                                @endif  
+                            </tr>
+                        @endforeach 
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('js')
