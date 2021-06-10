@@ -102,8 +102,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
-            'nro_documento'=>' regex:/^[0-90-9 \s]+$/',
-            'email'=> 'required|email|unique:users,email'
+            'nro_documento'=>' regex:/^[0-90-9 \s]+$/'
         ]);
         $data = $request->only('name','tipo_doc','nro_documento', 'email');
         $password=$request->input('password');

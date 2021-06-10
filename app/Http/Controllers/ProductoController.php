@@ -25,14 +25,8 @@ class ProductoController extends Controller
 
         if($rol[0]=='admin'){
         
-        $texto=trim($request->get('texto'));
-        $productos=DB::table('products')  
-                ->select('id','nombre','puntaje', 'foto', 'estado')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('nombre','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate();
-        return view('producto.index', compact('productos','texto'));
+        $productos = Producto::all();
+        return view('producto.index', compact('productos'));
         }else{
             $productos = Producto::all();
             return view('producto.director', compact('productos'));

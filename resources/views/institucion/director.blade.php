@@ -62,7 +62,7 @@
 
                             <div class="input-div one">
                                 <div class="i">
-                                    <i class="far fa-calendar-alt"></i> Fecha de Registo
+                                    <i class="far fa-calendar-alt"></i> Fecha de Registro
                                 </div>
 
                                 <div class="div">

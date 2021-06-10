@@ -93,9 +93,9 @@ class PuntajeProductoController extends Controller
      * @param  \App\Models\puntajeProducto  $puntajeProducto
      * @return \Illuminate\Http\Response
      */
-    public function edit($idPuntajeProducto)
+    public function edit($id)
     {
-        $puntajeProducto= puntajeProducto::findOrFail($idPuntajeProducto);
+        $puntajeProducto= puntajeProducto::findOrFail($id);
 
         $NameOfProduct = Producto::findOrFail($puntajeProducto->idproducto);
 
@@ -109,15 +109,15 @@ class PuntajeProductoController extends Controller
      * @param  \App\Models\puntajeProducto  $puntajeProducto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idPuntajeProducto)
+    public function update(Request $request, $id)
     {
         $datosPuntajeProducto = request()->except(['_token','_method']);
 
-        puntajeProducto:: where('idPuntajeProducto','=',$idPuntajeProducto)->update($datosPuntajeProducto);
+        puntajeProducto:: where('id','=',$id)->update($datosPuntajeProducto);
 
-        $puntajeProducto= puntajeProducto::findOrFail($idPuntajeProducto);
+        $puntajeProducto= puntajeProducto::findOrFail($id);
        
-        return view('puntajeProducto.edit');
+        return redirect('puntajeProducto')->with('EditarPuntaje', 'true');
     }
 
     /**
@@ -126,11 +126,9 @@ class PuntajeProductoController extends Controller
      * @param  \App\Models\puntajeProducto  $puntajeProducto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idPuntajeProducto)
+    public function destroy()
     {
-        puntajeProducto::destroy($idPuntajeProducto);
-
-        return redirect('puntajeProducto');
+        
     }
 
     public function Deshabilitar($id)

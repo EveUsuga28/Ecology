@@ -31,8 +31,9 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="container">
-                     <form action="{{url('/puntajeProducto/'.$puntajeProducto->idPuntajeProducto)}}" method="post">
+                     <form action="{{url('/puntajeProducto/'.$puntajeProducto->id)}}" method="post">
                      @csrf
+                     {{method_field('PATCH')}}
 
                         <div class="input-div one">
                            <div class="i">

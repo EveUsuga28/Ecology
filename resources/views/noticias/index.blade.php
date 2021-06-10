@@ -33,7 +33,7 @@
                         <tr>
                             <td>#</td>
                             <td>Foto</td>
-                            <td>Titulo</td>
+                            <td>Título</td>
                             <td>Introducción</td>
                             <td>Fecha</td>
                             <td>Estado</td>

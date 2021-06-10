@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('puntaje');
             $table->string('foto');
             $table->string('estado')->default('habilitado');
+            $table->string('video');
         });
     }
 
