@@ -87,6 +87,8 @@ Route::Put('/reciclaje/EnviarReciclajeInstitucion/{id}',[App\Http\Controllers\re
 
 Route::Put('/reciclaje/ConfirmarRechazarReciclaje',[App\Http\Controllers\reciclajeIntitucionControlller::class,'confirmarRechazarReciclaje'])->name('reciclaje.confirmarRechazarReciclaje');
 
+Route::get('reciclaje/export/', [App\Http\Controllers\reciclajeIntitucionControlller::class,'exportar'])->name('reciclaje.descargar');
+
 Route::resource('/reciclaje',App\Http\Controllers\reciclajeIntitucionControlller::class)->names('reciclaje');
 
 Route::get('/reciclajeGrupo/indexMaterialesDetalle/{id}',[App\Http\Controllers\reciclajeGrupoController::class,'indexMaterialesDetalle'])->name('reciclajeGrupo.indexMateriales');

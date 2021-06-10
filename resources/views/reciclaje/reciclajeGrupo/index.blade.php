@@ -93,22 +93,22 @@
                             <td>{{$reciclaje->total_puntaje_grupo}}</td>
                             <td> @if($reciclaje->estado == 1)Habilitado @else Deshabilitado @endif</td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
+                                <div class="d-flex">
                                     @if(session('estado')!='ENVIADO' && session('estado')!='CONFIRMADO')
                                     @if($reciclaje->estado == 1)
-                                <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a> &nbsp;
+                                <a href="{{route('reciclajeGrupo.Editar',$reciclaje->id)}}" class="btn btn-primary mx-0"><i class="fas fa-edit"></i></a> &nbsp;
                                     @endif&nbsp;
                                 <form action="{{ route('reciclajeGrupo.deshabilitar_habilitarGrupo', $reciclaje->id)}}" method="POST" class="formulario-deshabilitar_habilitar_grupo">
                                     @csrf
                                     @method('PUT')
                                     @if($reciclaje->estado == 1)
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-danger mx-0"><i class="fas fa-times-circle"></i></button>&nbsp;&nbsp;&nbsp;
                                     @else
-                                        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-success mx-0"><i class="fas fa-check"></i></button>&nbsp;&nbsp;&nbsp;
                                     @endif
                                 </form>
                                     @endif
-                                        <a type="button" href="{{route('reciclajeGrupo.DetalleReciclajeGrupo',$reciclaje->id)}}" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
+                                        <a type="button" href="{{route('reciclajeGrupo.DetalleReciclajeGrupo',$reciclaje->id)}}" class="btn btn-dark mx-0"><i class="far fa-eye"></i></a>
                                 </div>
                             </td>
                         </tr>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\ReciclajesExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\grupos;
 use App\Models\institucions;
 use App\Models\reciclaje_grupo;
@@ -10,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\material;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Table;
+
 
 class reciclajeIntitucionControlller extends Controller
 {
@@ -145,6 +148,12 @@ class reciclajeIntitucionControlller extends Controller
 
             DB::table('periodos_reciclaje')->where('id','=',$id)
             ->update(['fechaFin'=>$now->format('Y-m-d')]);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ReciclajesExport, 'reciclaje.xlsx');
+
     }
 
 
