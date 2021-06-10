@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">
+
+    <title>Ecology</title>
+
+    <!-- Scripts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="http://ecology.test/css/app.css" rel="stylesheet">
+
+
+    <!-- Styles -->
+	<link rel="shortcut icon" type="text/css" href="http://ecology.test/img/logo.png ">
+    <link href="http://ecology.test/css/MenuEstilos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
+
+    <style>
+    .director{
+        color: gray;
+    }
+    </style>
+
+    
+</head>
+
+<body>
+    <!--div class="spaceEncabezado">
+        <h1 id="EncabezadoModulo"><b>Reciclaje Grupo</b></h1>
+    </div-->
+    <div id="sidemenu" class="menu-collapsed">
+        <div id="header">
+            <div id="tittle"><span><img src="http://ecology.test/img/logo.png" alt="" width="40"> Ecology</span></div>
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+            </div>
+        </div>
+        <div id="profile">
+            <div id="photo"><img src="http://ecology.test/img/perfildeusuario.jpg" alt=""></div>
+            <div id="name"><span>administrador</span></div>
+        </div>
+
+        <div id="menu-items">
+            <div class="item">
+                            <a href="http://ecology.test/home">
+                    <div class="icon"><i class="fas fa-home fa-2x"></i></div>
+                    <div class="title"><span><b>Inicio</b></span></div>
+                </a>
+                        </div>
+            
+                            <div class="item">
+                    <a href="http://ecology.test/users">
+                        <div class="icon"><i class="fas fa-user fa-2x"></i></div>
+                        <div class="title"><span><b>Usuarios</b></span></div>
+                    </a>
+                </div>
+            
+            <div class="item">
+                <a href="http://ecology.test/material" >
+                    <div class="icon"><i class="fas fa-tree fa-2x"></i></div>
+                    <div class="title"><span><b>Materiales</b></span></div>
+                </a>
+            </div>
+
+            <div class="item">
+                <a href="http://ecology.test/producto">
+                    <div class="icon"><i class="fa fa-box fa-2x"></i></div>
+                    <div class="title"><span><b>Productos</b></span></div>
+                </a>
+            </div>
+
+            <div class="item">
+                            <a href="http://ecology.test/reciclaje">
+                    <div class="icon"><i class="fas fa-recycle fa-2x"></i></div>
+                    <div class="title"><span><b>Gestión Reciclaje</b></span></div>
+                </a>
+                        </div>
+
+            <div class="item">
+                            <a href="http://ecology.test/noticias">
+                    <div class="icon"><i class="fas fa-newspaper fa-2x"></i></div>
+                    <div class="title"><span><b>Noticias</b></span></div>
+                </a>
+                        </div>
+
+            <div class="item">
+                            <a href="http://ecology.test/institucion">
+                    <div class="icon"><i class="fas fa-school fa-2x"></i></div>
+                    <div class="title"><span><b>Institución</b></span></div>
+                </a>
+                        </div>
+            
+            <div class="item">
+                            <a href="http://ecology.test/grupo">
+                    <div class="icon"><i class="fas fa-user-graduate fa-2x"></i></div>
+                    <div class="title"><span><b>Grupos</b></span></div>
+                </a>
+                        </div>
+
+            <div class="item salir">
+                <a href="http://ecology.test/logout"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <div class="icon"><i class="fas fa-power-off fa-2x"></i></div>
+                    <div class="title"><span><b>Cerrar Sesión</b></span></div>
+                    <form id="logout-form" action="http://ecology.test/logout" method="POST" class="d-none">
+                        <input type="hidden" name="_token" value="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">                    </form>
+                </a>
+            </div><br><br>
+
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="title"><span><b>Ayuda</b></span></div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+        <div id="main-container">
+
+        
+    <!--Estilos del DataTable-->
+    <style>
+        table thead {
+            background-color:#39A131 ;
+            color: white;
+        }
+    </style>
+    <!--Estilos del DataTable-->
+
+    <!--Encabezado-->
+    <div class="spaceEncabezado">
+    <h1 id="EncabezadoModulo"><b>Reciclaje Institución</b></h1>
+</div>
+ <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <a href="http://ecology.test/reciclaje/crear" class="btn btn-success">Nuevo reciclaje institución</a>
+                </div>
+                <div>
+                    <a href="http://ecology.test/reciclaje/export" class="btn btn-success">Descargar</a>
+                </div>
+                <hr>
+                <table id="reciclaje" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                                                        <th>Institución</th>
+                                                        <th>Materiales kilos</th>
+                            <th>Puntaje Materiales</th>
+                            <th>Productos</th>
+                            <th>Puntaje Productos</th>
+                            <th>Total Puntaje</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                            <div>
+                            <td>1</td>
+                                                        <td></td>
+                                                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2021-06-05</td>
+                            <td>2021-06-05</td>
+                            <td>CONFIRMADO</td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                                                    <a href="http://ecology.test/reciclaje/detalleReciclaje/1" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
+                                                                                                                                                                                                                                        </td>
+                            </div>
+                        </tr>
+                                            <div>
+                            <td>2</td>
+                                                        <td></td>
+                                                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2021-06-06</td>
+                            <td></td>
+                            <td>RECHAZADO</td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                                                                                        <a href="http://ecology.test/reciclaje/editarReciclaje/2" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
+                                    <form class="EnviarReciclajeInstitucion" action="http://ecology.test/reciclaje/EnviarReciclajeInstitucion/2" method="POST">
+                                        <input type="hidden" name="_token" value="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">                                        <input type="hidden" name="_method" value="PUT">                                                                                    <button  type="submit" class="btn btn-success" disabled><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                                                            </form>
+                                                                                                                                                                    </td>
+                            </div>
+                        </tr>
+                                            <div>
+                            <td>3</td>
+                                                        <td></td>
+                                                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2021-06-07</td>
+                            <td></td>
+                            <td>EN PROCESO</td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                                                                                        <a href="http://ecology.test/reciclaje/editarReciclaje/3" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
+                                    <form class="EnviarReciclajeInstitucion" action="http://ecology.test/reciclaje/EnviarReciclajeInstitucion/3" method="POST">
+                                        <input type="hidden" name="_token" value="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">                                        <input type="hidden" name="_method" value="PUT">                                                                                    <button  type="submit" class="btn btn-success" disabled><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                                                            </form>
+                                                                                                                                                                    </td>
+                            </div>
+                        </tr>
+                                            <div>
+                            <td>4</td>
+                                                        <td></td>
+                                                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2021-06-07</td>
+                            <td></td>
+                            <td>EN PROCESO</td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                                                                                        <a href="http://ecology.test/reciclaje/editarReciclaje/4" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
+                                    <form class="EnviarReciclajeInstitucion" action="http://ecology.test/reciclaje/EnviarReciclajeInstitucion/4" method="POST">
+                                        <input type="hidden" name="_token" value="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">                                        <input type="hidden" name="_method" value="PUT">                                                                                    <button  type="submit" class="btn btn-success" disabled><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                                                            </form>
+                                                                                                                                                                    </td>
+                            </div>
+                        </tr>
+                                            <div>
+                            <td>5</td>
+                                                        <td></td>
+                                                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2021-06-08</td>
+                            <td></td>
+                            <td>EN PROCESO</td>
+                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                                                                                                        <a href="http://ecology.test/reciclaje/editarReciclaje/5" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
+                                    <form class="EnviarReciclajeInstitucion" action="http://ecology.test/reciclaje/EnviarReciclajeInstitucion/5" method="POST">
+                                        <input type="hidden" name="_token" value="X04MbGkmXBKi9bpv0gbBHt2igmS8SDlw3CASPpFt">                                        <input type="hidden" name="_method" value="PUT">                                                                                    <button  type="submit" class="btn btn-success" disabled><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                                                            </form>
+                                                                                                                                                                    </td>
+                            </div>
+                        </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Cuerpo de Pagina (Body)-->
+
+
+    </div>
+
+    <script>
+        const btn = document.querySelector('#menu-btn');
+        const menu = document.querySelector('#sidemenu');
+        btn.addEventListener('click', e => {
+            menu.classList.toggle("menu-collapsed");
+            menu.classList.toggle("menu-expanded");
+
+
+            document.querySelector('body').classList.toggle('body-expanded');
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#reciclaje').DataTable( {
+                responsive: true,
+                autoWidth: false,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                }
+            } );
+        } );
+    </script>
+
+    
+    <script>
+        $('.EnviarReciclajeInstitucion').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro Qué desea enviar?',
+                text: "Ya no se podra modificar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    
+    <script>
+        $('.confirmar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro Qué desea confirmar?',
+                text: "Ya no se podra modificar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    
+    <script>
+        $('.rechazar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro Qué desea rechazar?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+
+    
+
+</body>
+</html>
