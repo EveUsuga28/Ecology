@@ -93,6 +93,8 @@
 
 @section('js')
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
         $(document).ready(function() {
             $('#Noticias').DataTable( {
@@ -105,4 +107,37 @@
         } );
     </script>
 
+    @if(session('eliminar') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Estado Cambiado',
+                'success'
+            )
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-eliminar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+    
 @endsection

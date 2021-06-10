@@ -138,8 +138,6 @@
                     this.submit();
                 }
             })
-
-
         });
     </script>
 
