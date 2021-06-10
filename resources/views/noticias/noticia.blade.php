@@ -46,7 +46,41 @@
         <div class="col "></div>
 
         <div class="col-3 fondo2 shadow p-3 mb-5 rounded">
-          Column
+          <div class="container centrado">
+
+            <h1>Información</h1>
+            <hr>
+
+            <img src="{{asset('img/perfildeusuario.jpg')}}" class="img">
+            <br><br>
+
+            <b class="subtitulo">Publicado Por:</b> <br>
+            <b><i class="fas fa-arrow-right"></i>{{$usuario->name}}</b>
+
+            <br><br>
+
+            <b class="subtitulo">Fecha de Publicación:</b> <br>
+            <b><i class="fas fa-arrow-right"></i>{{$noticiaVista->Fecha}}</b>
+            <b><i class="fas fa-arrow-right"></i>{{$usuario->id_institucion}}</b>
+
+            @if($usuario->id_institucion == NULL)
+              <div><b></b></div>
+            @else
+            <br><br>
+
+            <b class="subtitulo">Institución:</b> <br>
+            
+            <b><i class="fa fa-arrow-right"></i>{{$institucion->nombre}}</b>
+            
+            @endif
+            <br><br>
+
+            <a href="{{ url('/login') }}" class="btn btn-success form-control">Iniciar Sesión</a>
+            <br>
+            <a href="{{ route('/')}}" class="btn btn-light form-control narracion2">Atrás</a>
+
+          </div>
+          
         </div>
 
       </div>

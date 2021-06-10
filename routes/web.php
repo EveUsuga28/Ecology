@@ -26,7 +26,7 @@ use App\Http\Controllers\PublicoController;
     return view('./auth/index');
 });*/
 
-Route::get('/', [PublicoController::class, 'index']);
+Route::get('/', [PublicoController::class, 'index'])->name('/');
 
 Route::get('/noticia/{id}',[PublicoController::class, 'vista'])->name('vista.noticia');
 

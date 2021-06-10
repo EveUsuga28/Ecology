@@ -78,7 +78,7 @@
                                             <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-success ">Deshabilitar</button>
+                                            <button type="submit" class="btn btn-danger ">Deshabilitar</button>
                                         </form>
                                     </td>
                                 @endif
@@ -93,6 +93,8 @@
 
 @section('js')
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
         $(document).ready(function() {
             $('#grupos').DataTable( {
@@ -105,4 +107,36 @@
         } );
     </script>
 
+    @if(session('eliminar') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Estado Cambiado',
+                'success'
+            )
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-eliminar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
 @endsection
