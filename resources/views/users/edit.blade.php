@@ -39,6 +39,11 @@
 									<div class="i">
 										<i class="fas fa-user"></i> Nombre
 									</div>
+									<div class=" alert-danger">
+										@error('name')
+										<small>*{{$message}}</small>
+										@enderror
+									</div>
 
 									<div class="div">
 										<input id="name" type="text" class="form-control" name="name" value="{{$user->name}}" >
@@ -67,9 +72,14 @@
 											<div class="i">
 												<i class="fas fa-hashtag"></i> Número Documento 
 											</div>
+											<div class=" alert-danger">
+												@error('nro_documento')
+												<small>*{{$message}}</small>
+												@enderror
+											</div>
 
 											<div for="nro_documento" class="div">
-												<input id="nro_documento" type="number" class="form-control" name="nro_documento" value="{{$user->nro_documento}}">
+												<input id="nro_documento" type="text" class="form-control" name="nro_documento" value="{{$user->nro_documento}}" maxLength="10">
 											</div>
 										</div><br>
 

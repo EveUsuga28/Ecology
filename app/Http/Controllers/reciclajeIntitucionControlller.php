@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\ReciclajesExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\grupos;
+use App\Models\institucions;
 use App\Models\reciclaje_grupo;
 use App\Models\reciclaje_institucion;
 use Carbon\Carbon;
@@ -8,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\material;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Table;
+
 
 class reciclajeIntitucionControlller extends Controller
 {
@@ -21,7 +26,7 @@ class reciclajeIntitucionControlller extends Controller
         $rol = auth()->user()->getRoleNames();
 
        if($rol[0]=='admin'){
-           $reciclaje_institucion = reciclaje_institucion::join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
+                $reciclaje_institucion = reciclaje_institucion::join("institucions","institucions.id", "=", "periodos_reciclaje.id_institucion")
                ->select("institucions.nombre","periodos_reciclaje.*",
                    DB::raw("(select ifnull(sum(total_kilos_material_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
                    ." and estado=1)"."as kilos"),
@@ -36,6 +41,8 @@ class reciclajeIntitucionControlller extends Controller
                    DB::raw("(select ifnull(sum(total_puntaje_grupo),0) from reciclaje_grupos where id_periodo_reciclaje="."periodos_reciclaje.id"
                        ." and estado=1)"."as totalPuntaje")
                     )->get();
+
+
        }else{
            $reciclaje_institucion = DB::table('periodos_reciclaje')
                ->where('id_institucion', '=',auth()->user()->id_institucion)
@@ -141,6 +148,12 @@ class reciclajeIntitucionControlller extends Controller
 
             DB::table('periodos_reciclaje')->where('id','=',$id)
             ->update(['fechaFin'=>$now->format('Y-m-d')]);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ReciclajesExport, 'reciclaje.xlsx');
+
     }
 
 

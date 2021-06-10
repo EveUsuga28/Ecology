@@ -41,18 +41,17 @@
 
                            <div class="div">
                               <input type=""  class="form-control"value="{{isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' }}"  name="idproducto" id="idproducto" hidden>
-                              <div class="form-control"><?= isset($puntajeProducto->idproducto)?$puntajeProducto->idproducto:'' ?></div>
+                              <div class="form-control">{{$NameOfProduct->nombre}}</div>
                            </div>
                         </div><br>
 
                         <div class="input-div one">
                            <div class="i">
-                              <i class="far fa-calendar-alt"></i> Fecha de inicio
+                              <i class="far fa-calendar-alt"></i> Fecha de Inicio
                            </div>
 
                            <div class="div">
-                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:''}}" name="fechaInicio" id="fechaInicio" hidden>
-                              <div class="form-control"><?= isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:'' ?></div>
+                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaInicio)?$puntajeProducto->fechaInicio:''}}" name="fechaInicio" id="fechaInicio">
                            </div>
                         </div><br>
 
@@ -62,7 +61,7 @@
                            </div>
 
                            <div class="div">
-                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" >
+                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" readonly>
                            </div>
                         </div><br>
 

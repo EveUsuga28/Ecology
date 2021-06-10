@@ -31,14 +31,14 @@
                 <table id="productosPuntaje" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>Id Producto</td>
+                            <td>#</td>
+                            <td>Producto</td>
                             <td>Fecha Inicio</td>
                             <td>Fecha Fin</td>
                             <td>Puntaje</td>
                             <td>Estado</td>
                             @can('puntajeproductobtn')
-                                <td>Acciones</td>   
+                                <td>Acciones</td>  
                             @endcan
                         </tr>
                     </thead>
@@ -46,7 +46,13 @@
                         @foreach($puntajeProductos as $puntajeProducto)
                             <tr>
                                 <td>{{$puntajeProducto->id}}</td>
-                                <td>{{$puntajeProducto->idproducto}}</td>
+
+                                @foreach($nameProduct as $nameDOS)
+                                     @if($puntajeProducto->idproducto == $nameDOS->id)
+                                        <td>{{$nameDOS->nombre}}</td>
+                                     @endif
+                                @endforeach
+
                                 <td>{{$puntajeProducto->fechaInicio}}</td>
                                 <td>{{$puntajeProducto->fechaFin}}</td>
                                 <td>{{$puntajeProducto->puntaje}}</td>

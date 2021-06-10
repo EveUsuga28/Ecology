@@ -94,8 +94,9 @@ class PuntajeMaterialController extends Controller
     public function edit($idPuntajeMaterail)
     {
         $puntajeMaterial= puntajeMaterial::findOrFail($idPuntajeMaterail);
+        $nombre = material::findOrFail($puntajeMaterial->id_materials);
 
-        return view('puntajeMaterial.edit',compact('puntajeMaterial'));
+        return view('puntajeMaterial.edit',compact('puntajeMaterial','nombre'));
     }
 
     /**

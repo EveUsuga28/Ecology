@@ -16,26 +16,26 @@ class PuntajeProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
     public function index(Request $request)
     {
-        
-        $texto=trim($request->get('texto'));
-        $puntajeProductos=DB::table('puntaje_products')  
-                ->select('id','idproducto','fechaInicio','fechaFin','puntaje', 'estado')
-                ->where('id','LIKE','%'.$texto.'%')
-                ->orWhere('fechaInicio','LIKE','%'.$texto.'%')
-                ->orWhere('fechaFin','LIKE','%'.$texto.'%')
-                ->orWhere('puntaje','LIKE','%'.$texto.'%')
-                ->orderBy('id', 'asc')
-                ->paginate(10);
-        return view('puntajeProducto.index', compact('puntajeProductos','texto'));
+        $puntajeProductos = puntajeProducto::all();
+
+        $nameProduct = Producto::all();
+
+        return view('puntajeProducto.index', compact('puntajeProductos','nameProduct'));
     }
 
     public function Crear($id)
     {
         $rol = auth()->user()->getRoleNames();
+        $nombredeunproducto = Producto::findOrFail($id);
         if($rol[0]=='admin'){
-        return view('puntajeProducto.create',compact('id'));
+        return view('puntajeProducto.create',compact('nombredeunproducto'));
         }
 
     }
@@ -62,6 +62,7 @@ class PuntajeProductoController extends Controller
             'puntaje'=>' regex:/^[0-90-9 \s]+$/',
         ]);
         // $datosPuntajeMaterial = request()->all();
+       $this->actualizarFechaPuntaje();
        $datosPuntajeProducto = request()->except('_token');
        puntajeProducto::insert($datosPuntajeProducto);
      
@@ -96,7 +97,9 @@ class PuntajeProductoController extends Controller
     {
         $puntajeProducto= puntajeProducto::findOrFail($idPuntajeProducto);
 
-        return view('puntajeProducto.edit',compact('puntajeProducto'));
+        $NameOfProduct = Producto::findOrFail($puntajeProducto->idproducto);
+
+        return view('puntajeProducto.edit',compact('puntajeProducto','NameOfProduct'));
     }
 
     /**
@@ -146,5 +149,13 @@ class PuntajeProductoController extends Controller
         $puntajeProducto->save();
 
         return redirect()->route('puntajeProducto.index')->with('eliminar' , 'true');
+    }
+
+    public function actualizarFechaPuntaje(){
+
+        $now = Carbon::now();
+
+        $puntaje = DB::table('puntaje_products')->where('fechaFin','=',null)
+            ->update(['fechaFin'=>$now->format('Y-m-d H:i:s')]);
     }
 }

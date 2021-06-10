@@ -145,8 +145,8 @@ class reciclajeGrupoController extends Controller
                 ->addColumn('action', function($materiales){
                         $acciones ='';
                     if($materiales->estado == 1) {
-                        $acciones = '<a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a>';
-                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button>';
+                        $acciones = ' <div class="d-flex"><a href="javascript:void(0)" onclick="editarDetalleMaterial(' . $materiales->id . ')" class="btn btn-primary mx-0"><i class="fas fa-edit"></i></a>';
+                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitar('.$materiales->id.')" name="delete" id="'.$materiales->id.'"  class="btn btn-danger mx-0"><i class="fas fa-times-circle"></i></button>';
                     }else{
                         $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitar('.$materiales->id.')" id="'.$materiales->id.'"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
                     }
@@ -165,24 +165,31 @@ class reciclajeGrupoController extends Controller
         ->where('id_materiales',$request->material)->exists()){
             return 1;
         }else{
-            DB::table('detalle_reciclaje_grupos_materiales')->insert([
-                'id_reciclaje_grupo' => $request->idGrupo,
-                'id_materiales' => $request->material,
-                'kilos' =>  $request->kilos,
-                'puntaje' => $this->calcularPuntajeMaterial($request->material, $request->kilos)
-            ]);
-           $this->calcularDetalleGrupoMaterial($request->idGrupo);
 
-           return 2;
-        }
+
+
+              DB::table('detalle_reciclaje_grupos_materiales')->insert([
+                  'id_reciclaje_grupo' => $request->idGrupo,
+                  'id_materiales' => $request->material,
+                  'kilos' =>  $request->kilos,
+                  'puntaje' => $this->calcularPuntajeMaterial($request->material, $request->kilos)
+              ]);
+              $this->calcularDetalleGrupoMaterial($request->idGrupo);
+
+              return 2;
+          }
 
     }
+
+
 
     public function calcularPuntajeMaterial($id,$kilos){
 
         $material = material::find($id);
 
-        $resultado = floor($kilos/$material->Kilos)*$material->Puntaje;
+        $kilosTemp = $kilos/$material->Kilos;
+
+        $resultado = floor($kilosTemp*$material->Puntaje);
 
         return $resultado;
     }
@@ -211,13 +218,14 @@ class reciclajeGrupoController extends Controller
 
     public function ActualizarDetalleMaterial(Request $request){
 
-          DB::table('detalle_reciclaje_grupos_materiales')
-            ->where('id', '=',$request->id)
-              ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
+            DB::table('detalle_reciclaje_grupos_materiales')
+                ->where('id', '=',$request->id)
+                ->update(['kilos' => $request->kilos,'puntaje' => $this->calcularPuntajeMaterial($request->id_material,$request->kilos)]);
 
-          $this->calcularDetalleGrupoMaterial($request->id_grupo);
+            $this->calcularDetalleGrupoMaterial($request->id_grupo);
 
-        return  back();
+            return  back();
+
     }
 
     public function deshabilitar_habilitar_Material($id){
@@ -267,10 +275,10 @@ class reciclajeGrupoController extends Controller
                 ->addColumn('action', function($productos){
                     $acciones ='';
                     if($productos->estado == '1') {
-                        $acciones = '<div class="btn-group"><a type="button" href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar</a>';
-                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Deshabilitar</button></div>';
+                        $acciones = ' <div class="d-flex"><a type="button" href="javascript:void(0)" onclick="editarDetalleProducto(' . $productos->id . ')" class="btn btn-primary mx-0"><i class="fas fa-edit"></i></a>';
+                        $acciones .= '&nbsp;&nbsp;<button type="button" onclick="AlertaDeshabilitarProducto('.$productos->id.')" name="delete" class="btn btn-danger mx-0"><i class="fas fa-times-circle"></i></button></div>';
                     }else{
-                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Habilitar</button>';
+                        $acciones .= '&nbsp;&nbsp;<button onclick="AlertaHabilitarProducto('.$productos->id.')"  class="btn btn-success mx-0"><i class="fas fa-check"></i></button>';
                     }
                     return $acciones;
                 })

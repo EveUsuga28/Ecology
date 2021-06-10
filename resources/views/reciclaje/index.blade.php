@@ -16,7 +16,7 @@
     <!--Estilos del DataTable-->
 
     <!--Encabezado-->
-    <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Reciclaje Institución"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->
@@ -24,8 +24,11 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div>
-                    <a href="{{ route('reciclaje.crear')}}" class="btn btn-success">Nuevo reciclaje institución</a>
+                <div class="d-flex">
+                    <a href="{{ route('reciclaje.crear')}} " class="btn btn-success mx-1">Nuevo reciclaje institución</a>
+                    @can('confirmarRechazar')
+                    <a href="{{route('reciclaje.descargar')}}" class="btn btn-success mx-1"><i class="fas fa-file-excel"></i></a>
+                    @endcan
                 </div>
                 <hr>
                 <table id="reciclaje" class="table table-striped" style="width:100%">
@@ -48,7 +51,7 @@
                     </thead>
                     <tbody>
                     @foreach($reciclaje_institucion as $reciclaje)
-                        <div>
+                       <tr>
                             <td>{{$reciclaje->id}}</td>
                             @can('confirmarRechazar')
                             <td>{{$reciclaje->nombre}}</td>
@@ -61,19 +64,19 @@
                             <td>{{$reciclaje->fechaInicio}}</td>
                             <td>{{$reciclaje->fechaFin}}</td>
                             <td>{{$reciclaje->estado}}</td>
-                            <td><div class="btn-group" role="group" aria-label="Basic example">
+                            <td><div class="d-flex">
                                 @if($reciclaje->estado != 'EN PROCESO' && $reciclaje->estado != 'RECHAZADO')
-                                    <a href="{{route('reciclaje.detalleReciclaje',$reciclaje->id)}}" class="btn btn-dark"><i class="far fa-eye"></i>&nbsp;Detalle</a>
+                                    <a href="{{route('reciclaje.detalleReciclaje',$reciclaje->id)}}" class="btn btn-dark mx-1"><i class="far fa-eye"></i></a>
                                 @endif
                                 @if($reciclaje->estado == 'EN PROCESO' || $reciclaje->estado == 'RECHAZADO')
-                                        <a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Editar&nbsp;</a>&nbsp;
+                                        <a href="{{ route('reciclaje.Editar', $reciclaje->id)}}" class="btn btn-primary mx-1" ><i class="fas fa-edit"></i></a>&nbsp;
                                     <form class="EnviarReciclajeInstitucion" action="{{ route('reciclaje.cambiarEstado', $reciclaje->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         @can('confirmarRechazar')
-                                            <button  type="submit" class="btn btn-success" disabled><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                            <button  type="submit" class="btn btn-success mx-1" disabled><i class="fas fa-paper-plane"></i></button>&nbsp;
                                         @else
-                                            <button  type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i>&nbsp;Enviar&nbsp;</button>&nbsp;
+                                            <button  type="submit" class="btn btn-success mx-1"><i class="fas fa-paper-plane"></i></button>&nbsp;
                                         @endcan
                                     </form>
                                 @endif
@@ -84,20 +87,20 @@
                                                 @method('PUT')
                                                 <input type="hidden" value="Confirmar" name="estado">
                                                 <input type="hidden" value="{{$reciclaje->id}}" name="id">
-                                                <button  type="submit" class="btn btn-success"><i class="fas fa-check"></i>&nbsp;Confirmar&nbsp;</button>&nbsp;&nbsp;
+                                                <button  type="submit" class="btn btn-success mx-1"><i class="fas fa-check"></i></button>&nbsp;&nbsp;
                                             </form>
                                             <form class="rechazar" action="{{ route('reciclaje.confirmarRechazarReciclaje')}}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" value="rechazar" name="estado2">
                                                 <input type="hidden" value="{{$reciclaje->id}}" name="id">
-                                                <button  type="submit" class="btn btn-danger"><i class="fas fa-times-circle"></i>&nbsp;Rechazar&nbsp;</button>&nbsp;
+                                                <button  type="submit" class="btn btn-danger mx-1"><i class="fas fa-times-circle"></i></button>&nbsp;
                                             </form>
                                     @elseif($reciclaje->estado == 'CONFIRMADO')
                                     @endif
                                 @endcan
+                                    </div>
                                 </td>
-                            </div>
                         </tr>
                     @endforeach
                     </tbody>
@@ -124,7 +127,7 @@
             } );
         } );
     </script>
-    
+
     @if(session('institucion') == 'true')
         <script>
             Command: toastr["warning"]("Necesita tener una institución asociada para generar reciclaje", "Error")
