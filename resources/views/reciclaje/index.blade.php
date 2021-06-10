@@ -25,7 +25,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex">
-                    <a href="{{ route('reciclaje.crear')}} " class="btn btn-success mx-1">Nuevo reciclaje institución</a>
+                    <a href="{{ route('reciclaje.crear')}} " class="btn btn-success mx-1">Nuevo Reciclaje Institución</a>
                     @can('confirmarRechazar')
                     <a href="{{route('reciclaje.descargar')}}" class="btn btn-success mx-1"><i class="fas fa-file-excel"></i></a>
                     @endcan
@@ -38,7 +38,7 @@
                             @can('confirmarRechazar')
                             <th>Institución</th>
                             @endcan
-                            <th>Materiales kilos</th>
+                            <th>Materiales Kilos</th>
                             <th>Puntaje Materiales</th>
                             <th>Productos</th>
                             <th>Puntaje Productos</th>
