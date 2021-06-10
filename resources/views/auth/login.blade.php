@@ -6,7 +6,7 @@
 
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	
+
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -22,9 +22,14 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-            
+
             @error('email')
                 <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('deshabilitado')
+            <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -45,7 +50,7 @@
                     </div>
                 </div>
            		<div class="input-div pass">
-           		   <div class="i"> 
+           		   <div class="i">
            		    	<i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
@@ -67,4 +72,4 @@
 
    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </body>
-</html> 
+</html>
