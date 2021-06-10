@@ -16,6 +16,11 @@ class PuntajeProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
     public function index(Request $request)
     {
         $puntajeProductos = puntajeProducto::all();
@@ -57,6 +62,7 @@ class PuntajeProductoController extends Controller
             'puntaje'=>' regex:/^[0-90-9 \s]+$/',
         ]);
         // $datosPuntajeMaterial = request()->all();
+       $this->actualizarFechaPuntaje();
        $datosPuntajeProducto = request()->except('_token');
        puntajeProducto::insert($datosPuntajeProducto);
      
@@ -143,5 +149,13 @@ class PuntajeProductoController extends Controller
         $puntajeProducto->save();
 
         return redirect()->route('puntajeProducto.index')->with('eliminar' , 'true');
+    }
+
+    public function actualizarFechaPuntaje(){
+
+        $now = Carbon::now();
+
+        $puntaje = DB::table('puntaje_products')->where('fechaFin','=',null)
+            ->update(['fechaFin'=>$now->format('Y-m-d H:i:s')]);
     }
 }

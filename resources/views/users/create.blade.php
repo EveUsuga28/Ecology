@@ -59,7 +59,7 @@
 
                                             <div for="tipo_doc" class="div">
                                                 <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="tipo_doc" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
-                                                    <option>Tipo Documento</option>
+                                                    <option disabled selected value="">Tipo de Documento</option>
                                                     <option value='CC'>CC</option>
                                                     <option value='TI'>TI</option>
                                                     <option value='CE'>CE</option>
@@ -81,7 +81,7 @@
                                             </div>
 
                                             <div for="nro_documento" class="div">
-                                                <input id="nro_documento" type="number" class="form-control @error('nro_documento') is-invalid @enderror" name="nro_documento" value="{{ old('nro_documento') }}" required autocomplete="nro_documento" autofocus placeholder="Número de documento">
+                                                <input id="nro_documento" type="text" class="form-control @error('nro_documento') is-invalid @enderror" name="nro_documento" value="{{ old('nro_documento') }}" required autocomplete="nro_documento" autofocus placeholder="Número de documento" maxlength="10">
                                                 @error('nro_documento')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

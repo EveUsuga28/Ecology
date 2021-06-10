@@ -53,6 +53,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'nro_documento'=>' regex:/^[0-90-9 \s]+$/',
+            'email'=> 'required|email|unique:users,email'
+        ]);
+
         $usuario = User::create($request->only('name','tipo_doc','nro_documento','email','Estado')
         +[
             'password' => bcrypt($request->input('password')),
@@ -94,6 +100,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name'=>'max:20 | regex:/^[a-zA-Z \s]+$/',
+            'nro_documento'=>' regex:/^[0-90-9 \s]+$/',
+            'email'=> 'required|email|unique:users,email'
+        ]);
         $data = $request->only('name','tipo_doc','nro_documento', 'email');
         $password=$request->input('password');
         if($password)
