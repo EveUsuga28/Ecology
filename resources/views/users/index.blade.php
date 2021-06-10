@@ -63,19 +63,19 @@
                                     @if ($user->Estado == 'Deshabilitado')
                                         <td>
                                             <form action="{{ route('users.Deshabilitar', $user->id)}}" method="POST" class="formulario-eliminar">
-                                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}">Editar</a>
+                                                
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-success boton">Habilitar</button>
+                                                <button type="submit" class="btn btn-success mx-1"><i class="fas fa-check"></i></button>
                                             </form>
                                         </td>
                                     @else
                                         <td>
                                             <form action="{{ route('users.Deshabilitar', $user->id)}}" method="POST" class="formulario-eliminar">
-                                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}">Editar</a>
+                                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id)}}"><i class="fas fa-edit"></i></a>
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                                <button type="submit" class="btn btn-danger mx-1"><i class="fas fa-times-circle"></i></button>
                                             </form>
                                         </td>
                                     @endif

@@ -155,7 +155,7 @@
 
                                     <div  for="tipo_doc" class="div">
                                         <Select class="form-control @error('tipo_doc') is-invalid @enderror" name="rol" value="{{ old('tipo_doc') }}" required autocomplete="tipo_doc" autofocus>
-                                            <option>Rol</option>
+                                            <option disabled selected value="">Rol</option>
                                             <option value='1'>administrador</option>
                                             <option value='2'>Director</option>
                                         </select>

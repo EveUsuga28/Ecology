@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+<!--
 Formulario Producto
 <br>
 <label For="nombre" >Nombre Producto</label>
@@ -13,7 +13,7 @@ Formulario Producto
 
     @if(isset($producto->foto))
     <label For="foto" >Foto</label>
-      <!--{{$producto->foto}}-->
+      
 
     <img src="{{asset('storage').'/'.$producto->foto}}"  width="100" alt="">
 
@@ -23,3 +23,4 @@ Formulario Producto
     </br>
     <input type="submit"value="Guardar Datos">
      <a href="{{url('producto/') }}">Atrás</a>
+  -->

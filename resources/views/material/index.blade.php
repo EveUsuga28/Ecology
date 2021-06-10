@@ -58,8 +58,7 @@
                                 
                                 <td>
                                     @can('material/edit')
-                                    <a  class="btn btn-outline-info" href="{{url('/material/'.$material->id.'/edit')}}" title="
-                                        Editar">
+                                    <a  class="btn btn-primary mx-1" href="{{url('/material/'.$material->id.'/edit')}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     @endcan

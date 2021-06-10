@@ -49,7 +49,7 @@
                                 <td>{{ $instituciones->direccion }}</td>
                                 <td>{{ $instituciones->fechaRegistro }}</td>
                                 <td>
-                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                    <a href="{{ url('/institucion/'.$instituciones->id.'/edit') }}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach

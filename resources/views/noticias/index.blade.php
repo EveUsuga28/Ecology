@@ -33,7 +33,7 @@
                         <tr>
                             <td>#</td>
                             <td>Foto</td>
-                            <td>Titulo</td>
+                            <td>Título</td>
                             <td>Introducción</td>
                             <td>Fecha</td>
                             <td>Estado</td>
@@ -62,7 +62,7 @@
                                             <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
                                             @csrf
                                             @method('PUT')
-                                                <button type="submit" class="btn btn-success ">habilitar</button>
+                                                <button type="submit" class="btn btn-success mx-1"><i class="fa fa-check"></i></button>
                                             </form>
                                         </td>
                                     @else
@@ -70,8 +70,8 @@
                                             <form action="{{ route('noticias.Deshabilitar', $noticia->id)}}" method="POST" class="formulario-eliminar">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
-                                                <a class="btn btn-outline-success" href="{{url('/noticias/'.$noticia->id.'/edit') }}">Editar</a>
+                                                <button type="submit" class="btn btn-danger mx-1"><i class="fa fa-times-circle"></i></button>
+                                                <a class="btn btn-primary mx-1" href="{{url('/noticias/'.$noticia->id.'/edit') }}"><i class="fa fa-edit"></i></a>
                                             </form>
                                         </td>
                                     @endif

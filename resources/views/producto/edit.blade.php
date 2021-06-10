@@ -64,6 +64,21 @@
                     <input type="number" class="form-control" name="puntaje"  value="{{ isset($producto->puntaje)?$producto->puntaje:'' }}" id="puntaje" disabled>
                   </div>
                 </div><br>
+
+                <div class="input-div one">
+                  <div class="i">
+                    <i class="fas fa-play"></i> Video
+                  </div>
+
+                  <div class="div">
+                    <div class=" alert-danger">
+                      @error('video')
+                      <small>*{{$message}}</small>
+                      @enderror
+                  </div>
+                    <input type="text" class="form-control" name="video"  value="{{ isset($producto->video)?$producto->video:'' }}" id="video">
+                  </div>
+                </div><br>
                 
                 <div class="input-div one">
                   <div class="i">

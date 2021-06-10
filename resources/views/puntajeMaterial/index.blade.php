@@ -77,7 +77,7 @@
                                     @else
                                         <td>
                                             <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
-                                                <a  class="btn btn-outline-info" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
+                                                <a  class="btn btn-primary mx-1" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 @csrf

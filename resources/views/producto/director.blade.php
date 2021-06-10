@@ -25,7 +25,7 @@
                        <h3>Nombre del Producto: {{$producto->nombre}}</h3> 
                        <h3>Puntaje: {{$producto->puntaje}} </h3>
                        <br>
-                       <a href="https://www.youtube.com/watch?v=75B8pGCk4Y4&ab_channel=Ronycreativamanualidades"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i> Ver Procedimiento</button></a>
+                       <a href="{{$producto->video}}"><button class="btn btn-dark" type="button"><i class="fa fa-play"></i> Ver Procedimiento</button></a>
                     </div>
                 </div>
             @endforeach

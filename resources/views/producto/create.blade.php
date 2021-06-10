@@ -66,6 +66,21 @@
 
                 <div class="input-div one">
                   <div class="i">
+                    <i class="fa fa-play"></i> Video
+                  </div>
+
+                  <div class="div">
+                    <div class="  alert-danger" role="alert">
+                      @error('video')
+                      <small>*{{$message}}</small>    
+                      @enderror
+                    </div>
+                    <input type="text" class="form-control"name="video"  value="" id="video" required>
+                  </div>
+                </div><br>
+
+                <div class="input-div one">
+                  <div class="i">
                     <i class="fas fa-photo-video"></i> Foto
                   </div>
 

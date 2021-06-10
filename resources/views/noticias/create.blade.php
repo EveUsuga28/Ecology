@@ -47,7 +47,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="far fa-address-book"></i> Titulo
+                                                            <i class="far fa-address-book"></i> Título
                                                       </div>
 
                                                       <div class="div">
@@ -67,7 +67,7 @@
 
                                                 <div class="input-div one">
                                                       <div class="i">
-                                                            <i class="fas fa-align-left"></i> Texto complementario
+                                                            <i class="fas fa-align-left"></i> Texto Complementario
                                                       </div>
 
                                                       <div class="div">

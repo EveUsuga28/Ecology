@@ -37,7 +37,7 @@
 
                                             <div class="input-div one">
                                                 <div class="i">
-                                                <i class="far fa-address-book"></i> Titulo
+                                                <i class="far fa-address-book"></i> Título
                                                 </div>
 
                                                 <div class="div">
