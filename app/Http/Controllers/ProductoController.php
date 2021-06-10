@@ -14,6 +14,11 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+
+    }
     public function index(Request $request)
     {
         $rol = auth()->user()->getRoleNames();
@@ -57,6 +62,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+
         // $datosMaterial = request()->all();
         $request->validate([
             'nombre'=>'max:20 | regex:/^[a-zA-Z \s]+$/',

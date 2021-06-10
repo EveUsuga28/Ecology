@@ -62,7 +62,7 @@
                            </div>
 
                            <div class="div">
-                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin" required>
+                              <input type="datetime"  class="form-control "value="{{isset($puntajeMaterial->Fecha_Fin)?$puntajeMaterial->Fecha_Fin:''}}"  name="Fecha_Fin" id="Fecha_Fin" readonly>
                            </div>
                         </div><br>
 

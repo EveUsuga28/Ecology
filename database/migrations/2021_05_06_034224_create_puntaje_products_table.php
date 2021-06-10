@@ -17,7 +17,7 @@ class CreatePuntajeProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('idproducto');
             $table->date('fechaInicio');
-            $table->date('fechaFin');
+            $table->date('fechaFin')->nullable();
             $table->integer('puntaje');
             $table->string('estado')->default('habilitado');
 
