@@ -16,7 +16,7 @@
     <!--Estilos del DataTable-->
 
     <!--Encabezado-->
-    <x-datos datos="Reciclaje institucion"/> <!--componentes laravel con envio de datos-->
+    <x-datos datos="Reciclaje Institución"/> <!--componentes laravel con envio de datos-->
     <!--Encabezado-->
 
     <!--Cuerpo de Pagina (Body)-->

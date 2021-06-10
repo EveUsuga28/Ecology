@@ -47,7 +47,7 @@
 
                                 <div class="input-div one">
                                     <div class="i">
-                                        <i class="far fa-calendar-alt"></i> Fecha de inicio
+                                        <i class="far fa-calendar-alt"></i> Fecha de Inicio
                                     </div>
 
                                     <div class="div">

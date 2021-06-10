@@ -30,7 +30,7 @@ class GruposController extends Controller
             $grupo = grupos::all()->where('id_institucion','=',$id);
             return view('grupo.index',compact('grupo','institucion'));
         }
-        
+
     }
 
     /**
