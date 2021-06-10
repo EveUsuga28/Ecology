@@ -66,7 +66,7 @@
                                     </div>
                 
                                     <div class="div">
-                                        <input type="datetime" class="form-control" value="" name="fechaFin" id="fechaFin" >
+                                        <input type="datetime" class="form-control" value="" name="fechaFin" id="fechaFin" readonly>
                                     </div>
                                 </div><br>
 

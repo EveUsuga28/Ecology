@@ -151,7 +151,9 @@ return [
         'NomreMaterial' =>'Nombre',
         'Puntaje'=>'Puntaje',
         'Kilos' =>'Kilos',
-        'Foto'=>'Foto'
+        'Foto'=>'Foto',
+        'name'=>'Nombre',
+        'nro_documento'=>'Número Documento'
     ],
 
 ];

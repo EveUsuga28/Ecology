@@ -61,7 +61,7 @@
                            </div>
 
                            <div class="div">
-                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" required>
+                              <input type="datetime" class="form-control"value="{{isset($puntajeProducto->fechaFin)?$puntajeProducto->fechaFin:''}}"  name="fechaFin" id="fechaFin" readonly>
                            </div>
                         </div><br>
 

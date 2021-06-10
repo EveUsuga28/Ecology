@@ -144,7 +144,7 @@
 
 @if(session('puntajeProducto') == 'true')
 <script>
-    Command: toastr["success"]("¡Editado Exitosamente!", "puntajeProducto")
+    Command: toastr["success"]("¡Creado Exitosamente!", "puntajeProducto")
 
     toastr.options = {
         "closeButton": true,
