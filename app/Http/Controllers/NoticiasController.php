@@ -97,7 +97,13 @@ class NoticiasController extends Controller
         noticias::where('id','=',$id)->update($datosNoticia);
 
         $noticias =noticias::findOrFail($id);
-        return view('noticias.edit',compact('noticias'));
+
+        //return view('noticias.index',compact('noticias'));
+        return redirect('noticias')->with('EditNoticias','true');
+
+        //$institucion = institucions::findOrFail($id);
+
+        //return redirect('institucion')->with('EditInstitucion','true');
 
     }
 

@@ -137,7 +137,7 @@
     <footer id="contacto">
         <div class="footer contenedor">
             <div class="logo">
-                <h1>Contact <span>Us</span></h1>
+                <h1>Contacte<span>nos</span></h1>
                 <!--<img src="img/logo.png" alt="">-->
             </div>
             <div class="iconos">
@@ -145,7 +145,7 @@
                 <i class="fab fa-facebook-square"></i>
                 <i class="fab fa-github"></i>
             </div>
-            <p><i>Tú opinión es un paso más para la perfección</i> </p>
+            <p><i>Tú opinión es un paso más para la perfección</i></p>
         </div>
 
     </footer>

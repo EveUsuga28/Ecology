@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\institucions;
 use App\Models\noticias;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,8 +32,15 @@ class PublicoController extends Controller
 
     public function vista($id){
         $noticiaVista = noticias::findOrFail($id);
+
         $usuario = User::findOrFail($noticiaVista->id_users);
-        //var_dump($noticiaVista);
-        return view('noticias.noticia',compact('noticiaVista','usuario'));
+        if($usuario->id_institucion == null){
+            return view('noticias.noticia',compact('noticiaVista','usuario'));
+        }else{
+            $institucion = institucions::findOrFail($usuario->id_institucion);
+
+            return view('noticias.noticia',compact('noticiaVista','usuario','institucion'));
+        }
+        
     }
 }

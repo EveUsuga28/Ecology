@@ -61,12 +61,18 @@
 
             <b class="subtitulo">Fecha de Publicación:</b> <br>
             <b><i class="fas fa-arrow-right"></i>{{$noticiaVista->Fecha}}</b>
+            <b><i class="fas fa-arrow-right"></i>{{$usuario->id_institucion}}</b>
 
+            @if($usuario->id_institucion == NULL)
+              <div><b></b></div>
+            @else
             <br><br>
 
             <b class="subtitulo">Institución:</b> <br>
-            <b><i class="fas fa-arrow-right"></i>Falta pegar variable y modificar controlador</b>
-
+            
+            <b><i class="fa fa-arrow-right"></i>{{$institucion->nombre}}</b>
+            
+            @endif
             <br><br>
 
             <a href="{{ url('/login') }}" class="btn btn-success form-control">Iniciar Sesión</a>

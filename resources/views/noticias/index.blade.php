@@ -41,11 +41,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($noticias)<=0)
-                            <tr>
-                                <td colspan="8">Noticia no encontrada</td>
-                            </tr>
-                        @else
                             @foreach ($noticias as  $noticia)
                                 <tr>
                                     <td>{{$noticia->id}}</td>
@@ -82,7 +77,6 @@
                                     @endif
                                 </tr>
                             @endforeach
-                        @endif
                     </tbody>
                 </table>
                 {{$noticias->links()}}
