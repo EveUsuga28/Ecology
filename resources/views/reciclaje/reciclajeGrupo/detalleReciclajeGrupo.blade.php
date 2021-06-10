@@ -90,6 +90,11 @@
 
     </div>
 
+    <div class="text-center">
+        <br>
+        <br>
+        <a href="{{ route('reciclaje.Editar', session('id_reciclaje'))}}" class="btn btn-info">Volver</a>
+    </div>
 
 @endsection
 
