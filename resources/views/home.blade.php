@@ -7,14 +7,19 @@
 
 @section('content')
 
-<h1 align="center">Informes</h1>
-<div class="row col-5" >
+
+    <!--Encabezado-->
+    <x-datos datos="Informes"/> <!--componentes laravel con envio de datos-->
+    <!--Encabezado-->
+
+    <!--Cuerpo de Pagina (Body)-->
+    <br>
+<div class="container">
+     <div class="row col-6" >
     <canvas id="myChart" width="400" height="400"></canvas>
 </div>
+</div>
 
-
-<table  id="reciclajeGrupo" class="table table-striped" style="width:100%">
-</table>
 @endsection
 
 @section('js')
