@@ -70,7 +70,7 @@
                                 </div>
                             </div><br>
 
-                            <a href="{{ url('/institucion/'.$institucion->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                            <a href="{{ url('/institucion/'.$institucion->id.'/edit') }}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></a>
                         </div>
                     </div>
                     <div class="col-5">

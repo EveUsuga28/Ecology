@@ -69,16 +69,16 @@
                                         <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-success ">Habilitar</button>
+                                            <button type="submit" class="btn btn-success mx-1"><i class="fa fa-check"></i></button>
                                         </form>
                                     </td>
                                 @else
                                     <td>
                                         <form action="{{ route('grupos.Deshabilitar', $grupos->id)}}" method="POST" class="formulario-eliminar">
-                                            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-outline-success">Editar</a>
+                                            <a href="{{ url('/grupo/'.$grupos->id.'/edit') }}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></a>
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-danger ">Deshabilitar</button>
+                                            <button type="submit" class="btn btn-danger mx-1"><i class="fa fa-times-circle"></i></button>
                                         </form>
                                     </td>
                                 @endif

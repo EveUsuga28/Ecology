@@ -71,18 +71,18 @@
                                             <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-success boton">habilitar</button>
+                                                <button type="submit" class="btn btn-success mx-1"><i class="fa fa-check"></i></button>
                                             </form>
                                         </td>
                                     @else
                                         <td>
                                             <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
-                                                <a  class="btn btn-outline-info" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
+                                                <a  class="btn btn-primary mx-1" href="{{url('/puntajeMaterial/'.$puntajeMaterial->idPuntajeMaterail.'/edit')}}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                                <button type="submit" class="btn btn-danger"><i class="fa fa-times-circle"></i></button>
                                             </form>
                                         </td>
                                     @endif
