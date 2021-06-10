@@ -71,7 +71,7 @@
                                             <form action="{{ route('puntajeMaterial.Deshabilitar', $puntajeMaterial->idPuntajeMaterail)}}" method="POST" class="formulario-eliminar">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-success boton">habilitar</button>
+                                                <button type="submit" class="btn btn-success mx-1"><i class="fas fa-check"></i></button>
                                             </form>
                                         </td>
                                     @else
@@ -82,7 +82,7 @@
                                                 </a>
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-danger">Deshabilitar</button>
+                                                <button type="submit" class="btn btn-danger mx-1"><i class="fas fa-times-circle"></i></button>
                                             </form>
                                         </td>
                                     @endif
