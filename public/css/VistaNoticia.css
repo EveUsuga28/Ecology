@@ -29,6 +29,18 @@ span{
     border-radius: 2px;
 }
 
+.centrado{
+    text-align: center;
+}
+
+.img{
+    border-radius: 50%;
+}
+
+.subtitulo{
+    font-size: 20px;
+}
+
 .fondo{
     background: #3CA55C;
     background: -webkit-linear-gradient(to left, #B5AC49, #3CA55C);

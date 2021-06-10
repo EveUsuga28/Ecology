@@ -41,11 +41,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($noticias)<=0)
-                            <tr>
-                                <td colspan="8">Noticia no encontrada</td>
-                            </tr>
-                        @else
                             @foreach ($noticias as  $noticia)
                                 <tr>
                                     <td>{{$noticia->id}}</td>
@@ -82,7 +77,6 @@
                                     @endif
                                 </tr>
                             @endforeach
-                        @endif
                     </tbody>
                 </table>
                 {{$noticias->links()}}
@@ -92,6 +86,8 @@
 @endsection
 
 @section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         $(document).ready(function() {
@@ -105,4 +101,37 @@
         } );
     </script>
 
+    @if(session('eliminar') == 'true')
+        <script>
+            Swal.fire(
+                'Exito!',
+                'Estado Cambiado',
+                'success'
+            )
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-eliminar').submit(function (e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#dd3333',
+                confirmButtonText: 'Sí, Hazlo!',
+                cancelButtonText: 'cancelar!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+
+        });
+    </script>
+    
 @endsection

@@ -41,7 +41,7 @@
                                                 </div>
 
                                                 <div class="div">
-                                                    <input type="text" value="{{$noticias->titulo}}" class="form-control" name="titulo" id="titulo">
+                                                    <input type="text" value="{{$noticias->titulo}}" class="form-control" name="titulo" id="titulo" required>
                                                 </div>
                                             </div><br>
 
@@ -51,7 +51,7 @@
                                                 </div>
 
                                                 <div class="div">
-                                                    <textarea name="introduccion" id="introduccion"  class="form-control" placeholder="Se ingresa el primer párrafo de la noticia a publicar">{{$noticias->introduccion}}</textarea>
+                                                    <textarea name="introduccion" id="introduccion"  class="form-control" placeholder="Se ingresa el primer párrafo de la noticia a publicar">{{$noticias->introduccion}}</textarea required>
                                                 </div>
                                             </div><br>
 
@@ -61,7 +61,7 @@
                                                 </div>
 
                                                 <div class="div">
-                                                    <textarea name="contexto" id="contexto"  class="form-control" placeholder="Se ingresa el primer párrafo de la noticia a publicar">{{$noticias->contexto}}</textarea>
+                                                    <textarea name="contexto" id="contexto"  class="form-control" placeholder="Se ingresa el primer párrafo de la noticia a publicar">{{$noticias->contexto}}</textarea required>
                                                 </div>
                                             </div><br>
 
