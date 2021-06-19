@@ -15,6 +15,7 @@
     <!--Cuerpo de Pagina (Body)-->
     <br>
     <div class="col-4">
+        <a href="preview" class="d-none d-sm-inline-block btn btn-sm  btn-primary shadow-sm"></a>
         <i class="fas fa-print fa-sm text-whit-50">Imprimir</i>
     </div>
   

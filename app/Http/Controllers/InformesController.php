@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use app\Models\reciclaje_institucion;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-
+use PDF;
 class InformesController extends Controller
 {
 
@@ -35,6 +35,18 @@ class InformesController extends Controller
     public function index(){
        return view('informes.index');
       //return "Hola";
+    }
+
+    public function imprimir(){
+        $reciclaje = reciclaje_grupo::selectRaw('institucions.nombre,sum(reciclaje_grupos.total_puntaje_grupo) as totalPuntaje ')
+        ->join("grupos","grupos.id", "=", "reciclaje_grupos.id_grupo")
+        ->join("institucions","institucions.id", "=", "grupos.id_institucion")
+        ->orderBy('totalPuntaje','DESC')
+        ->groupBy('institucions.nombre')
+        ->get();
+        $pdf = PDF::loadView('myPDF', $reciclaje);
+    
+        return $pdf->download('itsolutionstuff.pdf');
     }
 
 

@@ -128,9 +128,18 @@ Route::resource('puntajeProducto',PuntajeProductoController::class);
 
 Route::PUT('/puntajeProducto/{id}/Deshabilitar', [App\Http\Controllers\puntajeProductoController::class, 'Deshabilitar'])->name('puntajeProducto.Deshabilitar');
 //Route::POST('/', [InformesController::class, 'all']);
-Route::post('/informes/all',[App\Http\Controllers\InformesController::class,'all'])->name('informes.all');
-//Route::post('/informes','App\Http\Controllers\InformesController@all');
+
 Route::resource('informes',App\Http\Controllers\InformesController::class);
+//Route::post('/informes/imprimir',[App\Http\Controllers\InformesController::class,'imprimir'])->name('informes.imprimir');
+Route::post('/informes/all',[App\Http\Controllers\InformesController::class,'all'])->name('informes.all');
+//Route::get('generate-pdf', [InformesController::class, 'generatePDF']);
+//Route::post('/informes','App\Http\Controllers\InformesController@all');
+
+
+Route::get('preview',[App\Http\Controllers\PDFController::class,'preview']);
+Route::get('download',[App\Http\Controllers\PDFController::class,'download'])->name('download');
+
+
 
 
 
