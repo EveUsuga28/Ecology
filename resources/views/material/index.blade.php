@@ -52,10 +52,10 @@
                                 <td>
                                     <img src="{{asset('storage').'/'.$material->Foto}}" width="100"alt="">
                                 </td>
-                                <td><b>{{$material->NomreMaterial}}</b></td>
+                                <td>{{$material->NomreMaterial}}</td>
                                 <td>{{$material->Kilos}}</td>
                                 <td>{{$material->Puntaje}}</td>
-                                
+
                                 <td>
                                     @can('material/edit')
                                     <a  class="btn btn-primary mx-1" href="{{url('/material/'.$material->id.'/edit')}}">

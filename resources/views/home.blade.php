@@ -15,28 +15,16 @@
     <!--Cuerpo de Pagina (Body)-->
     <br>
     <div class="col-4">
-        <a href="preview" class="d-none d-sm-inline-block btn btn-sm  btn-primary shadow-sm"></a>
+        <a href="/informes/imprimir" class="d-none d-sm-inline-block btn btn-sm  btn-primary shadow-sm"></a>
         <i class="fas fa-print fa-sm text-whit-50">Imprimir</i>
     </div>
-  
+
         <div class="container">
             <div class="row col-6" >
             <canvas id="myChart" width="400" height="400"></canvas>
+        
         </div>
         </div>
-
-<table class="table col-6" align="left">
-    <thead>
-        <tr>
-            <td>Nombre Institución</td>
-            <td>Total</td>
-        </tr>
-    </thead>
-    <tbody id="tbody">
-
-    </tbody>
-
-</table>
 
 @endsection
 
