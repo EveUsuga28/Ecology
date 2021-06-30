@@ -17,7 +17,7 @@
         <table  class="table table-striped" style="width : 90%" border="10px">
              <thead>
                  <tr>
-                        <th>Nombre institución</th>
+                        <th>Nombre Institución</th>
                         <th>Total Puntaje</th>
                  </tr>
               </thead>

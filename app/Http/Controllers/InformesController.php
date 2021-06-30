@@ -43,7 +43,7 @@ class InformesController extends Controller
 
 
         $pdf = PDF::loadView('pdf.reporteInformes', $data);
-        return $pdf->stream();
+        return $pdf->download('informes.pdf');
     }
 
 
